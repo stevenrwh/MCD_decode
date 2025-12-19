@@ -74,4 +74,9 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - Placement parsing/instancing (catalog-aware label → block mapping, placement trailer parsing, block fallback) now lives in `monucad/placement.py`; `mcd_to_dxf.py` imports `collect_candidate_records` and `extract_new_style_component_lines` from there.
 - Shared arc math (`circle_from_points`) is exported from `monucad/geometry.py` so placement/fonts/etc. can consume it without local copies.
 
+## 10) File Security Modes (MCD Save)
+- Automated sweep script: `tools/mcpro9_security_sweep.py` runs the “LI” macro, then saves four variants by clicking the File Security options: **All Your Satellites**, **Specific Satellite**, **Only You**, **Masters Only**. Output files: `line_all.mcd`, `line_specific.mcd`, `line_only.mcd`, `line_masters.mcd` (saved into Monu-CAD’s default Drawing Save dir to avoid zero-byte stubs).
+- To compare the per-mode headers/tables, run: `python mcd_section_parser.py <file> --json analysis/<mode>_header.json` and diff the resulting 7×9 header tables across modes.
+- UI confirmation assets live under `analysis/security_sweep/` (dialog screenshots); optional flags `--screen-feed` and `--screen-preview` in the sweep script record/preview the dialog interactions.
+
 Keep this file as the canonical knowledge base. All older docs live in `docs_archive/`. Update this file as discoveries are made; avoid adding new scattered notes.
