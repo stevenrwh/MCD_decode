@@ -29,6 +29,18 @@ from typing import Iterable, List, Sequence, Tuple
 from monucad.deflate_io import DEFAULT_MIN_PAYLOAD, brute_force_deflate, collect_deflate_streams
 from monucad.entities import ArcEntity, CircleEntity, DuplicateRecord, InsertEntity, LineEntity
 from monucad.logging import ArcHelperLogger, log_duplicate_records
+from monucad.geometry import (
+    DUP_FINGERPRINT_PLACES,
+    HELPER_AXIS_TOL,
+    MAX_COORD_MAGNITUDE,
+    fuzzy_eq as _fuzzy_eq,
+    is_alignment_helper as _is_alignment_helper,
+    point_in_bbox as _point_in_bbox,
+    points_match as _points_match,
+    prune_lines_against_arcs as _prune_lines_against_arcs,
+    record_fingerprint as _record_fingerprint,
+    round_coord as _round_coord,
+)
 from monucad.fonts import FontDefinition, FontManager, Glyph, TextEntity, GLYPH_COORD_SCALE, PRINTABLE_ASCII
 from component_parser import (
     ComponentSubBlock,
@@ -51,11 +63,6 @@ from placement_parser import (
     iter_placement_trailers,
 )
 
-MAX_COORD_MAGNITUDE = 1e5  # Reject absurd coordinates that came from noise.
-HELPER_AXIS_TOL = 1e-3
-DUP_FINGERPRINT_PLACES = 6
-
-
 def _log_duplicate_records(records: Sequence[DuplicateRecord], destination: Path) -> None:
     # Backward shim for callers inside this module; actual implementation lives in monucad.logging.
     log_duplicate_records(records, destination)
@@ -77,18 +84,6 @@ def _is_alignment_helper(line: LineEntity) -> bool:
 
 def _looks_like_coordinate(value: float) -> bool:
     return math.isfinite(value) and abs(value) <= MAX_COORD_MAGNITUDE
-
-
-def _fuzzy_eq(a: float, b: float, tol: float = 1e-6) -> bool:
-    return abs(a - b) <= tol
-
-
-def _points_match(
-    p1: Tuple[float, float],
-    p2: Tuple[float, float],
-    tol: float = 1e-6,
-) -> bool:
-    return _fuzzy_eq(p1[0], p2[0], tol) and _fuzzy_eq(p1[1], p2[1], tol)
 
 
 def _circle_from_points(
@@ -206,23 +201,6 @@ def collect_candidate_records(
 def _round_coord(value: float, places: int = DUP_FINGERPRINT_PLACES) -> float:
     return round(value, places)
 
-
-def _record_fingerprint(
-    layer: int,
-    etype: int,
-    x1: float,
-    y1: float,
-    x2: float,
-    y2: float,
-) -> Tuple[int, int, float, float, float, float]:
-    return (
-        layer,
-        etype,
-        _round_coord(x1),
-        _round_coord(y1),
-        _round_coord(x2),
-        _round_coord(y2),
-    )
 
 
 def parse_entities(
