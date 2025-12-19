@@ -68,5 +68,6 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - BBox sanity: use drawing/component bbox to filter out geometry that exceeds expected extents.
 - `diagnostics/dump_placement_blocks.py` is the quickest way to see which 0x4803 blocks carry placement-style records.
 - Deflate scanning lives in `monucad/deflate_io.py`; `monucad/entities.py` now holds core entity dataclasses as part of the ongoing modularization of `mcd_to_dxf.py`.
+- Font logic now lives in `monucad/fonts.py`; `mcd_to_dxf.py` imports TextEntity/Glyph/FontDefinition/FontManager and related constants from there (inline font classes removed).
 
 Keep this file as the canonical knowledge base. All older docs live in `docs_archive/`. Update this file as discoveries are made; avoid adding new scattered notes.
