@@ -83,4 +83,9 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - To compare the per-mode headers/tables, run: `python mcd_section_parser.py <file> --json analysis/<mode>_header.json` and diff the resulting 7×9 header tables across modes.
 - UI confirmation assets live under `analysis/security_sweep/` (dialog screenshots); optional flags `--screen-feed` and `--screen-preview` in the sweep script record/preview the dialog interactions.
 
+## 11) MCC Snapshots (manifests)
+- `FACE.mcc`: 1 component definition (id=0x3805) with 6 sub-blocks, no placement trailers, multiple small deflate streams.
+- `piano keys.mcc`: 1 component definition (id=0x6E694C43) with 0 sub-blocks, no placements, single large deflate (≈84 KB payload).
+- `M9_RGB_COMPONENT.mcc`: 1 component definition (id=0x4803) with 357 sub-blocks, no placements, single large deflate (≈36 KB payload).
+
 Keep this file as the canonical knowledge base. All older docs live in `docs_archive/`. Update this file as discoveries are made; avoid adding new scattered notes.
