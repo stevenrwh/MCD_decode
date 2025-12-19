@@ -1,0 +1,59 @@
+[Outline Roman]
+dtafile = out			; comment
+fontfile = mcalf003
+lowercase = no
+serifs = yes
+
+[Square Raised Medium]
+dtafile = sq			; comment
+fontfile = mcalf005
+lowercase = no
+serifs = no
+
+[Square Raised Bold]
+dtafile = sqb			; comment
+fontfile = mcalf006
+lowercase = no
+serifs = no
+
+[Hebrew]
+dtafile = heb			; comment
+fontfile = mcalf007
+lowercase = no
+serifs = no
+
+[Government Text]
+dtafile = go			; comment
+fontfile = mcalf008
+lowercase = no
+serifs = no
+
+[Press Condensed Roman]
+dtafile = skc
+fontfile = mcalf009
+lowercase = no
+serifs = yes
+
+[Press Modified Roman]
+dtafile = skm
+fontfile = mcalf010
+lowercase = no
+serifs = yes
+
+[Common Gothic]
+dtafile = cg
+fontfile = mcalf011
+lowercase = no
+serifs = no
+
+[Russian]
+dtafile = rus
+fontfile = mcalf012
+lowercase = no
+serifs = no
+
+[Vermarco]
+dtafile = vm
+fontfile = mcalf020
+lowercase = no
+serifs = no

@@ -1,0 +1,39 @@
+Reference: new_style_mcd_files/JF6050-THOMPSON_exported_from_MCPRO9.dxf
+Candidate: tmp_JF6050_current.dxf
+
+Entity type       Ref      Cand     Delta
+-----------------------------------------
+ARC                 5386      7023     1637 *
+CIRCLE                 2         0       -2 -
+INSERT                 0         8        8 *
+LINE                9990      7414    -2576 -
+SPLINE              6528         0    -6528 -
+
+Per-layer deltas:
+
+[ARC]
+  MCD_Layer_0          ref=0      cand=7023   delta=+7023
+  0                    ref=5158   cand=0      delta=-5158
+  1                    ref=208    cand=0      delta=-208
+  2                    ref=20     cand=0      delta=-20
+
+[CIRCLE]
+  0                    ref=2      cand=0      delta=-2
+
+[INSERT]
+  MCD_Layer_0          ref=0      cand=8      delta=+8
+
+[LINE]
+  0                    ref=9642   cand=0      delta=-9642
+  MCD_Layer_0          ref=0      cand=7271   delta=+7271
+  1                    ref=284    cand=0      delta=-284
+  MCD_Layer_1          ref=0      cand=120    delta=+120
+  5                    ref=44     cand=0      delta=-44
+  2                    ref=20     cand=0      delta=-20
+  MCD_Layer_5          ref=0      cand=11     delta=+11
+  MCD_Layer_2          ref=0      cand=8      delta=+8
+  MCD_Layer_72         ref=0      cand=3      delta=+3
+  MCD_Layer_56         ref=0      cand=1      delta=+1
+
+[SPLINE]
+  0                    ref=6528   cand=0      delta=-6528

@@ -1,0 +1,12 @@
+This is a Monucad Version 9 MCD file (a CAD format)
+
+It is proprietary. There is no documentation available. 
+
+It is intentionally obfuscated. 
+
+MTN files (monucad thumbnail files) are compressed raw bitmap files but have headers that are either intentionally or accidentally obfuscated. We have made some headway in "fixing those headers" look at fix_mtn_header.py  May not be useful in decoding MCD files but look at 10X10_rect_mcd.mtn and compare it's header to 10x10_rect.mcd
+
+We know that the MCD file contains the cad "extents" coordinates early in the file somewhere after the header and after the ascii text. 
+
+the structure of the MCD file may be a header, some uncompressed data, and then some compressed data. I believe it's possible that there might be some light encryption of some kind. 
+

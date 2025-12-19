@@ -1,0 +1,16 @@
+Reference: new_style_mcd_files/YIKES.dxf
+Candidate: tmp_YIKES_current.dxf
+
+Entity type       Ref      Cand     Delta
+-----------------------------------------
+ARC                    1         0       -1 -
+CIRCLE                30        30        0  
+LINE                1668       820     -848 -
+
+Per-layer deltas:
+
+[ARC]
+  MCD_Layer_0          ref=1      cand=0      delta=-1
+
+[LINE]
+  MCD_Layer_0          ref=1668   cand=820    delta=-848

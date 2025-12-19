@@ -1,0 +1,3228 @@
+#0001 offset=0x0172 original=0x0150 layer=62 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0002 offset=0x0173 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0003 offset=0x017A original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0004 offset=0x017B original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0005 offset=0x0185 original=0x016B layer=1054599021 etype=1053105848
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0006 offset=0x0195 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0007 offset=0x019D original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0008 offset=0x01F3 original=0x01C9 layer=0 etype=3
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0009 offset=0x0215 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0010 offset=0x0219 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0011 offset=0x021D original=0x01C9 layer=0 etype=3
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0012 offset=0x023F original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0013 offset=0x0247 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0014 offset=0x0267 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0015 offset=0x02E5 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0016 offset=0x02EB original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0017 offset=0x02ED original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0018 offset=0x0310 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0019 offset=0x0315 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0020 offset=0x0318 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0021 offset=0x033A original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0022 offset=0x033F original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0023 offset=0x0342 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0024 offset=0x0364 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0025 offset=0x0386 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0026 offset=0x0387 original=0x0365 layer=65536 etype=2147680256
+       start=(0.000000,0.013125) end=(0.013125,0.000000)
+#0027 offset=0x038E original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0028 offset=0x038F original=0x036D layer=0 etype=2
+       start=(0.013125,0.013125) end=(0.000000,0.000000)
+#0029 offset=0x03C8 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0030 offset=0x03D0 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0031 offset=0x03F1 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0032 offset=0x0414 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0033 offset=0x0415 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0034 offset=0x041B original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0035 offset=0x041C original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0036 offset=0x041D original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0037 offset=0x0445 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0038 offset=0x046F original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0039 offset=0x0499 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0040 offset=0x04BF original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0041 offset=0x04C3 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0042 offset=0x04C7 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0043 offset=0x04E9 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0044 offset=0x04ED original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0045 offset=0x04F1 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0046 offset=0x0511 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0047 offset=0x0519 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0048 offset=0x0532 original=0x0150 layer=62 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0049 offset=0x0533 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0050 offset=0x0535 original=0x0153 layer=65536 etype=2147680256
+       start=(0.000000,0.000003) end=(0.000003,0.000000)
+#0051 offset=0x0539 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0052 offset=0x053A original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0053 offset=0x053B original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0054 offset=0x053D original=0x015B layer=0 etype=2
+       start=(0.000003,0.000003) end=(0.000000,0.000000)
+#0055 offset=0x0553 original=0x0531 layer=16069 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0056 offset=0x055A original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0057 offset=0x055B original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0058 offset=0x0578 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0059 offset=0x0580 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0060 offset=0x0599 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0061 offset=0x059D original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0062 offset=0x05A1 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0063 offset=0x05BB original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0064 offset=0x05C3 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0065 offset=0x0606 original=0x0150 layer=62 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0066 offset=0x0607 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0067 offset=0x0609 original=0x0175 layer=65536 etype=2147680256
+       start=(0.000000,0.000003) end=(0.000000,0.000000)
+#0068 offset=0x060D original=0x03AD layer=2147680256 etype=0
+       start=(0.000003,0.000003) end=(0.000000,0.000000)
+#0069 offset=0x060E original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0070 offset=0x060F original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0071 offset=0x0611 original=0x017D layer=0 etype=2
+       start=(0.000003,0.000000) end=(0.000000,0.000000)
+#0072 offset=0x0619 original=0x05FF layer=1053189734 etype=1053105848
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0073 offset=0x0629 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0074 offset=0x062A original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0075 offset=0x062B original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0076 offset=0x0631 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0077 offset=0x0632 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0078 offset=0x063B original=0x0621 layer=1053189734 etype=1042066441
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0079 offset=0x064D original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0080 offset=0x064F original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0081 offset=0x0655 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0082 offset=0x0677 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0083 offset=0x067A original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0084 offset=0x067B original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0085 offset=0x067F original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0086 offset=0x0687 original=0x066D layer=1043173736 etype=1017907249
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0087 offset=0x06A0 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0088 offset=0x06A1 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0089 offset=0x06A4 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0090 offset=0x06A8 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0091 offset=0x06A9 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0092 offset=0x074D original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0093 offset=0x0770 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0094 offset=0x0772 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0095 offset=0x0774 original=0x033C layer=256 etype=8390656
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0096 offset=0x0777 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0097 offset=0x0778 original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0098 offset=0x077A original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0099 offset=0x0799 original=0x076F layer=16261 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0100 offset=0x079B original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0101 offset=0x079C original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0102 offset=0x07A1 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0103 offset=0x07A3 original=0x026F layer=32776 etype=196608
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0104 offset=0x07A4 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0105 offset=0x07C6 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0106 offset=0x07CA original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0107 offset=0x07CE original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0108 offset=0x07EE original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0109 offset=0x07EF original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0110 offset=0x07F0 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0111 offset=0x07F2 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0112 offset=0x07F3 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0113 offset=0x07F4 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0114 offset=0x07F6 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0115 offset=0x07F7 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0116 offset=0x07F8 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0117 offset=0x080C original=0x07EA layer=2239825470 etype=63
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0118 offset=0x080D original=0x07EB layer=1065713926 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0119 offset=0x080E original=0x07EC layer=4162945 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0120 offset=0x080F original=0x07ED layer=16261 etype=65536
+       start=(0.000000,0.000001) end=(0.000001,0.000000)
+#0121 offset=0x0814 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0122 offset=0x0815 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0123 offset=0x0816 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0124 offset=0x0817 original=0x07F5 layer=2147680256 etype=0
+       start=(0.000001,0.000001) end=(0.000000,0.000000)
+#0125 offset=0x0826 original=0x0804 layer=2239825470 etype=3062311999
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0126 offset=0x0827 original=0x0805 layer=1065713926 etype=1052149548
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#0127 offset=0x0836 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0128 offset=0x0837 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0129 offset=0x0838 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0130 offset=0x083E original=0x081C layer=33554432 etype=738197504
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0131 offset=0x083F original=0x081D layer=131072 etype=2267807744
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0132 offset=0x0840 original=0x081E layer=512 etype=3062311936
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0133 offset=0x085B original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0134 offset=0x087E original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0135 offset=0x0885 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0136 offset=0x0886 original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0137 offset=0x08A7 original=0x043D layer=16242 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0138 offset=0x08A8 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0139 offset=0x08AF original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0140 offset=0x08B0 original=0x0298 layer=8390656 etype=50331648
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0141 offset=0x08B7 original=0x077F layer=3 etype=3184516924
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0142 offset=0x08D2 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0143 offset=0x08D9 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0144 offset=0x08DA original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0145 offset=0x08FD original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0146 offset=0x0902 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0147 offset=0x0903 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0148 offset=0x0905 original=0x026F layer=32776 etype=196608
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0149 offset=0x092D original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0150 offset=0x0953 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0151 offset=0x0957 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0152 offset=0x095B original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0153 offset=0x0963 original=0x0949 layer=3189046771 etype=1043005964
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0154 offset=0x097D original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0155 offset=0x097E original=0x033C layer=256 etype=8390656
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0156 offset=0x0981 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0157 offset=0x0982 original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0158 offset=0x0985 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0159 offset=0x09A4 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0160 offset=0x09A5 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0161 offset=0x09A7 original=0x0513 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000003,0.000000)
+#0162 offset=0x09A8 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0163 offset=0x09AA original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0164 offset=0x09AB original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0165 offset=0x09AC original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0166 offset=0x09AD original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0167 offset=0x09AF original=0x051B layer=0 etype=2
+       start=(0.000000,0.000003) end=(0.000000,0.000000)
+#0168 offset=0x09C5 original=0x0531 layer=16069 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0169 offset=0x09CD original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0170 offset=0x09F1 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0171 offset=0x09F3 original=0x05BD layer=65536 etype=2147680256
+       start=(0.000000,0.000006) end=(0.000006,0.000000)
+#0172 offset=0x09F7 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0173 offset=0x09F9 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0174 offset=0x09FB original=0x05C5 layer=0 etype=2
+       start=(0.000006,0.000006) end=(0.000000,0.000000)
+#0175 offset=0x0A11 original=0x09EF layer=16090 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0176 offset=0x0A13 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0177 offset=0x0A16 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0178 offset=0x0A17 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0179 offset=0x0A19 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0180 offset=0x0A1B original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0181 offset=0x0A29 original=0x0A07 layer=1054515135 etype=1044381696
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0182 offset=0x0A35 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0183 offset=0x0A3D original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0184 offset=0x0A77 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0185 offset=0x0A78 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0186 offset=0x0A79 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0187 offset=0x0A7A original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0188 offset=0x0A92 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0189 offset=0x0A93 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0190 offset=0x0A94 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0191 offset=0x0A95 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0192 offset=0x0A96 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0193 offset=0x0A98 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0194 offset=0x0A9A original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0195 offset=0x0A9B original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0196 offset=0x0A9C original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0197 offset=0x0AA2 original=0x0A88 layer=2302148608 etype=48577
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0198 offset=0x0AA4 original=0x0A8A layer=3183577400 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0199 offset=0x0AA8 original=0x0A86 layer=0 etype=3183577400
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#0200 offset=0x0AB4 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0201 offset=0x0AB5 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0202 offset=0x0AB6 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0203 offset=0x0AB8 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0204 offset=0x0ABA original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0205 offset=0x0ABC original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0206 offset=0x0ABD original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0207 offset=0x0ABE original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0208 offset=0x0AC0 original=0x0A9E layer=131072 etype=2302148608
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0209 offset=0x0AC2 original=0x0AA0 layer=2 etype=3183577400
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0210 offset=0x0AC4 original=0x0AAA layer=2302148608 etype=206224833
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0211 offset=0x0AC6 original=0x0AAC layer=3183577400 etype=1040321610
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0212 offset=0x0AD2 original=0x0AB0 layer=1040321610 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0213 offset=0x0AD4 original=0x0AB2 layer=15874 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0214 offset=0x0ADA original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0215 offset=0x0ADB original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0216 offset=0x0ADC original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0217 offset=0x0AFD original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0218 offset=0x0AFE original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0219 offset=0x0B26 original=0x0367 layer=1 etype=32771
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0220 offset=0x0B27 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0221 offset=0x0B28 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0222 offset=0x0B46 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0223 offset=0x0B49 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0224 offset=0x0B4A original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0225 offset=0x0B4E original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0226 offset=0x0B6F original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0227 offset=0x0B70 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0228 offset=0x0B74 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0229 offset=0x0B77 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0230 offset=0x0B78 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0231 offset=0x0B9A original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0232 offset=0x0BA2 original=0x01C9 layer=0 etype=3
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0233 offset=0x0BC2 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0234 offset=0x0BC4 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0235 offset=0x0BC9 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0236 offset=0x0BCA original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0237 offset=0x0BCC original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0238 offset=0x0BD4 original=0x0BBA layer=1055203001 etype=1011129254
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0239 offset=0x0BE4 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#0240 offset=0x0BE6 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0241 offset=0x0BEC original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0242 offset=0x0BEE original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0243 offset=0x0BF6 original=0x0BDC layer=1053357505 etype=1040455828
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0244 offset=0x0C0C original=0x04E5 layer=15895 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0245 offset=0x0C10 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0246 offset=0x0C14 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0247 offset=0x0C18 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0248 offset=0x0C20 original=0x0C06 layer=1049163203 etype=1041730896
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0249 offset=0x0C3C original=0x0367 layer=1 etype=32771
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0250 offset=0x0C3D original=0x0368 layer=50331648 etype=128
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0251 offset=0x0C3E original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0252 offset=0x0C60 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0253 offset=0x0C83 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0254 offset=0x0C8A original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0255 offset=0x0C8B original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0256 offset=0x0CB2 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0257 offset=0x0CB4 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0258 offset=0x0CD6 original=0x02E3 layer=16257 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0259 offset=0x0CD9 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0260 offset=0x0CDE original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0261 offset=0x0CE1 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0262 offset=0x0D03 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0263 offset=0x0D04 original=0x0365 layer=65536 etype=2147680256
+       start=(0.000000,0.013125) end=(0.013125,0.000000)
+#0264 offset=0x0D0B original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0265 offset=0x0D0C original=0x036D layer=0 etype=2
+       start=(0.013125,0.013125) end=(0.000000,0.000000)
+#0266 offset=0x0D20 original=0x035F layer=1066066248 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0267 offset=0x0D27 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0268 offset=0x0D28 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0269 offset=0x0D3A original=0x0D18 layer=1066066248 etype=3202686648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0270 offset=0x0D4A original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0271 offset=0x0D52 original=0x0D30 layer=131072 etype=515375104
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0272 offset=0x0D64 original=0x0D42 layer=1064648573 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0273 offset=0x0D6C original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0274 offset=0x0D7E original=0x0D5C layer=1064648573 etype=3200203620
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0275 offset=0x0D86 original=0x0AB0 layer=1040321610 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0276 offset=0x0D8A original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0277 offset=0x0D8B original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0278 offset=0x0D8C original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0279 offset=0x0D8E original=0x0367 layer=1 etype=32771
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0280 offset=0x0D92 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0281 offset=0x0D93 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0282 offset=0x0D94 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0283 offset=0x0D96 original=0x0D74 layer=131072 etype=996409344
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0284 offset=0x0D9C original=0x0D82 layer=3200203620 etype=1040321610
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0285 offset=0x0DA8 original=0x0AB0 layer=1040321610 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0286 offset=0x0DAC original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0287 offset=0x0DAD original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0288 offset=0x0DAE original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0289 offset=0x0DB0 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0290 offset=0x0DB4 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0291 offset=0x0DB5 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0292 offset=0x0DB6 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0293 offset=0x0DB8 original=0x0A7C layer=131072 etype=2405171200
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0294 offset=0x0DBE original=0x0DA4 layer=3202518876 etype=1040321610
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0295 offset=0x0DC6 original=0x0A82 layer=3202518876 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0296 offset=0x0DCE original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0297 offset=0x0DCF original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0298 offset=0x0DD0 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0299 offset=0x0DD6 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0300 offset=0x0DD7 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0301 offset=0x0DD8 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0302 offset=0x0DF0 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0303 offset=0x0DF1 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0304 offset=0x0DF2 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0305 offset=0x0DF3 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0306 offset=0x0DF5 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0307 offset=0x0DF6 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0308 offset=0x0DF8 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0309 offset=0x0DF9 original=0x036C layer=128 etype=512
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0310 offset=0x0DFA original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0311 offset=0x0E02 original=0x0DE8 layer=3188442792 etype=1026564292
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0312 offset=0x0E12 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0313 offset=0x0E13 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0314 offset=0x0E14 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0315 offset=0x0E17 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0316 offset=0x0E18 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0317 offset=0x0E1A original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0318 offset=0x0E1B original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0319 offset=0x0E1C original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0320 offset=0x0E24 original=0x0E0A layer=3188442792 etype=1034818682
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0321 offset=0x0E32 original=0x0E10 layer=15790 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0322 offset=0x0E34 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0323 offset=0x0E36 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0324 offset=0x0E3A original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0325 offset=0x0E3C original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0326 offset=0x0E3E original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0327 offset=0x0E42 original=0x0B06 layer=3 etype=3190590276
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0328 offset=0x0E46 original=0x0E2C layer=3190590276 etype=1034818682
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0329 offset=0x0E5A original=0x0AB0 layer=1040321610 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0330 offset=0x0E5C original=0x0AB2 layer=15874 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0331 offset=0x0E60 original=0x0C3A layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000010,0.000000)
+#0332 offset=0x0E62 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0333 offset=0x0E64 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0334 offset=0x0E68 original=0x0C42 layer=0 etype=2
+       start=(0.000000,0.000010) end=(0.000000,0.000000)
+#0335 offset=0x0E7E original=0x0C58 layer=16101 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0336 offset=0x0E86 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0337 offset=0x0EAD original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0338 offset=0x0EB0 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0339 offset=0x0ECB original=0x0150 layer=62 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0340 offset=0x0ECD original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0341 offset=0x0ECE original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0342 offset=0x0ECF original=0x033C layer=256 etype=8390656
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0343 offset=0x0ED2 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0344 offset=0x0ED3 original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0345 offset=0x0ED5 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0346 offset=0x0ED6 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0347 offset=0x0EF7 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0348 offset=0x0EF8 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0349 offset=0x0EFC original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0350 offset=0x0EFF original=0x02EE layer=128 etype=768
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0351 offset=0x0F00 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0352 offset=0x0F22 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0353 offset=0x0F2A original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0354 offset=0x0F4A original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0355 offset=0x0F4B original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0356 offset=0x0F4C original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0357 offset=0x0F52 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0358 offset=0x0F53 original=0x036C layer=128 etype=512
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0359 offset=0x0F54 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0360 offset=0x0F5C original=0x0F42 layer=1053424615 etype=1023879938
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0361 offset=0x0F6E original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0362 offset=0x0F76 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0363 offset=0x0F98 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0364 offset=0x0F9C original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0365 offset=0x0FA0 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0366 offset=0x0FC0 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0367 offset=0x0FC5 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0368 offset=0x0FC6 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0369 offset=0x0FC8 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0370 offset=0x0FE8 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0371 offset=0x100D original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0372 offset=0x1010 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0373 offset=0x1012 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0374 offset=0x1015 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0375 offset=0x101A original=0x0CE6 layer=3 etype=1037838588
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0376 offset=0x1039 original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0377 offset=0x103C original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0378 offset=0x1066 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0379 offset=0x108A original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0380 offset=0x1090 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0381 offset=0x1092 original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0382 offset=0x10B2 original=0x076F layer=16261 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0383 offset=0x10B5 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0384 offset=0x10BA original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0385 offset=0x10BD original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0386 offset=0x10DF original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0387 offset=0x10E1 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0388 offset=0x10E7 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0389 offset=0x10FB original=0x10D9 layer=2237678014 etype=63
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0390 offset=0x1101 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0391 offset=0x1103 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0392 offset=0x1104 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0393 offset=0x1109 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0394 offset=0x110C original=0x0C44 layer=131072 etype=2645688320
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0395 offset=0x1116 original=0x10F4 layer=1065705537 etype=3201277362
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0396 offset=0x1121 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0397 offset=0x1122 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0398 offset=0x1123 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0399 offset=0x1126 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0400 offset=0x1129 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0401 offset=0x112A original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0402 offset=0x112B original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0403 offset=0x112E original=0x0C44 layer=131072 etype=2645688320
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0404 offset=0x116A original=0x0D42 layer=1064648573 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0405 offset=0x116E original=0x0D68 layer=0 etype=1
+       start=(0.000000,0.007262) end=(0.000000,0.000000)
+#0406 offset=0x1170 original=0x0D6A layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.000000,0.000000)
+#0407 offset=0x1172 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0408 offset=0x1173 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0409 offset=0x1176 original=0x0D70 layer=32771 etype=131072
+       start=(0.007262,0.000000) end=(0.000000,0.000000)
+#0410 offset=0x1178 original=0x0D72 layer=0 etype=2
+       start=(0.005188,0.000000) end=(0.000000,0.000000)
+#0411 offset=0x1190 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0412 offset=0x1192 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0413 offset=0x1198 original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0414 offset=0x119A original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0415 offset=0x11A2 original=0x1188 layer=3198794334 etype=1040321610
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0416 offset=0x11BA original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0417 offset=0x11BB original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0418 offset=0x11BC original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0419 offset=0x11BE original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0420 offset=0x11C2 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0421 offset=0x11C3 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0422 offset=0x11C4 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0423 offset=0x11C6 original=0x0D74 layer=131072 etype=996409344
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0424 offset=0x11CC original=0x11B2 layer=3200203620 etype=1034818682
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0425 offset=0x11D8 original=0x11B6 layer=1034818682 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0426 offset=0x11DC original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0427 offset=0x11DD original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0428 offset=0x11DE original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0429 offset=0x11E0 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0430 offset=0x11E4 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0431 offset=0x11E5 original=0x036C layer=128 etype=512
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0432 offset=0x11E6 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0433 offset=0x11EE original=0x11D4 layer=3201109590 etype=1034818682
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0434 offset=0x11FC original=0x0DEE layer=15664 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0435 offset=0x11FF original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0436 offset=0x1204 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0437 offset=0x1207 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0438 offset=0x122C original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0439 offset=0x122E original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0440 offset=0x1234 original=0x0E6A layer=131072 etype=2370830336
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0441 offset=0x1236 original=0x0E6C layer=2 etype=3193408848
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0442 offset=0x1246 original=0x0D42 layer=1064648573 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0443 offset=0x1248 original=0x087D layer=16245 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0444 offset=0x124C original=0x0D48 layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.005188,0.000000)
+#0445 offset=0x124E original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0446 offset=0x1250 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0447 offset=0x1254 original=0x0D50 layer=0 etype=2
+       start=(0.005188,0.005188) end=(0.000000,0.000000)
+#0448 offset=0x1256 original=0x0E6A layer=131072 etype=2370830336
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0449 offset=0x1258 original=0x0E6C layer=2 etype=3193408848
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0450 offset=0x126A original=0x087D layer=16245 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0451 offset=0x1272 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0452 offset=0x1294 original=0x0CAC layer=16210 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0453 offset=0x1295 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#0454 offset=0x129C original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0455 offset=0x129D original=0x0298 layer=8390656 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0456 offset=0x12BE original=0x1034 layer=16164 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0457 offset=0x12BF original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0458 offset=0x12C1 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0459 offset=0x12C5 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0460 offset=0x12C6 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0461 offset=0x12C7 original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0462 offset=0x12C9 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0463 offset=0x12EB original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0464 offset=0x12EF original=0x02EA layer=134217728 etype=128
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0465 offset=0x12F0 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0466 offset=0x12F3 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0467 offset=0x1312 original=0x100A layer=16131 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0468 offset=0x1313 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0469 offset=0x1315 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0470 offset=0x1318 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0471 offset=0x131A original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0472 offset=0x131B original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0473 offset=0x131D original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0474 offset=0x1320 original=0x0AE2 layer=131072 etype=2336489472
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0475 offset=0x1322 original=0x0AE4 layer=2 etype=3190590276
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0476 offset=0x1337 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0477 offset=0x133C original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0478 offset=0x133F original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0479 offset=0x1361 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0480 offset=0x1366 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0481 offset=0x1369 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0482 offset=0x1390 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0483 offset=0x13B2 original=0x1388 layer=16168 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0484 offset=0x13B7 original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0485 offset=0x13BA original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0486 offset=0x13C2 original=0x127A layer=3 etype=3187771704
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0487 offset=0x13E2 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0488 offset=0x13E3 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0489 offset=0x13E4 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0490 offset=0x13EA original=0x0AE2 layer=131072 etype=2336489472
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0491 offset=0x13EC original=0x0AE4 layer=2 etype=3190590276
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0492 offset=0x13FE original=0x0745 layer=16234 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0493 offset=0x1420 original=0x1334 layer=16142 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0494 offset=0x1443 original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0495 offset=0x1465 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0496 offset=0x146D original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0497 offset=0x148F original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0498 offset=0x1493 original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0499 offset=0x1497 original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0500 offset=0x14BD original=0x0295 layer=1 etype=32776
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0501 offset=0x14BF original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0502 offset=0x14E4 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0503 offset=0x14E9 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0504 offset=0x14EC original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0505 offset=0x150B original=0x030D layer=16269 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0506 offset=0x150E original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0507 offset=0x1511 original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0508 offset=0x1513 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0509 offset=0x1516 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0510 offset=0x1535 original=0x14E1 layer=16266 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0511 offset=0x153B original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0512 offset=0x153D original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0513 offset=0x155D original=0x14B5 layer=1065229064 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0514 offset=0x1561 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0515 offset=0x1565 original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0516 offset=0x1569 original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0517 offset=0x156D original=0x14C5 layer=196608 etype=2680094720
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0518 offset=0x158B original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0519 offset=0x1593 original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0520 offset=0x15B5 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0521 offset=0x15BD original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0522 offset=0x15E1 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0523 offset=0x15E3 original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0524 offset=0x15E9 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0525 offset=0x15EB original=0x149B layer=196608 etype=274923520
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0526 offset=0x15F1 original=0x15D7 layer=1054347363 etype=1048713574
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0527 offset=0x160B original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0528 offset=0x160D original=0x0295 layer=1 etype=32776
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0529 offset=0x160F original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0530 offset=0x1613 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0531 offset=0x1615 original=0x14C5 layer=196608 etype=2680094720
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0532 offset=0x1634 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0533 offset=0x1635 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#0534 offset=0x1637 original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0535 offset=0x1639 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0536 offset=0x163C original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0537 offset=0x163D original=0x01C9 layer=0 etype=3
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0538 offset=0x163F original=0x1543 layer=196608 etype=432930816
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0539 offset=0x1641 original=0x1545 layer=3 etype=1041308110
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0540 offset=0x1645 original=0x162B layer=1041308110 etype=990916068
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0541 offset=0x165E original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0542 offset=0x165F original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0543 offset=0x1663 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0544 offset=0x1666 original=0x02EE layer=128 etype=768
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0545 offset=0x1667 original=0x01C9 layer=0 etype=3
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0546 offset=0x1683 original=0x162F layer=990916068 etype=0
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0547 offset=0x1685 original=0x1631 layer=15120 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0548 offset=0x1689 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0549 offset=0x168B original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0550 offset=0x168D original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0551 offset=0x1691 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0552 offset=0x1693 original=0x1543 layer=196608 etype=432930816
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0553 offset=0x1695 original=0x14F1 layer=3 etype=3188791758
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0554 offset=0x16AD original=0x1605 layer=1036080329 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0555 offset=0x16B3 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0556 offset=0x16B5 original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0557 offset=0x16BB original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0558 offset=0x16BD original=0x14C5 layer=196608 etype=2680094720
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0559 offset=0x1759 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0560 offset=0x175F original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0561 offset=0x1761 original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0562 offset=0x1784 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0563 offset=0x1788 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0564 offset=0x1789 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0565 offset=0x178C original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0566 offset=0x17AE original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0567 offset=0x17B0 original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0568 offset=0x17B2 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0569 offset=0x17B3 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0570 offset=0x17B6 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0571 offset=0x17BB original=0x151B layer=3 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0572 offset=0x17D5 original=0x1781 layer=16262 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0573 offset=0x17D7 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0574 offset=0x17DD original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0575 offset=0x17DF original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0576 offset=0x1881 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0577 offset=0x1889 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0578 offset=0x18A9 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0579 offset=0x18AB original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0580 offset=0x18AF original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0581 offset=0x18B1 original=0x026F layer=32776 etype=196608
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0582 offset=0x18B3 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0583 offset=0x18B4 original=0x1764 layer=50331648 etype=3841982464
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0584 offset=0x18BB original=0x18A1 layer=1048760549 etype=1037677521
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0585 offset=0x18D5 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0586 offset=0x18D6 original=0x033C layer=256 etype=8390656
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0587 offset=0x18D8 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0588 offset=0x18D9 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0589 offset=0x18DD original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0590 offset=0x18DF original=0x178F layer=196608 etype=3903258624
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0591 offset=0x18E0 original=0x1790 layer=768 etype=149464832
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0592 offset=0x18E1 original=0x17E5 layer=3 etype=1040771239
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0593 offset=0x18E5 original=0x18CB layer=1040771239 etype=1025705298
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0594 offset=0x18FF original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0595 offset=0x1902 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0596 offset=0x1903 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0597 offset=0x1907 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0598 offset=0x190A original=0x17BA layer=768 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0599 offset=0x190B original=0x151B layer=3 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0600 offset=0x1925 original=0x18D1 layer=15651 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0601 offset=0x1927 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0602 offset=0x1929 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0603 offset=0x192D original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0604 offset=0x192F original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0605 offset=0x1931 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0606 offset=0x1935 original=0x1791 layer=3 etype=3188254887
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0607 offset=0x1939 original=0x191F layer=3188254887 etype=1025705298
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0608 offset=0x1953 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0609 offset=0x195B original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0610 offset=0x197F original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0611 offset=0x1980 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0612 offset=0x1981 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0613 offset=0x1986 original=0x163E layer=50331648 etype=3456106496
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0614 offset=0x19A6 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0615 offset=0x19A9 original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0616 offset=0x19AA original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0617 offset=0x19AB original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0618 offset=0x19AE original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0619 offset=0x19D5 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0620 offset=0x19DD original=0x1989 layer=3 etype=3197086414
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0621 offset=0x19FD original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0622 offset=0x19FE original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0623 offset=0x19FF original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0624 offset=0x1A26 original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0625 offset=0x1A27 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0626 offset=0x1A28 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0627 offset=0x1A29 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0628 offset=0x1A2E original=0x0344 layer=50331648 etype=889192448
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0629 offset=0x1A50 original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0630 offset=0x1A51 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0631 offset=0x1A52 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0632 offset=0x1A53 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0633 offset=0x1A58 original=0x17B8 layer=50331648 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0634 offset=0x1A59 original=0x1519 layer=196608 etype=0
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0635 offset=0x1A5A original=0x17BA layer=768 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0636 offset=0x1A5B original=0x151B layer=3 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0637 offset=0x1A73 original=0x1A1F layer=1064818022 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0638 offset=0x1A74 original=0x1A20 layer=4159445 etype=16777216
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0639 offset=0x1A75 original=0x1A21 layer=16247 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0640 offset=0x1A7A original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0641 offset=0x1A7B original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0642 offset=0x1A7C original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0643 offset=0x1A7D original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0644 offset=0x1A82 original=0x0344 layer=50331648 etype=889192448
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0645 offset=0x1A83 original=0x1A2F layer=196608 etype=1010106368
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0646 offset=0x1A84 original=0x1A30 layer=768 etype=3174839552
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0647 offset=0x1A9F original=0x19F7 layer=16232 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0648 offset=0x1AA7 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0649 offset=0x1AC9 original=0x19CD layer=16187 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0650 offset=0x1ACC original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0651 offset=0x1ACF original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0652 offset=0x1AD0 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0653 offset=0x1AD1 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0654 offset=0x1AD4 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0655 offset=0x1AD6 original=0x163E layer=50331648 etype=3456106496
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0656 offset=0x1AD7 original=0x1987 layer=196608 etype=2865627136
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0657 offset=0x1AD8 original=0x1988 layer=768 etype=2410335744
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0658 offset=0x1AF1 original=0x19A1 layer=1057694416 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0659 offset=0x1AF2 original=0x19A2 layer=4131618 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0660 offset=0x1AF3 original=0x19A3 layer=16139 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0661 offset=0x1AF9 original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0662 offset=0x1AFA original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0663 offset=0x1AFB original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0664 offset=0x1B01 original=0x19B1 layer=196608 etype=2872508416
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0665 offset=0x1B02 original=0x19B2 layer=768 etype=2662020864
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0666 offset=0x1B1E original=0x0150 layer=62 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0667 offset=0x1B20 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0668 offset=0x1B21 original=0x0929 layer=65536 etype=2148007936
+       start=(0.000000,0.000001) end=(0.000000,0.000000)
+#0669 offset=0x1B25 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0670 offset=0x1B26 original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0671 offset=0x1B28 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0672 offset=0x1B29 original=0x0931 layer=0 etype=3
+       start=(0.000001,0.000000) end=(0.000000,0.000000)
+#0673 offset=0x1B2A original=0x163E layer=50331648 etype=3456106496
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0674 offset=0x1B2D original=0x1AD9 layer=3 etype=1049602766
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0675 offset=0x1B49 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0676 offset=0x1B4B original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0677 offset=0x1B4C original=0x033C layer=256 etype=8390656
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0678 offset=0x1B4D original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0679 offset=0x1B4E original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0680 offset=0x1B4F original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0681 offset=0x1B51 original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0682 offset=0x1B53 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0683 offset=0x1B57 original=0x1AAF layer=3 etype=1044119972
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0684 offset=0x1B5B original=0x1B41 layer=1044119972 etype=1043730741
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0685 offset=0x1B75 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0686 offset=0x1B76 original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0687 offset=0x1B77 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0688 offset=0x1B78 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0689 offset=0x1B79 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0690 offset=0x1B7D original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0691 offset=0x1B7E original=0x0344 layer=50331648 etype=889192448
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0692 offset=0x1B7F original=0x1A2F layer=196608 etype=1010106368
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0693 offset=0x1B80 original=0x1A30 layer=768 etype=3174839552
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0694 offset=0x1B81 original=0x1A85 layer=3 etype=1035811893
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0695 offset=0x1B85 original=0x1B6B layer=1035811893 etype=1039368664
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0696 offset=0x1B9F original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0697 offset=0x1BA0 original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0698 offset=0x1BA1 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0699 offset=0x1BA2 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0700 offset=0x1BA3 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0701 offset=0x1BA7 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0702 offset=0x1BA8 original=0x17B8 layer=50331648 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0703 offset=0x1BA9 original=0x1519 layer=196608 etype=0
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0704 offset=0x1BAA original=0x17BA layer=768 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0705 offset=0x1BAB original=0x151B layer=3 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0706 offset=0x1BC3 original=0x1B6F layer=1039368664 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0707 offset=0x1BC4 original=0x1B70 layer=4060033 etype=16777216
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0708 offset=0x1BC5 original=0x1B71 layer=15859 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0709 offset=0x1BC7 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0710 offset=0x1BC9 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0711 offset=0x1BCB original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0712 offset=0x1BCC original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0713 offset=0x1BCD original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0714 offset=0x1BCF original=0x026F layer=32776 etype=196608
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0715 offset=0x1BD1 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0716 offset=0x1BD3 original=0x1A2F layer=196608 etype=1010106368
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#0717 offset=0x1BD4 original=0x1A30 layer=768 etype=3174839552
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0718 offset=0x1BD5 original=0x1A31 layer=3 etype=3183295541
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0719 offset=0x1BD9 original=0x1BBF layer=3183295541 etype=1039368664
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0720 offset=0x1BEF original=0x1B47 layer=15926 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0721 offset=0x1BF0 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0722 offset=0x1BF2 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#0723 offset=0x1BF7 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0724 offset=0x1BF8 original=0x0298 layer=8390656 etype=50331648
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0725 offset=0x1BFA original=0x02EE layer=128 etype=768
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0726 offset=0x1BFF original=0x1A07 layer=3 etype=3191610331
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0727 offset=0x1C19 original=0x1B1D layer=16052 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0728 offset=0x1C21 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0729 offset=0x1C43 original=0x19A3 layer=16139 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0730 offset=0x1C45 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0731 offset=0x1C4B original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0732 offset=0x1C4D original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0733 offset=0x1C75 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0734 offset=0x1C7D original=0x1C29 layer=3 etype=3194428902
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0735 offset=0x1C9D original=0x0295 layer=1 etype=32776
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0736 offset=0x1C9F original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0737 offset=0x1CC1 original=0x043D layer=16242 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0738 offset=0x1CC7 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0739 offset=0x1CC9 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0740 offset=0x1CCF original=0x1519 layer=196608 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0741 offset=0x1CD1 original=0x151B layer=3 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0742 offset=0x1CEB original=0x1C97 layer=16233 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0743 offset=0x1CF0 original=0x033C layer=256 etype=8390656
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0744 offset=0x1CF3 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0745 offset=0x1D15 original=0x1C6D layer=16196 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0746 offset=0x1D17 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0747 offset=0x1D1D original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0748 offset=0x1D1F original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0749 offset=0x1D3F original=0x19A3 layer=16139 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0750 offset=0x1D47 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0751 offset=0x1D6D original=0x0929 layer=65536 etype=2148007936
+       start=(0.000000,0.000001) end=(0.000000,0.000000)
+#0752 offset=0x1D6E original=0x033C layer=256 etype=8390656
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0753 offset=0x1D71 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0754 offset=0x1D75 original=0x0931 layer=0 etype=3
+       start=(0.000001,0.000000) end=(0.000000,0.000000)
+#0755 offset=0x1D79 original=0x1D25 layer=3 etype=1046938543
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0756 offset=0x1D7D original=0x1D63 layer=1046938543 etype=1050941587
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0757 offset=0x1D96 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0758 offset=0x1D97 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0759 offset=0x1D99 original=0x0295 layer=1 etype=32776
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0760 offset=0x1D9B original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0761 offset=0x1D9E original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0762 offset=0x1D9F original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0763 offset=0x1DA1 original=0x1CA5 layer=196608 etype=2954952704
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0764 offset=0x1DA2 original=0x1CA6 layer=768 etype=4071629056
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0765 offset=0x1DA3 original=0x1CFB layer=3 etype=1039314977
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0766 offset=0x1DC0 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0767 offset=0x1DC1 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0768 offset=0x1DC3 original=0x0295 layer=1 etype=32776
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0769 offset=0x1DC5 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0770 offset=0x1DC8 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0771 offset=0x1DC9 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0772 offset=0x1DCB original=0x1519 layer=196608 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#0773 offset=0x1DCD original=0x151B layer=3 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0774 offset=0x1DE7 original=0x1D93 layer=15921 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0775 offset=0x1DEB original=0x1BF3 layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000001)
+#0776 offset=0x1DEF original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0777 offset=0x1DF3 original=0x1BFB layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000001,0.000000)
+#0778 offset=0x1E11 original=0x1D69 layer=16036 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0779 offset=0x1E7A original=0x0D48 layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.005188,0.000000)
+#0780 offset=0x1E82 original=0x0D50 layer=0 etype=2
+       start=(0.005188,0.005188) end=(0.000000,0.000000)
+#0781 offset=0x1EBD original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0782 offset=0x1EBE original=0x0365 layer=65536 etype=2147680256
+       start=(0.000000,0.013125) end=(0.013125,0.000000)
+#0783 offset=0x1EC5 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0784 offset=0x1EC6 original=0x036D layer=0 etype=2
+       start=(0.013125,0.013125) end=(0.000000,0.000000)
+#0785 offset=0x1EDA original=0x035F layer=1066066248 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0786 offset=0x1EDB original=0x0360 layer=4164321 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0787 offset=0x1EDC original=0x14E1 layer=16266 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0788 offset=0x1EE0 original=0x0D26 layer=65536 etype=2147680256
+       start=(0.000000,0.013125) end=(0.005188,0.000000)
+#0789 offset=0x1EE2 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0790 offset=0x1EE3 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0791 offset=0x1EE4 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0792 offset=0x1EE8 original=0x0D2E layer=0 etype=2
+       start=(0.013125,0.005188) end=(0.000000,0.000000)
+#0793 offset=0x1EFD original=0x116B layer=4158783 etype=16777216
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0794 offset=0x1EFE original=0x087D layer=16245 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0795 offset=0x1F02 original=0x0D48 layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.005188,0.000000)
+#0796 offset=0x1F05 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0797 offset=0x1F06 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0798 offset=0x1F0A original=0x0D50 layer=0 etype=2
+       start=(0.005188,0.005188) end=(0.000000,0.000000)
+#0799 offset=0x1F1F original=0x116B layer=4158783 etype=16777216
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0800 offset=0x1F20 original=0x087D layer=16245 etype=65536
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0801 offset=0x1F27 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0802 offset=0x1F28 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0803 offset=0x1F48 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0804 offset=0x1F4A original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0805 offset=0x1F50 original=0x0E6A layer=131072 etype=2370830336
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#0806 offset=0x1F64 original=0x087D layer=16245 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0807 offset=0x1F68 original=0x0D48 layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.005188,0.000000)
+#0808 offset=0x1F6A original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0809 offset=0x1F6C original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0810 offset=0x1F70 original=0x0D50 layer=0 etype=2
+       start=(0.005188,0.005188) end=(0.000000,0.000000)
+#0811 offset=0x1F84 original=0x1F62 layer=1064648574 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0812 offset=0x1F85 original=0x116B layer=4158783 etype=16777216
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0813 offset=0x1F86 original=0x087D layer=16245 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0814 offset=0x1F8A original=0x1E9C layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.013125,0.000000)
+#0815 offset=0x1F8B original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0816 offset=0x1F8C original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0817 offset=0x1F8D original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0818 offset=0x1F8E original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0819 offset=0x1F92 original=0x1EA4 layer=0 etype=2
+       start=(0.005188,0.013125) end=(0.000000,0.000000)
+#0820 offset=0x1FAB original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0821 offset=0x1FAC original=0x0365 layer=65536 etype=2147680256
+       start=(0.000000,0.013125) end=(0.013125,0.000000)
+#0822 offset=0x1FB3 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0823 offset=0x1FB4 original=0x036D layer=0 etype=2
+       start=(0.013125,0.013125) end=(0.000000,0.000000)
+#0824 offset=0x1FCE original=0x0D26 layer=65536 etype=2147680256
+       start=(0.000000,0.013125) end=(0.005188,0.000000)
+#0825 offset=0x1FD6 original=0x0D2E layer=0 etype=2
+       start=(0.013125,0.005188) end=(0.000000,0.000000)
+#0826 offset=0x1FF0 original=0x0D48 layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.005188,0.000000)
+#0827 offset=0x1FF8 original=0x0D50 layer=0 etype=2
+       start=(0.005188,0.005188) end=(0.000000,0.000000)
+#0828 offset=0x203F original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0829 offset=0x205D original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0830 offset=0x205E original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0831 offset=0x2062 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0832 offset=0x2065 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0833 offset=0x2066 original=0x0633 layer=0 etype=2
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0834 offset=0x2083 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0835 offset=0x20C9 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0836 offset=0x20CA original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0837 offset=0x20CB original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0838 offset=0x20CC original=0x1124 layer=65536 etype=2147680256
+       start=(0.000000,0.007813) end=(0.007813,0.000000)
+#0839 offset=0x20D1 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0840 offset=0x20D2 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0841 offset=0x20D3 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0842 offset=0x20D4 original=0x112C layer=0 etype=2
+       start=(0.007813,0.007813) end=(0.000000,0.000000)
+#0843 offset=0x20EB original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0844 offset=0x20EC original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0845 offset=0x20ED original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0846 offset=0x20F3 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0847 offset=0x20F4 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0848 offset=0x20F5 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0849 offset=0x210D original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0850 offset=0x210E original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0851 offset=0x210F original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0852 offset=0x2110 original=0x07F1 layer=65536 etype=2147680256
+       start=(0.000000,0.010500) end=(0.010500,0.000000)
+#0853 offset=0x2115 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0854 offset=0x2116 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0855 offset=0x2117 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0856 offset=0x2118 original=0x07F9 layer=0 etype=2
+       start=(0.010500,0.010500) end=(0.000000,0.000000)
+#0857 offset=0x212E original=0x076F layer=16261 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0858 offset=0x212F original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0859 offset=0x2130 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0860 offset=0x2131 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0861 offset=0x2133 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0862 offset=0x2136 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0863 offset=0x2137 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0864 offset=0x2138 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0865 offset=0x2139 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0866 offset=0x2151 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0867 offset=0x2152 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0868 offset=0x2153 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0869 offset=0x2154 original=0x1124 layer=65536 etype=2147680256
+       start=(0.000000,0.007813) end=(0.007813,0.000000)
+#0870 offset=0x2158 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0871 offset=0x2159 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0872 offset=0x215A original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0873 offset=0x215B original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0874 offset=0x215C original=0x112C layer=0 etype=2
+       start=(0.007813,0.007813) end=(0.000000,0.000000)
+#0875 offset=0x2172 original=0x2150 layer=16256 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#0876 offset=0x2174 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0877 offset=0x217A original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#0878 offset=0x217C original=0x026F layer=32776 etype=196608
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0879 offset=0x21A1 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0880 offset=0x21A4 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0881 offset=0x21BE original=0x0C36 layer=16019 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0882 offset=0x21C6 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0883 offset=0x21E0 original=0x043D layer=16242 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0884 offset=0x21E2 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0885 offset=0x21E8 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0886 offset=0x21EA original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0887 offset=0x2208 original=0x111E layer=1065353216 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0888 offset=0x220A original=0x2150 layer=16256 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0889 offset=0x220B original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0890 offset=0x220C original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0891 offset=0x220D original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0892 offset=0x220E original=0x1124 layer=65536 etype=2147680256
+       start=(0.000000,0.007813) end=(0.007813,0.000000)
+#0893 offset=0x2210 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0894 offset=0x2212 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0895 offset=0x2213 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0896 offset=0x2214 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0897 offset=0x2215 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0898 offset=0x2216 original=0x112C layer=0 etype=2
+       start=(0.007813,0.007813) end=(0.000000,0.000000)
+#0899 offset=0x222A original=0x111E layer=1065353216 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0900 offset=0x222C original=0x2150 layer=16256 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0901 offset=0x222D original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0902 offset=0x222E original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0903 offset=0x222F original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0904 offset=0x2230 original=0x20EE layer=65536 etype=2147680256
+       start=(0.000000,0.007813) end=(0.010500,0.000000)
+#0905 offset=0x2232 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0906 offset=0x2233 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0907 offset=0x2234 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0908 offset=0x2235 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0909 offset=0x2236 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0910 offset=0x2237 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0911 offset=0x2238 original=0x20F6 layer=0 etype=2
+       start=(0.007813,0.010500) end=(0.000000,0.000000)
+#0912 offset=0x224F original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0913 offset=0x2250 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0914 offset=0x2251 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0915 offset=0x2252 original=0x07F1 layer=65536 etype=2147680256
+       start=(0.000000,0.010500) end=(0.010500,0.000000)
+#0916 offset=0x2257 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0917 offset=0x2258 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0918 offset=0x2259 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0919 offset=0x225A original=0x07F9 layer=0 etype=2
+       start=(0.010500,0.010500) end=(0.000000,0.000000)
+#0920 offset=0x2271 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0921 offset=0x2272 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0922 offset=0x2273 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0923 offset=0x2274 original=0x2132 layer=65536 etype=2147680256
+       start=(0.000000,0.010500) end=(0.007813,0.000000)
+#0924 offset=0x2278 original=0x0179 layer=2147680256 etype=0
+       start=(0.000007,0.000007) end=(0.000000,0.000000)
+#0925 offset=0x2279 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0926 offset=0x227A original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0927 offset=0x227B original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0928 offset=0x227C original=0x213A layer=0 etype=2
+       start=(0.010500,0.007813) end=(0.000000,0.000000)
+#0929 offset=0x2293 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0930 offset=0x2294 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0931 offset=0x2295 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0932 offset=0x2296 original=0x1124 layer=65536 etype=2147680256
+       start=(0.000000,0.007813) end=(0.007813,0.000000)
+#0933 offset=0x229B original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0934 offset=0x229C original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0935 offset=0x229D original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0936 offset=0x229E original=0x112C layer=0 etype=2
+       start=(0.007813,0.007813) end=(0.000000,0.000000)
+#0937 offset=0x22B2 original=0x111E layer=1065353216 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0938 offset=0x22B5 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0939 offset=0x22BA original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0940 offset=0x22BD original=0x0298 layer=8390656 etype=50331648
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0941 offset=0x22E3 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0942 offset=0x22E5 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0943 offset=0x22E6 original=0x0839 layer=2147680256 etype=0
+       start=(0.000001,0.000000) end=(0.000000,0.000000)
+#0944 offset=0x2302 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0945 offset=0x2303 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0946 offset=0x2304 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0947 offset=0x2305 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0948 offset=0x230A original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0949 offset=0x230B original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0950 offset=0x2322 original=0x2300 layer=15515 etype=65536
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0951 offset=0x2344 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0952 offset=0x2345 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0953 offset=0x2346 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0954 offset=0x2347 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0955 offset=0x235F original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0956 offset=0x2360 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0957 offset=0x2361 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0958 offset=0x2364 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0959 offset=0x2365 original=0x07F5 layer=2147680256 etype=0
+       start=(0.000001,0.000001) end=(0.000000,0.000000)
+#0960 offset=0x2367 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0961 offset=0x2368 original=0x036C layer=128 etype=512
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0962 offset=0x2369 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0963 offset=0x2371 original=0x2357 layer=1051579121 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0964 offset=0x2381 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0965 offset=0x2382 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#0966 offset=0x2383 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0967 offset=0x2387 original=0x0839 layer=2147680256 etype=0
+       start=(0.000001,0.000000) end=(0.000000,0.000000)
+#0968 offset=0x2389 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0969 offset=0x238A original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0970 offset=0x238B original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0971 offset=0x2393 original=0x2379 layer=1051579121 etype=1049179979
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0972 offset=0x23A3 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#0973 offset=0x23A5 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0974 offset=0x23A6 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#0975 offset=0x23A7 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#0976 offset=0x23A9 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0977 offset=0x23AB original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0978 offset=0x23AD original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0979 offset=0x23B5 original=0x239B layer=1046126526 etype=1049179979
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0980 offset=0x23C4 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0981 offset=0x23C5 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0982 offset=0x23C7 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0983 offset=0x23CB original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0984 offset=0x23CC original=0x0298 layer=8390656 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0985 offset=0x23CD original=0x026F layer=32776 etype=196608
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#0986 offset=0x23CF original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0987 offset=0x23D7 original=0x23BD layer=1046126526 etype=1044482360
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0988 offset=0x23EE original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0989 offset=0x23EF original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0990 offset=0x23F0 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0991 offset=0x23F1 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0992 offset=0x23F3 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#0993 offset=0x23F5 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#0994 offset=0x23F6 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0995 offset=0x23F7 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0996 offset=0x23F8 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0997 offset=0x23F9 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0998 offset=0x2401 original=0x23E7 layer=1044717238 etype=1043073073
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#0999 offset=0x240D original=0x23EB layer=1043073073 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1000 offset=0x240F original=0x23ED layer=15916 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1001 offset=0x2410 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1002 offset=0x2412 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1003 offset=0x2415 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1004 offset=0x2416 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1005 offset=0x2417 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1006 offset=0x2418 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1007 offset=0x241A original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1008 offset=0x2430 original=0x12E7 layer=4131520 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1009 offset=0x2431 original=0x12E8 layer=16138 etype=65536
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1010 offset=0x2432 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1011 offset=0x2434 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1012 offset=0x2438 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1013 offset=0x2439 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1014 offset=0x243A original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1015 offset=0x243C original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1016 offset=0x2452 original=0x12E7 layer=4131520 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1017 offset=0x2453 original=0x12E8 layer=16138 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1018 offset=0x2454 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1019 offset=0x2458 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1020 offset=0x245A original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1021 offset=0x245B original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1022 offset=0x245C original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1023 offset=0x2476 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1024 offset=0x2477 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1025 offset=0x247A original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1026 offset=0x247D original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1027 offset=0x247E original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1028 offset=0x247F original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1029 offset=0x2482 original=0x2460 layer=33554432 etype=2550136832
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1030 offset=0x2497 original=0x2475 layer=16114 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1031 offset=0x2498 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1032 offset=0x2499 original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1033 offset=0x249C original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1034 offset=0x249F original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1035 offset=0x24A0 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1036 offset=0x24A1 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1037 offset=0x24B9 original=0x1C6D layer=16196 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1038 offset=0x24BA original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1039 offset=0x24BB original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1040 offset=0x24BE original=0x0366 layer=256 etype=8389376
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1041 offset=0x24C1 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1042 offset=0x24C2 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1043 offset=0x24C3 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1044 offset=0x24C6 original=0x24A4 layer=33554432 etype=704643072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1045 offset=0x24DB original=0x1C6D layer=16196 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1046 offset=0x24E0 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1047 offset=0x24E2 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1048 offset=0x24E3 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1049 offset=0x24E8 original=0x2460 layer=33554432 etype=2550136832
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1050 offset=0x24EA original=0x2462 layer=512 etype=2456721408
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#1051 offset=0x2500 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1052 offset=0x2504 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1053 offset=0x2505 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1054 offset=0x2508 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1055 offset=0x251E original=0x24FC layer=4142202 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1056 offset=0x251F original=0x24FD layer=16180 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1057 offset=0x2526 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1058 offset=0x2527 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1059 offset=0x2540 original=0x13FD layer=4156030 etype=16777216
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1060 offset=0x2541 original=0x0745 layer=16234 etype=65536
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1061 offset=0x2545 original=0x13E0 layer=65536 etype=2147680256
+       start=(0.000000,0.003234) end=(0.003234,0.000000)
+#1062 offset=0x2548 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1063 offset=0x2549 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1064 offset=0x254D original=0x13E8 layer=0 etype=2
+       start=(0.003234,0.003234) end=(0.000000,0.000000)
+#1065 offset=0x2561 original=0x13FC layer=1063943930 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1066 offset=0x2562 original=0x13FD layer=4156030 etype=16777216
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1067 offset=0x2563 original=0x0745 layer=16234 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1068 offset=0x2569 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#1069 offset=0x256A original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1070 offset=0x256B original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1071 offset=0x2571 original=0x117A layer=131072 etype=3126722560
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1072 offset=0x258C original=0x0368 layer=50331648 etype=128
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1073 offset=0x258D original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1074 offset=0x25A6 original=0x2584 layer=4150525 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1075 offset=0x25A7 original=0x2585 layer=16212 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1076 offset=0x25AC original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1077 offset=0x25AE original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1078 offset=0x25AF original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1079 offset=0x25CA original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1080 offset=0x25CC original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1081 offset=0x25D0 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1082 offset=0x25D1 original=0x2084 layer=2147680256 etype=0
+       start=(0.000000,-0.000001) end=(0.000000,0.000000)
+#1083 offset=0x25D2 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1084 offset=0x25D4 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1085 offset=0x25EA original=0x25C8 layer=4164288 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1086 offset=0x25F2 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1087 offset=0x25F3 original=0x1174 layer=2147680256 etype=0
+       start=(-0.000001,-0.000001) end=(0.000000,0.000000)
+#1088 offset=0x260C original=0x116B layer=4158783 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1089 offset=0x260F original=0x1E78 layer=0 etype=1
+       start=(0.000000,0.007506) end=(0.007506,0.000000)
+#1090 offset=0x2611 original=0x0D48 layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.005188,0.000000)
+#1091 offset=0x2614 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1092 offset=0x2617 original=0x1E80 layer=32771 etype=131072
+       start=(0.007506,0.007506) end=(0.000000,0.000000)
+#1093 offset=0x2619 original=0x0D50 layer=0 etype=2
+       start=(0.005188,0.005188) end=(0.000000,0.000000)
+#1094 offset=0x262E original=0x116B layer=4158783 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1095 offset=0x262F original=0x087D layer=16245 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1096 offset=0x2633 original=0x0D6A layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.000000,0.000000)
+#1097 offset=0x2636 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1098 offset=0x2637 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1099 offset=0x263B original=0x0D72 layer=0 etype=2
+       start=(0.005188,0.000000) end=(0.000000,0.000000)
+#1100 offset=0x2652 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1101 offset=0x2653 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1102 offset=0x2654 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1103 offset=0x2655 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1104 offset=0x2658 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1105 offset=0x2659 original=0x2084 layer=2147680256 etype=0
+       start=(-0.000000,-0.000001) end=(0.000000,0.000000)
+#1106 offset=0x265A original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1107 offset=0x265B original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1108 offset=0x265C original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1109 offset=0x265D original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1110 offset=0x2665 original=0x264B layer=3196747514 etype=1040254501
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1111 offset=0x2672 original=0x2650 layer=4063494 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1112 offset=0x2674 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1113 offset=0x2675 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1114 offset=0x2676 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1115 offset=0x2677 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1116 offset=0x267A original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1117 offset=0x267B original=0x1174 layer=2147680256 etype=0
+       start=(-0.000001,-0.000001) end=(0.000000,0.000000)
+#1118 offset=0x267C original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1119 offset=0x267D original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1120 offset=0x267E original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1121 offset=0x267F original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1122 offset=0x2687 original=0x266D layer=3199062770 etype=1040254501
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1123 offset=0x268F original=0x234F layer=3199062770 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1124 offset=0x2694 original=0x235C layer=0 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1125 offset=0x2695 original=0x0A90 layer=0 etype=65536
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1126 offset=0x2697 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1127 offset=0x2698 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1128 offset=0x2699 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1129 offset=0x269C original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1130 offset=0x269D original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1131 offset=0x269E original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1132 offset=0x269F original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1133 offset=0x26A0 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1134 offset=0x26A1 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1135 offset=0x26B8 original=0x097A layer=61 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1136 offset=0x26BB original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1137 offset=0x26BE original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1138 offset=0x26BF original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1139 offset=0x26C0 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1140 offset=0x26C3 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1141 offset=0x26DA original=0x0150 layer=62 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1142 offset=0x26DD original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1143 offset=0x26E0 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1144 offset=0x26E1 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1145 offset=0x26E2 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1146 offset=0x26E5 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1147 offset=0x26FA original=0x26D8 layer=4089708 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1148 offset=0x26FB original=0x26D9 layer=15975 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1149 offset=0x26FC original=0x0150 layer=62 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1150 offset=0x26FF original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1151 offset=0x2702 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1152 offset=0x2703 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1153 offset=0x2704 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1154 offset=0x2707 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1155 offset=0x271D original=0x23ED layer=15916 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1156 offset=0x271E original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1157 offset=0x2720 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1158 offset=0x2721 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1159 offset=0x2725 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1160 offset=0x2726 original=0x0298 layer=8390656 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1161 offset=0x2728 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1162 offset=0x2729 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1163 offset=0x272A original=0x1764 layer=50331648 etype=3841982464
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1164 offset=0x272D original=0x18B7 layer=3 etype=1048760549
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1165 offset=0x2748 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1166 offset=0x2749 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1167 offset=0x274A original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1168 offset=0x274B original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1169 offset=0x274D original=0x0367 layer=1 etype=32771
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#1170 offset=0x274F original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1171 offset=0x2750 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1172 offset=0x2751 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1173 offset=0x2752 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1174 offset=0x2753 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1175 offset=0x2755 original=0x23AF layer=131072 etype=2680029184
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1176 offset=0x2757 original=0x23B1 layer=2 etype=1046126526
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1177 offset=0x275B original=0x2741 layer=1046126526 etype=1040254501
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1178 offset=0x2767 original=0x2745 layer=1040254501 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1179 offset=0x2769 original=0x2747 layer=15873 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1180 offset=0x276A original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1181 offset=0x276B original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1182 offset=0x276C original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1183 offset=0x276F original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1184 offset=0x2771 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1185 offset=0x2772 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1186 offset=0x2773 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1187 offset=0x2774 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1188 offset=0x2777 original=0x013B layer=131072 etype=687210496
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1189 offset=0x278C original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1190 offset=0x278D original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1191 offset=0x278E original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1192 offset=0x2793 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1193 offset=0x2794 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1194 offset=0x2795 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1195 offset=0x2796 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1196 offset=0x27AD original=0x278B layer=16149 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1197 offset=0x27AE original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#1198 offset=0x27B0 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1199 offset=0x27B2 original=0x033C layer=256 etype=8390656
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1200 offset=0x27B5 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1201 offset=0x27B6 original=0x0298 layer=8390656 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1202 offset=0x27B8 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1203 offset=0x27D4 original=0x2450 layer=180388669 etype=63
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1204 offset=0x27D7 original=0x12E8 layer=16138 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1205 offset=0x27D8 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1206 offset=0x27DA original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1207 offset=0x27DC original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1208 offset=0x27DF original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1209 offset=0x27E0 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1210 offset=0x27E2 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1211 offset=0x27E4 original=0x0EB5 layer=33554432 etype=3019898880
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1212 offset=0x27FA original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1213 offset=0x27FB original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1214 offset=0x27FC original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1215 offset=0x27FE original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1216 offset=0x2801 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1217 offset=0x2802 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1218 offset=0x2803 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1219 offset=0x2804 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1220 offset=0x2806 original=0x0EB5 layer=33554432 etype=3019898880
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1221 offset=0x281B original=0x27F9 layer=16132 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1222 offset=0x281E original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1223 offset=0x2820 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1224 offset=0x2822 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1225 offset=0x2823 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1226 offset=0x2826 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1227 offset=0x283D original=0x19CD layer=16187 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1228 offset=0x2840 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1229 offset=0x2842 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1230 offset=0x2845 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1231 offset=0x2848 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1232 offset=0x284A original=0x2828 layer=33554432 etype=503316480
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1233 offset=0x285F original=0x19CD layer=16187 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1234 offset=0x2862 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1235 offset=0x2864 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1236 offset=0x2867 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1237 offset=0x286A original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1238 offset=0x286C original=0x0EB5 layer=33554432 etype=3019898880
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1239 offset=0x2881 original=0x24FD layer=16180 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1240 offset=0x2884 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1241 offset=0x2886 original=0x033C layer=256 etype=8390656
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1242 offset=0x2889 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1243 offset=0x288C original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1244 offset=0x28AD original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1245 offset=0x28AE original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1246 offset=0x28B3 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1247 offset=0x28B5 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1248 offset=0x28B6 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1249 offset=0x28CD original=0x28AB layer=16169 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1250 offset=0x28D5 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1251 offset=0x28EF original=0x087D layer=16245 etype=65536
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1252 offset=0x28F3 original=0x0D48 layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.005188,0.000000)
+#1253 offset=0x28F7 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1254 offset=0x28FB original=0x0D50 layer=0 etype=2
+       start=(0.005188,0.005188) end=(0.000000,0.000000)
+#1255 offset=0x28FD original=0x0635 layer=131072 etype=1717960704
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1256 offset=0x2910 original=0x116B layer=4158783 etype=16777216
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1257 offset=0x2911 original=0x087D layer=16245 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1258 offset=0x2918 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1259 offset=0x2919 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1260 offset=0x2939 original=0x13FC layer=1063943930 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1261 offset=0x293A original=0x13FD layer=4156030 etype=16777216
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1262 offset=0x293B original=0x0745 layer=16234 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1263 offset=0x2941 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#1264 offset=0x2942 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1265 offset=0x2943 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1266 offset=0x295F original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1267 offset=0x2965 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1268 offset=0x2967 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1269 offset=0x297F original=0x295D layer=16223 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1270 offset=0x2984 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1271 offset=0x2987 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1272 offset=0x29A1 original=0x076F layer=16261 etype=65536
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1273 offset=0x29A4 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1274 offset=0x29A9 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1275 offset=0x29AC original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1276 offset=0x29C3 original=0x076F layer=16261 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1277 offset=0x29C6 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1278 offset=0x29C7 original=0x1102 layer=65536 etype=2147680256
+       start=(0.000000,0.010438) end=(0.007813,0.000000)
+#1279 offset=0x29CA original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1280 offset=0x29CB original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1281 offset=0x29CE original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1282 offset=0x29CF original=0x110A layer=0 etype=2
+       start=(0.010438,0.007813) end=(0.000000,0.000000)
+#1283 offset=0x29E4 original=0x222B layer=4161536 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1284 offset=0x29E5 original=0x2150 layer=16256 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1285 offset=0x29E6 original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1286 offset=0x29E7 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1287 offset=0x29E8 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1288 offset=0x29E9 original=0x1124 layer=65536 etype=2147680256
+       start=(0.000000,0.007813) end=(0.007813,0.000000)
+#1289 offset=0x29EC original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1290 offset=0x29ED original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1291 offset=0x29EE original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1292 offset=0x29EF original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1293 offset=0x29F0 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1294 offset=0x29F1 original=0x112C layer=0 etype=2
+       start=(0.007813,0.007813) end=(0.000000,0.000000)
+#1295 offset=0x2A07 original=0x2150 layer=16256 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1296 offset=0x2A0B original=0x1146 layer=65536 etype=2148007936
+       start=(0.000000,0.007813) end=(0.007063,0.005188)
+#1297 offset=0x2A0F original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1298 offset=0x2A13 original=0x114E layer=0 etype=3
+       start=(0.007813,0.007063) end=(0.005188,0.000000)
+#1299 offset=0x2A31 original=0x087D layer=16245 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1300 offset=0x2A33 original=0x2631 layer=0 etype=1
+       start=(0.000000,0.007506) end=(0.000000,0.000000)
+#1301 offset=0x2A35 original=0x0D6A layer=65536 etype=2147680256
+       start=(0.000000,0.005188) end=(0.000000,0.000000)
+#1302 offset=0x2A39 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1303 offset=0x2A3B original=0x2639 layer=32771 etype=131072
+       start=(0.007506,0.000000) end=(0.000000,0.000000)
+#1304 offset=0x2A3D original=0x0D72 layer=0 etype=2
+       start=(0.005188,0.000000) end=(0.000000,0.000000)
+#1305 offset=0x2A53 original=0x2747 layer=15873 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1306 offset=0x2A55 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1307 offset=0x2A57 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1308 offset=0x2A5B original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1309 offset=0x2A5D original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1310 offset=0x2A5F original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1311 offset=0x2A67 original=0x2A4D layer=3194616808 etype=1040254501
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1312 offset=0x2A7E original=0x097A layer=61 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1313 offset=0x2A7F original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1314 offset=0x2A80 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1315 offset=0x2A81 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1316 offset=0x2A84 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1317 offset=0x2A85 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1318 offset=0x2A86 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1319 offset=0x2A87 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1320 offset=0x2A88 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1321 offset=0x2A89 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1322 offset=0x2A91 original=0x2A77 layer=3196747514 etype=1034684465
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1323 offset=0x2A9E original=0x2A7C layer=4041736 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1324 offset=0x2A9F original=0x2A7D layer=15788 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1325 offset=0x2AA0 original=0x097A layer=61 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1326 offset=0x2AA1 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1327 offset=0x2AA2 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1328 offset=0x2AA3 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1329 offset=0x2AA9 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1330 offset=0x2AAA original=0x036C layer=128 etype=512
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#1331 offset=0x2AAB original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1332 offset=0x2AB1 original=0x26A7 layer=1374420992 etype=137477784
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1333 offset=0x2AB3 original=0x2A99 layer=3197653484 etype=1034684465
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1334 offset=0x2AB9 original=0x2A97 layer=1374436780 etype=137477784
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#1335 offset=0x2ABB original=0x26A9 layer=3197653484 etype=1026295857
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1336 offset=0x2AC1 original=0x26B7 layer=15660 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1337 offset=0x2AC3 original=0x0151 layer=0 etype=1
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1338 offset=0x2AC4 original=0x0A58 layer=16777216 etype=67108864
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1339 offset=0x2AC5 original=0x2326 layer=65536 etype=1325662208
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1340 offset=0x2AE3 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1341 offset=0x2AE4 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1342 offset=0x2AE5 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1343 offset=0x2AE6 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1344 offset=0x2AFC original=0x0A90 layer=0 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1345 offset=0x2AFE original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1346 offset=0x2B00 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1347 offset=0x2B04 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1348 offset=0x2B06 original=0x026F layer=32776 etype=196608
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1349 offset=0x2B08 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1350 offset=0x2B0E original=0x2AF4 layer=1901592576 etype=48707
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1351 offset=0x2B10 original=0x2AF6 layer=3192090968 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1352 offset=0x2B2A original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#1353 offset=0x2B2D original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1354 offset=0x2B2E original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1355 offset=0x2B32 original=0x01C9 layer=0 etype=3
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1356 offset=0x2B3A original=0x2B20 layer=3190010593 etype=1010055512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1357 offset=0x2B54 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1358 offset=0x2B57 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1359 offset=0x2B58 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1360 offset=0x2B5C original=0x01C9 layer=0 etype=3
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1361 offset=0x2B81 original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1362 offset=0x2B82 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1363 offset=0x2BAC original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1364 offset=0x2BD6 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1365 offset=0x2BF8 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1366 offset=0x2C22 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1367 offset=0x2C4C original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1368 offset=0x2C76 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1369 offset=0x2C9A original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1370 offset=0x2C9D original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1371 offset=0x2CA0 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1372 offset=0x2CA2 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1373 offset=0x2CBB original=0x0290 layer=63 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1374 offset=0x2CBC original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1375 offset=0x2CBF original=0x0366 layer=256 etype=8389376
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1376 offset=0x2CC2 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1377 offset=0x2CC3 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1378 offset=0x2CC4 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1379 offset=0x2CC7 original=0x2CA5 layer=33554432 etype=671088640
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1380 offset=0x2CDC original=0x2CBA layer=16203 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1381 offset=0x2CDE original=0x0151 layer=0 etype=1
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1382 offset=0x2CE1 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1383 offset=0x2CE4 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1384 offset=0x2CE6 original=0x0159 layer=32771 etype=131072
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1385 offset=0x2D00 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1386 offset=0x2D01 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1387 offset=0x2D03 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1388 offset=0x2D06 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1389 offset=0x2D08 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1390 offset=0x2D09 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1391 offset=0x2D0B original=0x2CE9 layer=33554432 etype=3120562176
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1392 offset=0x2D20 original=0x2CFE layer=16268 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1393 offset=0x2D23 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1394 offset=0x2D28 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1395 offset=0x2D2B original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1396 offset=0x2D4D original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1397 offset=0x2D4F original=0x033C layer=256 etype=8390656
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1398 offset=0x2D50 original=0x0295 layer=1 etype=32776
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1399 offset=0x2D52 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1400 offset=0x2D55 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1401 offset=0x2D77 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1402 offset=0x2D7C original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1403 offset=0x2D7F original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1404 offset=0x2D9E original=0x1781 layer=16262 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1405 offset=0x2DA6 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1406 offset=0x2DC8 original=0x2C44 layer=16237 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1407 offset=0x2DCF original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1408 offset=0x2DD0 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1409 offset=0x2DF5 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1410 offset=0x2DFA original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1411 offset=0x2DFD original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1412 offset=0x2E1E original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1413 offset=0x2E1F original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1414 offset=0x2E24 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1415 offset=0x2E26 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1416 offset=0x2E27 original=0x036C layer=128 etype=512
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1417 offset=0x2E42 original=0x0929 layer=65536 etype=2148007936
+       start=(0.000000,0.000001) end=(0.000000,0.000000)
+#1418 offset=0x2E46 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1419 offset=0x2E4A original=0x0931 layer=0 etype=3
+       start=(0.000001,0.000000) end=(0.000000,0.000000)
+#1420 offset=0x2E6B original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1421 offset=0x2E6C original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1422 offset=0x2E6F original=0x02EA layer=134217728 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1423 offset=0x2E70 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1424 offset=0x2E73 original=0x02EE layer=128 etype=768
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1425 offset=0x2E74 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1426 offset=0x2E92 original=0x0B42 layer=15889 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1427 offset=0x2E96 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1428 offset=0x2E9A original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1429 offset=0x2E9E original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1430 offset=0x2EC0 original=0x1BF3 layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000001)
+#1431 offset=0x2EC3 original=0x02EA layer=134217728 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1432 offset=0x2EC4 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1433 offset=0x2EC8 original=0x1BFB layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000001,0.000000)
+#1434 offset=0x2EE6 original=0x1D69 layer=16036 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1435 offset=0x2EE7 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1436 offset=0x2EE9 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1437 offset=0x2EEC original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1438 offset=0x2EED original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1439 offset=0x2EEE original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1440 offset=0x2EEF original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1441 offset=0x2EF1 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1442 offset=0x2F09 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1443 offset=0x2F0B original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1444 offset=0x2F0E original=0x0367 layer=1 etype=32771
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#1445 offset=0x2F0F original=0x0368 layer=50331648 etype=128
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1446 offset=0x2F10 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1447 offset=0x2F11 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1448 offset=0x2F13 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1449 offset=0x2F16 original=0x2EF4 layer=131072 etype=870711296
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1450 offset=0x2F18 original=0x2EF6 layer=2 etype=3191419878
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#1451 offset=0x2F28 original=0x2F06 layer=1052401206 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1452 offset=0x2F29 original=0x2F07 layer=4110942 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1453 offset=0x2F2A original=0x2F08 layer=16058 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1454 offset=0x2F2B original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1455 offset=0x2F2D original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1456 offset=0x2F2F original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1457 offset=0x2F30 original=0x0367 layer=1 etype=32771
+       start=(-0.000000,-0.000000) end=(0.000000,-0.000000)
+#1458 offset=0x2F31 original=0x0368 layer=50331648 etype=128
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1459 offset=0x2F32 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1460 offset=0x2F33 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1461 offset=0x2F35 original=0x036C layer=128 etype=512
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1462 offset=0x2F42 original=0x2F20 layer=1052401206 etype=3197799850
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1463 offset=0x2F46 original=0x2AEE layer=3197799850 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1464 offset=0x2F4A original=0x0A8E layer=0 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1465 offset=0x2F4C original=0x0A90 layer=0 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1466 offset=0x2F4E original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1467 offset=0x2F4F original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1468 offset=0x2F50 original=0x0197 layer=65536 etype=2147680256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1469 offset=0x2F52 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1470 offset=0x2F54 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1471 offset=0x2F56 original=0x0159 layer=32771 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1472 offset=0x2F57 original=0x036C layer=128 etype=512
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1473 offset=0x2F58 original=0x0633 layer=0 etype=2
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1474 offset=0x2F6E original=0x0DEE layer=15664 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1475 offset=0x2F72 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1476 offset=0x2F76 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1477 offset=0x2F7A original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1478 offset=0x2F9C original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1479 offset=0x2FA0 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1480 offset=0x2FA4 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1481 offset=0x2FC6 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1482 offset=0x2FCA original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1483 offset=0x2FCE original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1484 offset=0x2FF0 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1485 offset=0x2FF4 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1486 offset=0x2FF8 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1487 offset=0x301C original=0x0295 layer=1 etype=32776
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1488 offset=0x301E original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1489 offset=0x3040 original=0x2475 layer=16114 etype=65536
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1490 offset=0x3048 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1491 offset=0x306A original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1492 offset=0x3092 original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1493 offset=0x3094 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1494 offset=0x30BE original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1495 offset=0x30E8 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1496 offset=0x310A original=0x14B7 layer=16254 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1497 offset=0x3110 original=0x0295 layer=1 etype=32776
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1498 offset=0x3112 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1499 offset=0x313C original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1500 offset=0x315E original=0x30B6 layer=16222 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1501 offset=0x3165 original=0x0368 layer=50331648 etype=128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1502 offset=0x3166 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1503 offset=0x3180 original=0x2C1A layer=16214 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1504 offset=0x3181 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1505 offset=0x3188 original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1506 offset=0x3189 original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1507 offset=0x31A2 original=0x2C1A layer=16214 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1508 offset=0x31A7 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1509 offset=0x31AA original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1510 offset=0x31B9 original=0x3197 layer=1447404094 etype=1256500799
+       start=(0.000000,0.000000) end=(-0.000000,-0.000000)
+#1511 offset=0x31C4 original=0x076F layer=16261 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1512 offset=0x31C7 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1513 offset=0x31C9 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1514 offset=0x31CC original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1515 offset=0x31CF original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1516 offset=0x31D1 original=0x31AF layer=33554432 etype=2919235584
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1517 offset=0x31E6 original=0x1781 layer=16262 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1518 offset=0x31E7 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1519 offset=0x31E9 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1520 offset=0x31EB original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1521 offset=0x31EE original=0x0517 layer=2147680256 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1522 offset=0x31EF original=0x0158 layer=8389376 etype=33554432
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1523 offset=0x31F1 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1524 offset=0x31F3 original=0x31AF layer=33554432 etype=2919235584
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1525 offset=0x3208 original=0x1781 layer=16262 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1526 offset=0x3209 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(0.000000,-0.000000)
+#1527 offset=0x320B original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1528 offset=0x3210 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1529 offset=0x3211 original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1530 offset=0x3213 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1531 offset=0x3233 original=0x0290 layer=63 etype=256
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1532 offset=0x3235 original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1533 offset=0x323A original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1534 offset=0x323B original=0x0298 layer=8390656 etype=50331648
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1535 offset=0x323D original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1536 offset=0x325C original=0x17AB layer=16265 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1537 offset=0x325F original=0x02E6 layer=16777216 etype=134217728
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1538 offset=0x3264 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1539 offset=0x3267 original=0x02EE layer=128 etype=768
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1540 offset=0x328B original=0x033C layer=256 etype=8390656
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1541 offset=0x328E original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1542 offset=0x32B0 original=0x1A21 layer=16247 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1543 offset=0x32B8 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1544 offset=0x32DA original=0x0467 layer=16213 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,-0.000000)
+#1545 offset=0x32E2 original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1546 offset=0x330A original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1547 offset=0x330C original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1548 offset=0x332E original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1549 offset=0x3354 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1550 offset=0x3355 original=0x033C layer=256 etype=8390656
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1551 offset=0x3358 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1552 offset=0x335C original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1553 offset=0x3364 original=0x334A layer=1041136174 etype=1046361408
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1554 offset=0x337E original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1555 offset=0x337F original=0x033C layer=256 etype=8390656
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1556 offset=0x3382 original=0x01EF layer=2148007936 etype=0
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1557 offset=0x3386 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1558 offset=0x33A8 original=0x01EB layer=65536 etype=2148007936
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1559 offset=0x33AC original=0x01EF layer=2148007936 etype=0
+       start=(-0.000000,-0.000000) end=(-0.000000,0.000000)
+#1560 offset=0x33B0 original=0x01C9 layer=0 etype=3
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1561 offset=0x33D1 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1562 offset=0x33D3 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1563 offset=0x33D4 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1564 offset=0x33D6 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1565 offset=0x33D9 original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1566 offset=0x33EE original=0x2EE4 layer=1050958365 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1567 offset=0x33F0 original=0x1D69 layer=16036 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1568 offset=0x33F1 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1569 offset=0x33F3 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1570 offset=0x33F5 original=0x0366 layer=256 etype=8389376
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1571 offset=0x33F6 original=0x0367 layer=1 etype=32771
+       start=(0.000000,0.000000) end=(0.000000,-0.000000)
+#1572 offset=0x33F8 original=0x0517 layer=2147680256 etype=0
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1573 offset=0x33F9 original=0x0158 layer=8389376 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1574 offset=0x33FB original=0x036C layer=128 etype=512
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1575 offset=0x33FD original=0x33DB layer=33554432 etype=989855744
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1576 offset=0x33FE original=0x33DC layer=131072 etype=389742592
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1577 offset=0x3400 original=0x33DE layer=2 etype=3193902907
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1578 offset=0x340F original=0x33ED layer=2757369278 etype=62
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1579 offset=0x3410 original=0x2EE4 layer=1050958365 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1580 offset=0x3411 original=0x2EE5 layer=4105306 etype=16777216
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1581 offset=0x3412 original=0x1D69 layer=16036 etype=65536
+       start=(0.000000,-0.000000) end=(-0.000000,0.000000)
+#1582 offset=0x3415 original=0x0196 layer=16777216 etype=50331648
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1583 offset=0x3417 original=0x0366 layer=256 etype=8389376
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1584 offset=0x341D original=0x036C layer=128 etype=512
+       start=(-0.000000,0.000000) end=(0.000000,-0.000000)
+#1585 offset=0x3438 original=0x2326 layer=65536 etype=1325662208
+       start=(-0.000000,-0.000000) end=(0.000000,0.000000)
+#1586 offset=0x3439 original=0x2AC6 layer=256 etype=1431241728
+       start=(-0.000000,0.000000) end=(-0.000000,0.000000)
+#1587 offset=0x3470 original=0x0150 layer=62 etype=256
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1588 offset=0x3471 original=0x0151 layer=0 etype=1
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1589 offset=0x347B original=0x3459 layer=1 etype=2
+       start=(0.000000,0.000024) end=(0.000000,0.000000)
+#1590 offset=0x3490 original=0x346E layer=4126982 etype=16777216
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1591 offset=0x3491 original=0x346F layer=16121 etype=65536
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1592 offset=0x3492 original=0x0150 layer=62 etype=256
+       start=(-0.000000,0.000000) end=(0.000000,0.000000)
+#1593 offset=0x349F original=0x3478 layer=25166592 etype=33554432
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1594 offset=0x34A0 original=0x3479 layer=98307 etype=131072
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1595 offset=0x3505 original=0x34E2 layer=1581834432 etype=64
+       start=(2.000123,-0.000000) end=(0.000000,121.138718)
+#1596 offset=0x3507 original=0x34E4 layer=4218440 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1597 offset=0x350D original=0x34EA layer=1073741824 etype=1073741888
+       start=(-0.000000,0.000000) end=(121.138718,32.000000)
+#1598 offset=0x350F original=0x34EC layer=4210688 etype=71319552
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1599 offset=0x352A original=0x34E4 layer=4218440 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1600 offset=0x3532 original=0x34EC layer=4210688 etype=71319552
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1601 offset=0x3533 original=0x34ED layer=16448 etype=1325678656
+       start=(0.000000,0.000000) end=(0.000000,2.000123)
+#1602 offset=0x354D original=0x34E4 layer=4218440 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1603 offset=0x3553 original=0x3530 layer=1073741824 etype=1073741888
+       start=(-0.000000,0.000000) end=(121.138687,32.000000)
+#1604 offset=0x3555 original=0x34EC layer=4210688 etype=71319552
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1605 offset=0x3556 original=0x34ED layer=16448 etype=1325678656
+       start=(0.000000,-0.000000) end=(0.000000,2.000123)
+#1606 offset=0x356E original=0x354B layer=1581834304 etype=64
+       start=(2.000123,-0.000000) end=(0.000000,121.138687)
+#1607 offset=0x3570 original=0x34E4 layer=4218440 etype=0
+       start=(0.000000,0.000000) end=(-0.000000,0.000000)
+#1608 offset=0x3576 original=0x3530 layer=1073741824 etype=1073741888
+       start=(-0.000000,0.000000) end=(121.138687,32.000000)
+#1609 offset=0x3578 original=0x34EC layer=4210688 etype=71319552
+       start=(0.000000,-0.000000) end=(0.000000,0.000000)
+#1610 offset=0x3579 original=0x34ED layer=16448 etype=1325678656
+       start=(0.000000,0.000000) end=(0.000000,2.000123)
+#1611 offset=0x3592 original=0x3529 layer=1079920864 etype=0
+       start=(32.000008,0.000000) end=(0.000000,0.000000)
+#1612 offset=0x3593 original=0x34E4 layer=4218440 etype=0
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1613 offset=0x359A original=0x3531 layer=1077936128 etype=1077936128
+       start=(0.000000,0.000000) end=(0.000000,0.000000)
+#1614 offset=0x359B original=0x34EC layer=4210688 etype=71319552
+       start=(0.000000,0.000000) end=(0.000000,0.000000)

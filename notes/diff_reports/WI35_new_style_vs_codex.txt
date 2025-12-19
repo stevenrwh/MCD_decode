@@ -1,0 +1,27 @@
+Reference: old_style_mcd_files\WI35_monucad_export_partially_exploded.dxf
+Candidate: out_WI35.dxf
+
+Entity type       Ref      Cand     Delta
+-----------------------------------------
+ARC                    3        10        7 *
+CIRCLE                 0         1        1 *
+INSERT                69         0      -69 -
+LINE                  24      3753     3729 *
+
+Per-layer deltas:
+
+[ARC]
+  MCD_Layer_0          ref=0      cand=10     delta=+10
+  0                    ref=3      cand=0      delta=-3
+
+[CIRCLE]
+  MCD_Layer_0          ref=0      cand=1      delta=+1
+
+[INSERT]
+  1                    ref=69     cand=0      delta=-69
+
+[LINE]
+  MCD_Layer_0          ref=0      cand=3737   delta=+3737
+  1                    ref=16     cand=0      delta=-16
+  MCD_Layer_1          ref=0      cand=16     delta=+16
+  0                    ref=8      cand=0      delta=-8

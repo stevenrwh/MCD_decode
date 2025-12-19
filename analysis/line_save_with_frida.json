@@ -1,0 +1,68 @@
+[
+  {
+    "use_frida": false,
+    "events": [
+      {
+        "event": "window-ready",
+        "title": "Untitled - MONU-CAD Pro [9.2.10"
+      },
+      {
+        "event": "save-command"
+      },
+      {
+        "title": "Save As",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\no_frida\\1763281168_Save_As.png",
+        "body": [
+          "Save &in:",
+          "File &name:",
+          "Save as &type:"
+        ]
+      },
+      {
+        "title": "Drawing Save",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\no_frida\\1763281168_Drawing_Save.png",
+        "body": [
+          "LINE_SAVE.MCD already exists.",
+          "Do you wish to overwrite or backup this drawing?"
+        ]
+      },
+      {
+        "title": "File Security Options",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\no_frida\\1763281169_File_Security_Options.png"
+      }
+    ]
+  },
+  {
+    "use_frida": true,
+    "events": [
+      {
+        "event": "window-ready",
+        "title": "Untitled - MONU-CAD Pro [9.2.10"
+      },
+      {
+        "event": "save-command"
+      },
+      {
+        "title": "Save As",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\with_frida\\1763281199_Save_As.png",
+        "body": [
+          "Save &in:",
+          "File &name:",
+          "Save as &type:"
+        ]
+      },
+      {
+        "title": "Drawing Save",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\with_frida\\1763281200_Drawing_Save.png",
+        "body": [
+          "LINE_SAVE.MCD already exists.",
+          "Do you wish to overwrite or backup this drawing?"
+        ]
+      },
+      {
+        "title": "File Security Options",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\with_frida\\1763281201_File_Security_Options.png"
+      }
+    ]
+  }
+]

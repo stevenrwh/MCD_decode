@@ -1,0 +1,634 @@
+[Modified Roman]
+dtafile = mr			; comment
+fontfile = mcalf001
+lowercase = no
+serifs = no
+
+[Condensed Roman]
+dtafile = cr			; comment
+fontfile = mcalf002
+lowercase = no
+serifs = no
+
+[Outline Roman]
+dtafile = out			; comment
+fontfile = mcalf003
+lowercase = no
+serifs = yes
+
+[Classic Roman]
+dtafile = cl			; comment
+fontfile = mcalf004
+lowercase = no
+serifs = no
+
+[Square Raised Medium]
+dtafile = sq			; comment
+fontfile = mcalf005
+lowercase = no
+serifs = no
+
+[Square Raised Bold]
+dtafile = sqb			; comment
+fontfile = mcalf006
+lowercase = no
+serifs = no
+
+[Hebrew]
+dtafile = heb			; comment
+fontfile = mcalf007
+lowercase = no
+serifs = no
+
+[Government Text]
+dtafile = go			; comment
+fontfile = mcalf008
+lowercase = no
+serifs = no
+
+[Press Condensed Roman]
+dtafile = skc
+fontfile = mcalf009
+lowercase = no
+serifs = yes
+
+[Press Modified Roman]
+dtafile = skm
+fontfile = mcalf010
+lowercase = no
+serifs = yes
+
+[Common Gothic]
+dtafile = cg
+fontfile = mcalf011
+lowercase = no
+serifs = no
+
+[Russian]
+dtafile = rus
+fontfile = mcalf012
+lowercase = no
+serifs = no
+
+[Script Sand Blast]
+dtafile = scs
+fontfile = mcalf013
+lowercase = yes
+serifs = no
+
+[Script Outline]
+dtafile = sco
+fontfile = mcalf014
+lowercase = yes
+serifs = no
+
+[Old English Outline]
+dtafile = ooe
+fontfile = mcalf015
+lowercase = yes
+serifs = no
+
+[Old English SB]
+dtafile = oe
+fontfile = mcalf016
+lowercase = yes
+serifs = no
+
+[Uncial Gothic]
+dtafile = ug
+fontfile = mcalf017
+lowercase = no
+serifs = no
+
+[Triple Cut]
+dtafile = tri
+fontfile = mcalf018
+lowercase = no
+serifs = no
+
+[NYC-Russian]
+dtafile = run
+fontfile = mcalf019
+lowercase = no
+serifs = no
+
+[Vermarco]
+dtafile = vm
+fontfile = mcalf020
+lowercase = no
+serifs = no
+
+[Helvetica Medium]
+dtafile = hlm
+fontfile = mcalf021
+lowercase = yes
+serifs = no
+
+[21]
+dtafile = 21
+fontfile = 21
+lowercase = no
+serifs = no
+
+[Helvetica Bold]
+dtafile = m22
+fontfile = mcalf022
+lowercase = yes
+serifs = no
+
+[Amer-1]
+dtafile = am
+fontfile = mcalf023
+lowercase = no
+Serifs = no
+
+[Troman]
+dtafile = tm
+fontfile = mcalf024
+lowercase = yes
+serifs = no
+
+;[W3D]
+;dtafile = w3d
+;fontfile = mcalf025
+;lowercase = no
+;serifs = no
+
+[Roman Shaded]
+dtafile = rs
+fontfile = mcalf026
+lowercase = no
+serifs = no
+
+[Armenian]
+dtafile = ar
+fontfile = mcalf027
+lowercase = yes
+serifs = no
+
+[European]
+dtafile = eur
+fontfile = mcalf028
+lowercase = no
+serifs = no
+
+[Fancy Gothic]
+dtafile = fg
+fontfile = mcalf029
+lowercase = no
+serifs = no
+
+[Brush Script]
+dtafile = bsc
+fontfile = mcalf030
+lowercase = yes
+serifs = no
+
+[Roman Italic Bold]
+dtafile = m31
+fontfile = mcalf031
+lowercase = yes
+serifs = no
+
+[Comm. Gothic]
+dtafile = m32
+fontfile = mcalf032
+lowercase = no
+serifs = no
+
+[Opti SB]
+dtafile = m33
+fontfile = mcalf033
+lowercase = no
+serifs = no
+
+[Opti Outline]
+dtafile = m34
+fontfile = mcalf034
+lowercase = no
+serifs = yes
+
+[Clar Medium]
+dtafile = m35
+fontfile = mcalf035
+lowercase = yes
+serifs = no
+
+;[ShevrusM]
+;dtafile = m36
+;fontfile = mcalf036
+;lowercase = no
+;serifs = no
+
+[Flintstone]
+dtafile = m37
+fontfile = mcalf037
+lowercase = yes
+serifs = no
+
+[Roman Italic Med.]
+dtafile = m38
+fontfile = mcalf038
+lowercase = yes
+serifs = no
+
+[Modern]
+dtafile = m39
+fontfile = mcalf039
+lowercase = no
+serifs = no
+
+[Classic Roman-2]
+dtafile = m40
+fontfile = mcalf040
+lowercase = yes
+serifs = no
+
+[Polished Edge]
+dtafile = m41
+fontfile = mcalf041
+lowercase = no
+serifs = no
+
+[Celtic]
+dtafile = m42
+fontfile = mcalf042
+lowercase = yes
+serifs = no
+
+[Bevel Panel Let1]
+dtafile = m43
+fontfile = mcalf043
+lowercase = no
+serifs = no
+
+[K & O SB-1]
+dtafile = m44
+fontfile = mcalf044
+lowercase = yes
+serifs = no
+
+[K & O Outline-1]
+dtafile = m45
+fontfile = mcalf045
+lowercase = yes
+serifs = no
+
+;[ShevrusC]
+;dtafile = m46
+;fontfile = mcalf046
+;lowercase = no
+;serifs = no
+
+[Old English SB-2]
+dtafile = m47
+fontfile = mcalf047
+lowercase = yes
+serifs = no
+
+[Stylish SB-1]
+dtafile = m48
+fontfile = mcalf048
+lowercase = yes
+serifs = no
+
+[MGC Hebrew]
+dtafile = m49
+fontfile = mcalf049
+lowercase = no
+serifs = no
+
+[K & O SB-2]
+dtafile = m50
+fontfile = mcalf050
+lowercase = no
+serifs = no
+
+[DS Covenant]
+dtafile = m51
+fontfile = mcalf051
+lowercase = yes
+serifs = no
+
+[GM Script]
+dtafile = m52
+fontfile = mcalf052
+lowercase = yes
+serifs = no
+
+[CQC Script 1]
+dtafile = m53
+fontfile = mcalf053
+lowercase = yes
+serifs = no
+
+[Bold Roman 1]
+dtafile = m54
+fontfile = mcalf054
+lowercase = no
+serifs = no
+
+[Smith SIP]
+dtafile = m55
+fontfile = mcalf055
+lowercase = no
+serifs = no
+
+[Smith UK]
+dtafile = m56
+fontfile = mcalf056
+lowercase = no
+serifs = no
+
+[Palatine 1]
+dtafile = m57
+fontfile = mcalf057
+lowercase = yes
+serifs = no
+
+[Smith CDSIP]
+dtafile = m58
+fontfile = mcalf058
+lowercase = no
+serifs = no
+
+[Greek SB #1]
+dtafile = m59
+fontfile = mcalf059
+lowercase = no
+serifs = no
+
+[Govt2]
+dtafile = m60
+fontfile = mcalf060
+lowercase = no
+serifs = no
+
+[Mod Roman Sanserif]
+dtafile = m61
+fontfile = mcalf061
+lowercase = no
+serifs = no
+
+[Cond Roman Sanserif]
+dtafile = m62
+fontfile = mcalf062
+lowercase = no
+serifs = no
+
+[Outline Clar Medium]
+dtafile = m63
+fontfile = mcalf063
+lowercase = yes
+serifs = no
+
+[Valley Script]
+dtafile = m64
+fontfile = mcalf064
+lowercase = yes
+serifs = no
+
+[Old English SB-3]
+dtafile = m65
+fontfile = mcalf065
+lowercase = yes
+serifs = no
+
+[Henry SB-1]
+dtafile = m66
+fontfile = mcalf066
+lowercase = no
+serifs = no
+
+[Helvetica Light]
+dtafile = m67
+fontfile = mcalf067
+lowercase = yes
+serifs = no
+
+[GM Roman]
+dtafile = m68
+fontfile = mcalf068
+lowercase = no
+serifs = no
+
+[Smith SIP #2]
+dtafile = m69
+fontfile = mcalf069
+lowercase = no
+serifs = no
+
+[Smith UK#2]
+dtafile = m70
+fontfile = mcalf070
+lowercase = no
+serifs = no
+
+[Fancy Fam Name #1]
+dtafile = m71
+fontfile = mcalf071
+lowercase = no
+serifs = no
+
+[Fancy Fam Name #2]
+dtafile = m72
+fontfile = mcalf072
+lowercase = no
+serifs = no
+
+[Fancy Fam Name #3]
+dtafile = m73
+fontfile = mcalf073
+lowercase = no
+serifs = no
+
+[Bailey #1]
+dtafile = m74
+fontfile = mcalf074
+lowercase = no
+serifs = no
+
+[Bailey #2]
+dtafile = m75
+fontfile = mcalf075
+lowercase = no
+serifs = no
+
+[Shamrock]
+dtafile = m76
+fontfile = mcalf076
+lowercase = yes
+serifs = no
+
+[Oliveanti #1]
+dtafile = m77
+fontfile = mcalf077
+lowercase = yes
+serifs = no
+
+[OLSON]
+dtafile = m78
+fontfile = mcalf078
+lowercase = no
+serifs = no
+
+[INDIV. CONDENSED]
+dtafile = m79
+fontfile = mcalf079
+lowercase = no
+serifs = no
+
+[INDIV. MODIFIED]
+dtafile = m80
+fontfile = mcalf080
+lowercase = no
+serifs = no
+
+[SLOV]
+dtafile = m81
+fontfile = mcalf081
+lowercase = no
+serifs = no
+
+[GUMPY1]
+dtafile = m82
+fontfile = mcalf082
+lowercase = yes
+serifs = no
+
+[CLAREN1]
+dtafile = m83
+fontfile = mcalf083
+lowercase = yes
+serifs = no
+
+[PALMER]
+dtafile = m84
+fontfile = mcalf084
+lowercase = no
+serifs = no
+
+[PEEBLES SCRIPT]
+dtafile = m85
+fontfile = mcalf085
+lowercase = yes
+serifs = no
+
+[OUTLINE EUROPEAN]
+dtafile = m86
+fontfile = mcalf086
+lowercase = no
+serifs = yes
+
+[SMYTH RUSTIK]
+dtafile = m87
+fontfile = mcalf087
+lowercase = no
+serifs = no
+
+[SMYTH RUSTIKSO]
+dtafile = m88
+fontfile = mcalf088
+lowercase = no
+serifs = no
+
+
+[BAY CG OUTLINE]
+dtafile = m89
+fontfile = mcalf089
+lowercase = no
+serifs = no
+
+[SMYTH STEELE]
+dtafile = m90
+fontfile = mcalf090
+lowercase = no
+serifs = no
+
+[LAKEHEAD MR]
+dtafile = m91
+fontfile = mcalf091
+lowercase = no
+serifs = no
+
+[MAIN]
+dtafile = m92
+fontfile = mcalf092
+lowercase = yes
+serifs = no
+
+
+;[SABINE PAL]
+;dtafile = m93
+;fontfile = mcalf093
+;lowercase = yes
+;serifs = no
+
+;[SABINE DEV]
+;dtafile = m94
+;fontfile = mcalf094
+;lowercase = yes
+;serifs = no
+
+;[SABINE ZAP]
+;dtafile = m95
+;fontfile = mcalf095
+;lowercase = yes
+;serifs = no
+
+;[OLSON OLD ENGLISH]
+;dtafile = m96
+;fontfile = mcalf096
+;lowercase = yes
+;serifs = no
+
+;[OLSON OUTLINE]
+;dtafile = m97
+;fontfile = mcalf097
+;lowercase = no
+;serifs = no
+
+;[ROLLA FANCY]
+;dtafile = m98
+;fontfile = mcalf098
+;lowercase = yes
+;serifs = no
+
+[VIRNDA]
+dtafile = VRI
+fontfile = Virnda
+255extended = yes
+
+[ARIAL]
+dtafile = ARIAL
+fontfile = ARIAL
+255extended = yes
+
+[NEWJERUSALEM]
+dtafile = NJ
+fontfile = NewJeru
+lowercase = no
+serifs = no
+
+[BOARD LETTER-ROMAN]
+dtafile = Boa
+fontfile = BoardLetter
+lowercase = no
+serifs = yes
+
+[uRoman]
+dtafile = m50
+fontfile = uRoman
+lowercase = yes
+serifs = no
+
+[COPA]
+dtafile = COPA
+fontfile = Copa
+255extended = yes
+
+[verslnt]
+dtafile = VERSLNT
+fontfile = VMS
+lowercase = no
+serifs = no

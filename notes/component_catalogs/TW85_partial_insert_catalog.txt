@@ -1,0 +1,46 @@
+File: old_style_mcd_files/TW85_monucad_export_partially_exploded.dxf
+Defined BLOCK names (top 20 shown):
+  *Model_Space              1
+  *Paper_Space              1
+  *Paper_Space0             1
+  FSKMT                     1
+  FSKME                     1
+  FSKMR                     1
+  FSKMS                     1
+  FSKMA                     1
+  FSKML                     1
+  FSKMY                     1
+  FSKMN                     1
+  FSKMB                     1
+  FSKMO                     1
+  FSKMW                     1
+  FSKMH                     1
+  FSKMU                     1
+  FSKMG                     1
+  SKMPERID                  1
+  FSKM1                     1
+  FSKM5                     1
+  ... 10 more entries
+INSERT usage (top 20 shown):
+  FSKME                     4
+  FSKM1                     3
+  FSKMR                     2
+  FSKMS                     2
+  FSKMA                     2
+  FSKMN                     2
+  SKMPERID                  2
+  SKMCOMMA                  2
+  FSKM2                     2
+  FSKM0                     2
+  FSKMT                     1
+  FSKML                     1
+  FSKMY                     1
+  FSKMB                     1
+  FSKMO                     1
+  FSKMW                     1
+  FSKMH                     1
+  FSKMU                     1
+  FSKMG                     1
+  FSKM5                     1
+  ... 6 more entries
+

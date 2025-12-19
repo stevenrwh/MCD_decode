@@ -1,0 +1,18 @@
+{
+  "input": "analysis\\10x10_spec.mcd",
+  "deflate_offset": 69,
+  "config_text": "Generated = TRUE",
+  "geometry": {
+    "line_count": 4,
+    "arc_count": 0,
+    "circle_count": 0,
+    "bbox": [
+      -5.0,
+      0.0,
+      5.0,
+      10.0
+    ]
+  },
+  "components": [],
+  "instances": []
+}

@@ -1,0 +1,4090 @@
+#!/usr/bin/env python3
+"""
+Brute-force extractor for MONU-CAD v9 .mcd files.
+
+The format appears to embed a valid deflate stream at an arbitrary offset
+inside an otherwise bogus gzip container.  This tool scans the file for
+any byte offset that can be decompressed with raw zlib/deflate, looks for
+LINE entity definitions inside the recovered payload, and emits a minimal
+DXF file that recreates the vector geometry.
+
+The heuristics are intentionally loose so the script keeps working even if
+the vendor tweaks the binary padding.  It is not a full specification of
+the .mcd format, but it is enough to reverse simple line work so the data
+can be moved into another CAD package for inspection.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import re
+import struct
+import sys
+import zlib
+from collections import Counter, defaultdict
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Iterable, List, Sequence, Tuple
+from component_parser import (
+    ComponentSubBlock,
+    CirclePrimitive,
+    ComponentDefinition,
+    extract_circle_primitives,
+    iter_component_definitions,
+    iter_label_chunks,
+    iter_component_placements,
+)
+from font_components import iter_component_files, parse_component_bytes
+from glyph_tlv_parser import parse_glyph_components, parse_glyph_components_from_blob
+from extract_font_components import extract_components
+from font_components import SENTINEL as COMPONENT_SENTINEL, POINT_SCALE as COMPONENT_POINT_SCALE
+from placement_parser import (
+    GlyphPlacementRecord,
+    PlacementTrailer,
+    extract_glyph_records,
+    extract_glyph_records_with_offsets,
+    iter_placement_trailers,
+)
+
+DEFAULT_MIN_PAYLOAD = 128
+MAX_COORD_MAGNITUDE = 1e5  # Reject absurd coordinates that came from noise.
+HELPER_AXIS_TOL = 1e-3
+PRINTABLE_ASCII = tuple(chr(i) for i in range(32, 127))
+DUP_FINGERPRINT_PLACES = 6
+GLYPH_COORD_SCALE = 64.0
+
+
+@dataclass(frozen=True)
+class LineEntity:
+    layer: int
+    start: Tuple[float, float]
+    end: Tuple[float, float]
+
+
+@dataclass(frozen=True)
+class ArcEntity:
+    layer: int
+    center: Tuple[float, float]
+    start: Tuple[float, float]
+    end: Tuple[float, float]
+
+
+@dataclass(frozen=True)
+class CircleEntity:
+    layer: int
+    center: Tuple[float, float]
+    radius: float
+
+
+@dataclass(frozen=True)
+class DuplicateRecord:
+    offset: int
+    original_offset: int
+    layer: int
+    etype: int
+    start: Tuple[float, float]
+    end: Tuple[float, float]
+
+
+@dataclass(frozen=True)
+class InsertEntity:
+    name: str
+    position: Tuple[float, float]
+    rotation: float
+    scale: Tuple[float, float]
+    layer: int = 0
+
+
+def _log_duplicate_records(records: Sequence[DuplicateRecord], destination: Path) -> None:
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    lines: List[str] = []
+    for idx, entry in enumerate(records, start=1):
+        lines.append(
+            f"#{idx:04d} offset=0x{entry.offset:04X} original=0x{entry.original_offset:04X} "
+            f"layer={entry.layer} etype={entry.etype}"
+        )
+        lines.append(
+            f"       start=({entry.start[0]:.6f},{entry.start[1]:.6f}) "
+            f"end=({entry.end[0]:.6f},{entry.end[1]:.6f})"
+        )
+    destination.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
+
+@dataclass
+class TextEntity:
+    text: str
+    font: str
+    metrics: Tuple[float, ...]
+
+
+@dataclass
+class Glyph:
+    label: str
+    segments: List[Tuple[Tuple[float, float], Tuple[float, float]]]
+    bounds: Tuple[float, float, float, float]
+    advance: float
+    baseline: float
+
+
+@dataclass
+class FontDefinition:
+    name: str
+    glyphs: dict[str, Glyph]
+    space_advance: float
+    width_scale: float = 1.0
+    kerning: dict[Tuple[str, str], float] = field(default_factory=dict)
+
+    def render(
+        self,
+        text: str,
+        metrics: Tuple[float, ...],
+        *,
+        layer: int = 0,
+    ) -> List[LineEntity]:
+        if not metrics:
+            return []
+        height = max(metrics[0], 1e-6) if len(metrics) > 0 else 1.0
+        width_scale = metrics[4] if len(metrics) > 4 and metrics[4] > 0 else self.width_scale
+        tracking = metrics[5] if len(metrics) > 5 else 0.0
+        origin_x = metrics[6] if len(metrics) > 6 else 0.0
+        origin_y = metrics[7] if len(metrics) > 7 else 0.0
+        entities: List[LineEntity] = []
+        cursor_x = origin_x
+        prev_char: str | None = None
+        for ch in text:
+            kerning_shift = self._kerning_adjust(prev_char, ch, height, width_scale)
+            cursor_x += kerning_shift
+            glyph = self.glyphs.get(ch)
+            if not glyph:
+                cursor_x += self.space_advance * width_scale + tracking
+                prev_char = ch
+                continue
+            min_x, min_y, max_x, max_y = glyph.bounds
+            glyph_width = max(glyph.advance, max_x - min_x, 1e-6)
+            glyph_height = max(max_y - min_y, 1e-6)
+            scale = height / glyph_height
+            scale_x = scale * width_scale
+            scale_y = scale
+            baseline = glyph.baseline
+            base_y = origin_y - baseline * scale_y
+            base_x = cursor_x - min_x * scale_x
+            for p1, p2 in glyph.segments:
+                start = (base_x + p1[0] * scale_x, base_y + p1[1] * scale_y)
+                end = (base_x + p2[0] * scale_x, base_y + p2[1] * scale_y)
+                if _points_match(start, end):
+                    continue
+                entities.append(LineEntity(layer=layer, start=start, end=end))
+            cursor_x += glyph_width * scale_x + tracking
+            prev_char = ch
+        return entities
+
+    def _kerning_adjust(
+        self,
+        left: str | None,
+        right: str,
+        height: float,
+        width_scale: float,
+    ) -> float:
+        if not left or not self.kerning:
+            return 0.0
+        delta_em = self.kerning.get((left, right))
+        if not delta_em:
+            return 0.0
+        return delta_em * height * width_scale
+
+
+class FontManager:
+    def __init__(self, root: Path) -> None:
+        self.root = root
+        self._fonts: dict[str, FontDefinition] = {}
+        self._config = self._load_config()
+        self._kerning_cache: dict[str, dict[Tuple[str, str], float]] = {}
+
+    def _load_config(self) -> dict[str, dict[str, str]]:
+        config_path = self.root / "mcfonts.lst"
+        if not config_path.exists():
+            # Fallback defaults so we still render common fonts even when the
+            # config file is missing.
+            defaults: dict[str, dict[str, str]] = {}
+            def _maybe_add(name: str, fontfile: str, dtafile: str | None = None) -> None:
+                entry: dict[str, str] = {"fontfile": fontfile}
+                if dtafile:
+                    entry["dtafile"] = dtafile
+                defaults[name.upper()] = entry
+
+            # MAIN (mcalf092) and VERMARCO (mcalf020) are the most common.
+            _maybe_add("MAIN", "mcalf092", "m92")
+            _maybe_add("VERMARCO", "mcalf020", "vm")
+            return defaults
+        data: dict[str, dict[str, str]] = {}
+        current: dict[str, str] | None = None
+        current_name: str | None = None
+        for raw_line in config_path.read_text(encoding="utf-8", errors="ignore").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith(";"):
+                continue
+            if line.startswith("[") and line.endswith("]"):
+                current_name = line[1:-1].strip().upper()
+                current = {}
+                data[current_name] = current
+                continue
+            if "=" in line and current is not None and current_name is not None:
+                key, value = [part.strip() for part in line.split("=", 1)]
+                value = value.split(";", 1)[0].strip()
+                current[key.lower()] = value
+        return data
+
+    def known_fonts(self) -> set[str]:
+        return set(self._config.keys())
+
+    def iter_font_configs(self) -> Iterable[tuple[str, dict[str, str]]]:
+        return self._config.items()
+
+    def get_font(self, name: str) -> FontDefinition | None:
+        normalized = name.upper()
+        if normalized in self._fonts:
+            return self._fonts[normalized]
+        config = self._config.get(normalized)
+        if not config:
+            return None
+        font_def = self._build_font(normalized, config)
+        if font_def:
+            self._fonts[normalized] = font_def
+        return font_def
+
+    def _build_font(self, name: str, config: dict[str, str]) -> FontDefinition | None:
+        fontfile = config.get("fontfile")
+        if not fontfile:
+            return None
+        # Prefer decoding the native .fnt payload first so we stay in sync with
+        # the source archive; fall back to curated JSON if the font is too thin.
+        glyphs = self._load_glyphs_from_fontfile(fontfile)
+        if glyphs and sum(1 for glyph in glyphs.values() if glyph.segments) < 10:
+            glyphs = {}
+        if not glyphs:
+            glyphs = self._load_glyphs_from_json(name)
+        if not glyphs:
+            glyphs = self._load_glyphs_from_components(fontfile)
+        if not glyphs:
+            glyphs = _load_glyphs_from_reference(name)
+        if not glyphs:
+            return None
+        mapping = _derive_font_mapping(name, glyphs, config)
+        mapped: dict[str, Glyph] = {}
+        for char, label in mapping:
+            glyph = glyphs.get(label)
+            if glyph:
+                mapped[char] = glyph
+        if not mapped:
+            return None
+        if not any(glyph.segments for glyph in mapped.values()):
+            return None
+        space_width = self._space_advance(mapped)
+        kerning = self._load_kerning_table(config.get("dtafile"), name)
+        return FontDefinition(
+            name=name,
+            glyphs=mapped,
+            space_advance=max(space_width, 0.2),
+            width_scale=1.0,
+            kerning=kerning,
+        )
+
+    def _resolve_components_dir(self, fontfile: str) -> Path | None:
+        candidates = [
+            self.root / f"components_{fontfile}",
+            self.root / f"components_{fontfile.capitalize()}",
+            self.root / "components",
+            self.root / f"components_{fontfile.lower()}",
+        ]
+        for candidate in candidates:
+            if candidate.exists():
+                return candidate
+        return None
+
+    def _space_advance(self, glyphs: dict[str, Glyph]) -> float:
+        space = glyphs.get(" ")
+        if space and space.advance > 0:
+            return space.advance
+        advances = [glyph.advance for glyph in glyphs.values() if glyph.advance > 0]
+        if advances:
+            return max(advances)
+        widths = [glyph.bounds[2] - glyph.bounds[0] for glyph in glyphs.values()]
+        return max(widths, default=1.0)
+
+    def _load_glyphs_from_fontfile(self, fontfile: str) -> dict[str, Glyph]:
+        candidates = self._fontfile_candidates(fontfile)
+        for path in candidates:
+            components = []
+            if path.suffix.lower() == ".decompressed":
+                try:
+                    components = parse_glyph_components(path)
+                except Exception:
+                    continue
+            elif path.suffix.lower() == ".fnt":
+                try:
+                    _, payload = brute_force_deflate(path.read_bytes())
+                    components = parse_glyph_components_from_blob(payload)
+                except Exception:
+                    continue
+            if not components:
+                continue
+            usable = [component for component in components if component.segments]
+            if not usable:
+                continue
+            return {component.label: _glyph_from_component(component) for component in usable}
+        return {}
+
+    def _fontfile_candidates(self, fontfile: str) -> list[Path]:
+        bases = {
+            fontfile,
+            fontfile.lower(),
+            fontfile.upper(),
+            fontfile.capitalize(),
+        }
+        seen: set[Path] = set()
+        ordered: list[Path] = []
+        for base in bases:
+            for suffix in (".fnt.decompressed", ".fnt"):
+                candidate = self.root / f"{base}{suffix}"
+                if candidate.exists() and candidate not in seen:
+                    seen.add(candidate)
+                    ordered.append(candidate)
+        return ordered
+
+    def _load_glyphs_from_components(self, fontfile: str) -> dict[str, Glyph]:
+        directory = self._resolve_components_dir(fontfile)
+        if not directory:
+            return {}
+        glyphs: dict[str, Glyph] = {}
+        for definition in iter_component_files(directory):
+            glyph = _glyph_from_component_definition(definition)
+            if not glyph or not glyph.segments:
+                continue
+            glyphs[glyph.label] = glyph
+        return glyphs
+
+    def _load_kerning_table(self, dtafile: str | None, font_name: str | None = None) -> dict[Tuple[str, str], float]:
+        if not dtafile:
+            return {}
+        key = dtafile.lower()
+        if key in self._kerning_cache:
+            return self._kerning_cache[key]
+        path = self._find_dta_path(dtafile)
+        if not path:
+            if font_name and font_name not in _WARNED_MISSING_DTA:
+                _WARNED_MISSING_DTA.add(font_name)
+                print(f"[warn] Kerning table '{dtafile}.dta' not found for font '{font_name}'; kerning disabled.")
+            self._kerning_cache[key] = {}
+            return {}
+        table = _parse_kerning_file(path)
+        self._kerning_cache[key] = table
+        return table
+
+    def _load_glyphs_from_json(self, font_name: str) -> dict[str, Glyph]:
+        path = self.root / f"{font_name.upper()}_glyphs.json"
+        if not path.exists():
+            return {}
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+        glyphs: dict[str, Glyph] = {}
+        for entry in data.get("glyphs", []):
+            label = entry.get("label")
+            if not label:
+                continue
+            lines = entry.get("lines") or []
+            segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+            for line in lines:
+                start = tuple(float(v) for v in line.get("start", (0.0, 0.0)))
+                end = tuple(float(v) for v in line.get("end", (0.0, 0.0)))
+                segments.append((start, end))
+            bbox = entry.get("bbox") or [0.0, 0.0, 0.0, 0.0]
+            if len(bbox) < 4:
+                continue
+            min_x, min_y, max_x, max_y = (float(b) for b in bbox[:4])
+            advance = max(max_x - min_x, 0.0)
+            glyphs[label] = Glyph(
+                label=label,
+                segments=segments,
+                bounds=(min_x, min_y, max_x, max_y),
+                advance=advance,
+                baseline=min_y,
+            )
+        total_segments = sum(len(glyph.segments) for glyph in glyphs.values())
+        if len(glyphs) < 40 or total_segments < 200:
+            return {}
+        return glyphs
+
+    def _find_dta_path(self, dtafile: str) -> Path | None:
+        bases = {
+            dtafile,
+            dtafile.lower(),
+            dtafile.upper(),
+            dtafile.capitalize(),
+        }
+        for base in bases:
+            candidate = self.root / f"{base}.dta"
+            if candidate.exists():
+                return candidate
+        return None
+
+
+def _is_alignment_helper(line: LineEntity) -> bool:
+    if line.layer != 3:
+        return False
+    x_vals = (line.start[0], line.end[0])
+    y_vals = (line.start[1], line.end[1])
+    if max(abs(x) for x in x_vals) > HELPER_AXIS_TOL:
+        return False
+    if abs(x_vals[0] - x_vals[1]) > HELPER_AXIS_TOL:
+        return False
+    if min(abs(y) for y in y_vals) > HELPER_AXIS_TOL:
+        return False
+    return True
+
+
+@dataclass
+class ArcHelperLogger:
+    destination: Path
+    window: int = 16
+
+    def __post_init__(self) -> None:
+        self._lines: List[str] = []
+
+    def record(
+        self,
+        *,
+        seq: int,
+        arc_offset: int,
+        layer: int,
+        start: Tuple[float, float],
+        center: Tuple[float, float],
+        neighbors: Sequence[Tuple[int, int, int, float, float, float, float]],
+        note: str | None = None,
+    ) -> None:
+        header = (
+            f"Arc #{seq} offset=0x{arc_offset:04X} layer={layer} "
+            f"start=({start[0]:.6f},{start[1]:.6f}) center=({center[0]:.6f},{center[1]:.6f})"
+        )
+        if note:
+            header += f" | {note}"
+        self._lines.append(header)
+        if not neighbors:
+            self._lines.append("  (no trailing helper records captured)")
+            return
+        for rel_idx, (offset, n_layer, etype, x1, y1, x2, y2) in enumerate(neighbors, start=1):
+            self._lines.append(
+                f"  helper[{rel_idx:02}] off=0x{offset:04X} layer={n_layer:<10} "
+                f"etype={etype:<10} "
+                f"p1=({x1:.6f},{y1:.6f}) p2=({x2:.6f},{y2:.6f})"
+            )
+
+    def flush(self) -> None:
+        if not self._lines:
+            return
+        text = "\n".join(self._lines) + "\n"
+        self.destination.write_text(text, encoding="utf-8")
+
+
+def collect_deflate_streams(
+    blob: bytes,
+    *,
+    min_payload: int = DEFAULT_MIN_PAYLOAD,
+    start_offset: int = 0,
+    stop_offset: int | None = None,
+) -> List[Tuple[int, bytes]]:
+    """
+    Identify every raw deflate stream embedded inside ``blob``.  Many Monu-CAD
+    resources (notably .fnt archives) pack multiple streams back-to-back, so we
+    need to keep scanning after the first hit.
+    """
+
+    limit = len(blob) if stop_offset is None else min(stop_offset, len(blob))
+    if start_offset < 0 or start_offset >= limit:
+        raise ValueError("start_offset is outside the readable range")
+
+    streams: List[Tuple[int, bytes]] = []
+    seen_offsets: set[int] = set()
+    overlap_window = 512
+    offset = start_offset
+    mv = memoryview(blob)
+    while offset < limit:
+        slice_ = mv[offset:limit]
+        if not slice_:
+            break
+        obj = zlib.decompressobj(-zlib.MAX_WBITS)
+        try:
+            payload = obj.decompress(slice_)
+        except zlib.error:
+            offset += 1
+            continue
+        consumed = len(slice_) - len(obj.unused_data)
+        if consumed <= 0:
+            offset += 1
+            continue
+        if len(payload) >= min_payload and offset not in seen_offsets:
+            streams.append((offset, payload))
+            seen_offsets.add(offset)
+        nested_start = offset + 1
+        nested_limit = min(offset + overlap_window, offset + consumed, limit)
+        while nested_start < nested_limit:
+            if nested_start in seen_offsets:
+                nested_start += 1
+                continue
+            nested_slice = mv[nested_start:limit]
+            nested_obj = zlib.decompressobj(-zlib.MAX_WBITS)
+            try:
+                nested_payload = nested_obj.decompress(nested_slice)
+            except zlib.error:
+                nested_start += 1
+                continue
+            nested_consumed = len(nested_slice) - len(nested_obj.unused_data)
+            if nested_consumed <= 0:
+                nested_start += 1
+                continue
+            if len(nested_payload) >= min_payload:
+                streams.append((nested_start, nested_payload))
+                seen_offsets.add(nested_start)
+            nested_start += 1
+        offset += max(consumed, 1)
+    return streams
+
+
+def brute_force_deflate(
+    blob: bytes,
+    *,
+    min_payload: int = DEFAULT_MIN_PAYLOAD,
+    start_offset: int = 0,
+    stop_offset: int | None = None,
+) -> Tuple[int, bytes]:
+    """
+    Locate the most useful deflate stream embedded inside ``blob``.  If multiple
+    candidates exist we prefer the one with the largest decompressed size,
+    which usually corresponds to the real geometry payload.
+    """
+
+    streams = collect_deflate_streams(
+        blob,
+        min_payload=min_payload,
+        start_offset=start_offset,
+        stop_offset=stop_offset,
+    )
+    if not streams:
+        raise RuntimeError(
+            "Unable to locate a deflate payload. "
+            "Try passing --start-offset/--stop-offset to narrow the search window."
+        )
+    best_offset, best_payload = max(streams, key=lambda item: len(item[1]))
+    return best_offset, best_payload
+
+
+def _looks_like_coordinate(value: float) -> bool:
+    return math.isfinite(value) and abs(value) <= MAX_COORD_MAGNITUDE
+
+
+def _fuzzy_eq(a: float, b: float, tol: float = 1e-6) -> bool:
+    return abs(a - b) <= tol
+
+
+def _points_match(
+    p1: Tuple[float, float],
+    p2: Tuple[float, float],
+    tol: float = 1e-6,
+) -> bool:
+    return _fuzzy_eq(p1[0], p2[0], tol) and _fuzzy_eq(p1[1], p2[1], tol)
+
+
+def _circle_from_points(
+    p1: Tuple[float, float],
+    p2: Tuple[float, float],
+    p3: Tuple[float, float],
+) -> Tuple[float, float, float] | None:
+    (x1, y1), (x2, y2), (x3, y3) = p1, p2, p3
+    temp = x2 * x2 + y2 * y2
+    bc = (x1 * x1 + y1 * y1 - temp) / 2.0
+    cd = (temp - x3 * x3 - y3 * y3) / 2.0
+    det = (x1 - x2) * (y2 - y3) - (x2 - x3) * (y1 - y2)
+    if abs(det) < 1e-9:
+        return None
+    cx = (bc * (y2 - y3) - cd * (y1 - y2)) / det
+    cy = ((x1 - x2) * cd - (x2 - x3) * bc) / det
+    radius = math.hypot(cx - x1, cy - y1)
+    return cx, cy, radius
+
+
+def _fit_arc(points: Sequence[Tuple[float, float]]) -> Tuple[Tuple[float, float], float] | None:
+    """Fit a circle to 3 points; return center and radius if valid."""
+
+    if len(points) < 3:
+        return None
+    res = _circle_from_points(points[0], points[1], points[2])
+    if res is None:
+        return None
+    cx, cy, r = res
+    if not math.isfinite(r) or r <= 0:
+        return None
+    return (cx, cy), r
+
+
+def _promote_line_chains_to_arcs(
+    segments: list[tuple[tuple[float, float], tuple[float, float]]],
+    *,
+    max_err: float = 0.0005,
+    max_promote: int = 4,
+) -> tuple[list[tuple[tuple[float, float], tuple[float, float]]], list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]]:
+    """
+    Given a list of line segments (glyph space), attempt to replace a few small
+    chains with arcs when the three-point fit is extremely tight.
+    Returns (remaining_segments, new_arc_triplets).
+    """
+
+    remaining = list(segments)
+    new_arcs: list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]] = []
+    if len(remaining) < 2 or max_promote <= 0:
+        return remaining, new_arcs
+    idx = 0
+    promoted = 0
+    while idx + 1 < len(remaining) and promoted < max_promote:
+        chain = remaining[idx : idx + 2]
+        pts = [chain[0][0], chain[0][1], chain[1][1]]
+        fit = _fit_arc(pts)
+        if fit:
+            center, radius = fit
+            errs = [abs(math.hypot(p[0] - center[0], p[1] - center[1]) - radius) for p in pts]
+            if max(errs) <= max_err:
+                new_arcs.append((pts[0], pts[1], pts[2]))
+                del remaining[idx : idx + 2]
+                promoted += 1
+                continue
+        idx += 1
+    return remaining, new_arcs
+
+
+def collect_candidate_records(
+    payload: bytes,
+    *,
+    coord_format: str = "double",
+) -> List[Tuple[int, int, int, float, float, float, float]]:
+    if coord_format == "double":
+        coord_unpack = "<dddd"
+        coord_size = 8 * 4
+    elif coord_format == "float":
+        coord_unpack = "<ffff"
+        coord_size = 4 * 4
+    else:
+        raise ValueError(f"Unsupported coord_format: {coord_format}")
+
+    record_size = 8 + coord_size
+    records: List[Tuple[int, int, int, float, float, float, float]] = []
+
+    # Records are built from uint32 headers + float/double coordinates. In
+    # practice the streams appear to be at least 2-byte aligned; scanning every
+    # byte produces many false positives in mixed binary payloads.
+    for offset in range(0, len(payload) - record_size + 1, 2):
+        layer, etype = struct.unpack_from("<II", payload, offset)
+        # Entity types we currently understand:
+        #   0 = helper/metadata record (sometimes used alongside circles/arcs)
+        #   2 = line
+        #   3 = arc
+        # Filtering here prevents the brute-force scan from interpreting random
+        # binary as geometry.
+        if etype not in (0, 2, 3):
+            continue
+        # Layers in Monu-CAD drawings are typically small integers; treat large
+        # values as noise from misaligned parsing.
+        if layer > 512:
+            continue
+        try:
+            x1, y1, x2, y2 = struct.unpack_from(coord_unpack, payload, offset + 8)
+        except struct.error:
+            continue
+        if not all(math.isfinite(v) for v in (x1, y1, x2, y2)):
+            continue
+        if not all(abs(v) <= MAX_COORD_MAGNITUDE for v in (x1, y1, x2, y2)):
+            continue
+        records.append((offset, layer, etype, x1, y1, x2, y2))
+    return records
+
+
+def _round_coord(value: float, places: int = DUP_FINGERPRINT_PLACES) -> float:
+    return round(value, places)
+
+
+def _record_fingerprint(
+    layer: int,
+    etype: int,
+    x1: float,
+    y1: float,
+    x2: float,
+    y2: float,
+) -> Tuple[int, int, float, float, float, float]:
+    return (
+        layer,
+        etype,
+        _round_coord(x1),
+        _round_coord(y1),
+        _round_coord(x2),
+        _round_coord(y2),
+    )
+
+
+def parse_entities(
+    payload: bytes,
+    *,
+    helper_logger: ArcHelperLogger | None = None,
+    duplicate_log: Path | None = None,
+) -> Tuple[List[LineEntity], List[ArcEntity], List[CircleEntity], List[InsertEntity]]:
+    """
+    Walk the payload and collect both LINE (etype=2) and ARC (etype=3) records.
+    Legacy files often place real geometry on layer 0, so we keep everything.
+    """
+
+    # Older payloads sometimes encode entity coordinates as float32 instead of
+    # float64. Scan for both and dedupe later.
+    placements = list(iter_placement_trailers(payload))
+
+    double_records = collect_candidate_records(payload, coord_format="double")
+    double_offsets = {offset for offset, *_ in double_records}
+    float_records = [
+        rec for rec in collect_candidate_records(payload, coord_format="float") if rec[0] not in double_offsets
+    ]
+    records = double_records + float_records
+    tlv_lines = _extract_short_component_lines(payload)
+    inline_lines, inline_inserts, inline_arcs = _extract_inline_component_geometry(payload)
+    component_lines, component_inserts, component_arcs = _extract_new_style_component_lines(payload)
+    if not component_lines and not component_arcs and placements:
+        # Second-pass with arc-guess enabled to rescue icon tables that otherwise decode to nothing.
+        component_lines, component_inserts, component_arcs = _extract_new_style_component_lines(
+            payload, force_arc_guess=True
+        )
+    # Inline component payloads and inline instancing are mutually exclusive. If
+    # either path produced geometry, suppress the legacy line/arc records so we
+    # do not double-emit stroke data that lives in component space.
+    suppress_inline_records = bool(inline_lines or inline_arcs or component_lines or component_arcs)
+
+    trailer_start = _find_first_component_trailer_start(payload)
+
+    # When inline component geometry is present, the payload often also
+    # contains *component-local* line/arc records (coordinates ~[-1,1]) used to
+    # describe glyph strokes. Those are not world-space entities and should not
+    # be merged back into the drawing view. Filter them conservatively.
+    inline_span: float | None = None
+    if inline_lines:
+        xs = [p for ln in inline_lines for p in (ln.start[0], ln.end[0])]
+        ys = [p for ln in inline_lines for p in (ln.start[1], ln.end[1])]
+        if xs and ys:
+            inline_span = max(max(xs) - min(xs), max(ys) - min(ys))
+
+    duplicate_records: List[DuplicateRecord] = []
+    filtered_records: List[Tuple[int, int, int, float, float, float, float]] = []
+    seen_fingerprints: dict[Tuple[int, int, float, float, float, float], int] = {}
+    for offset, layer, etype, x1, y1, x2, y2 in records:
+        if suppress_inline_records and layer == 0 and etype in (2, 3):
+            continue
+        if (
+            trailer_start != -1
+            and inline_span is not None
+            and inline_span > 5.0
+            and offset < trailer_start
+            and max(abs(x1), abs(y1), abs(x2), abs(y2)) <= 2.0
+        ):
+            continue
+        if (
+            inline_span is not None
+            and inline_span > 5.0
+            and layer == 0
+            and max(abs(x1), abs(y1), abs(x2), abs(y2)) <= 2.0
+        ):
+            continue
+        fingerprint = _record_fingerprint(layer, etype, x1, y1, x2, y2)
+        prev = seen_fingerprints.get(fingerprint)
+        if prev is not None:
+            duplicate_records.append(
+                DuplicateRecord(
+                    offset=offset,
+                    original_offset=prev,
+                    layer=layer,
+                    etype=etype,
+                    start=(x1, y1),
+                    end=(x2, y2),
+                )
+            )
+            continue
+        seen_fingerprints[fingerprint] = offset
+        filtered_records.append((offset, layer, etype, x1, y1, x2, y2))
+    records = filtered_records
+
+    lines: List[LineEntity] = []
+    arcs: List[ArcEntity] = list(inline_arcs)
+    circles: List[CircleEntity] = []
+    inserts: List[InsertEntity] = list(inline_inserts)
+    arc_counter = 0
+
+    if inline_lines:
+        lines.extend(inline_lines)
+    elif tlv_lines:
+        # TLV payloads often coexist with legacy type=2/3 records in newer
+        # drawings. Treat them as *additional* geometry instead of replacing
+        # the record stream entirely so we keep arcs/circles when both encodings
+        # appear. Legacy TLV-only files still work because `records` can be
+        # empty.
+        lines.extend(tlv_lines)
+
+    # Helper index so we can look ahead for follow-up records (e.g., arc centers).
+    by_offset = {offset: (layer, etype, x1, y1, x2, y2) for offset, layer, etype, x1, y1, x2, y2 in records}
+    record_offsets = [offset for offset, *_ in records]
+
+    # Identify circle candidates by looking for <type=2> records whose endpoints are mirrored
+    # by a nearby <type=0> helper.
+    consumed_as_circle: set[int] = set()
+    for idx, offset in enumerate(record_offsets):
+        layer, etype, x1, y1, x2, y2 = by_offset[offset]
+        if etype != 2:
+            continue
+        center = (x1, y1)
+        rim = (x2, y2)
+        if not all(_looks_like_coordinate(v) for v in (*center, *rim)):
+            continue
+        for look_ahead in record_offsets[idx + 1 : idx + 1 + 25]:
+            if look_ahead - offset > 200:
+                break
+            l2, t2, rx1, ry1, rx2, ry2 = by_offset[look_ahead]
+            if t2 != 0:
+                continue
+            if _fuzzy_eq(rx1, rim[0]) and _fuzzy_eq(ry1, rim[1]) and _fuzzy_eq(rx2, center[0]) and _fuzzy_eq(
+                ry2, center[1]
+            ):
+                radius = math.hypot(rim[0] - center[0], rim[1] - center[1])
+                if 1e-6 < radius <= MAX_COORD_MAGNITUDE:
+                    circles.append(CircleEntity(layer=layer, center=center, radius=radius))
+                    consumed_as_circle.add(offset)
+                break
+
+    for idx, offset in enumerate(record_offsets):
+        layer, etype, x1, y1, x2, y2 = by_offset[offset]
+
+        if etype == 2:
+            if offset in consumed_as_circle:
+                continue
+            if not all(_looks_like_coordinate(v) for v in (x1, y1, x2, y2)):
+                continue
+            if abs(x1 - x2) < 1e-9 and abs(y1 - y2) < 1e-9:
+                continue
+            candidate = LineEntity(layer=layer, start=(x1, y1), end=(x2, y2))
+            if _is_alignment_helper(candidate):
+                continue
+            lines.append(candidate)
+            continue
+
+        if etype == 3:
+            arc_counter += 1
+            helper_records: List[Tuple[int, int, int, float, float, float, float]] = []
+            if helper_logger:
+                neighbor_offsets = record_offsets[idx + 1 : idx + 1 + helper_logger.window]
+                helper_records = [
+                    (n_offset, *by_offset[n_offset]) for n_offset in neighbor_offsets if n_offset in by_offset
+                ]
+            raw_end = (x1, y1)
+            guide_point = (x2, y2)
+            if not all(_looks_like_coordinate(v) for v in (*raw_end, *guide_point)):
+                if helper_logger:
+                    helper_logger.record(
+                        seq=arc_counter,
+                        arc_offset=offset,
+                        layer=layer,
+                        start=raw_end,
+                        center=guide_point,
+                        neighbors=helper_records,
+                        note="skipped: invalid coordinates",
+                    )
+                continue
+
+            radius = math.hypot(raw_end[0] - guide_point[0], raw_end[1] - guide_point[1])
+            start_point: Tuple[float, float] | None = None
+
+            def _helper_from_offset(source_offsets: Iterable[int]) -> Tuple[float, float] | None:
+                for candidate in source_offsets:
+                    if abs(candidate - offset) > 200:
+                        break
+                    layer2, etype2, ex1, ey1, ex2, ey2 = by_offset[candidate]
+                    if etype2 != 0:
+                        continue
+                    valid_first = _looks_like_coordinate(ex1) and _looks_like_coordinate(ey1)
+                    valid_second = _looks_like_coordinate(ex2) and _looks_like_coordinate(ey2)
+                    if valid_first and valid_second and _fuzzy_eq(ex1, guide_point[0]) and _fuzzy_eq(
+                        ey1, guide_point[1]
+                    ):
+                        return (ex2, ey2)
+                    if valid_first:
+                        dist = math.hypot(ex1 - guide_point[0], ey1 - guide_point[1])
+                        if abs(dist - radius) <= max(1e-3, radius * 0.05):
+                            return (ex1, ey1)
+                return None
+
+            forward_window = helper_logger.window if helper_logger else 20
+            forward_offsets = record_offsets[idx + 1 : idx + 1 + forward_window]
+            start_point = _helper_from_offset(forward_offsets)
+
+            if start_point is None:
+                backward_window = helper_logger.window if helper_logger else 20
+                backward_slice = record_offsets[max(0, idx - backward_window) : idx]
+                start_point = _helper_from_offset(reversed(backward_slice))
+            if start_point is None:
+                if helper_logger:
+                    helper_logger.record(
+                        seq=arc_counter,
+                        arc_offset=offset,
+                        layer=layer,
+                        start=raw_end,
+                        center=guide_point,
+                        neighbors=helper_records,
+                        note="skipped: missing start helper",
+                    )
+                continue
+
+            vec1 = (start_point[0] - guide_point[0], start_point[1] - guide_point[1])
+            vec2 = (raw_end[0] - guide_point[0], raw_end[1] - guide_point[1])
+            cross = vec1[0] * vec2[1] - vec1[1] * vec2[0]
+            if cross > 0:
+                start_point, raw_end = raw_end, start_point
+
+            solution = _circle_from_points(start_point, raw_end, guide_point)
+            if solution is not None:
+                actual_center = (solution[0], solution[1])
+            else:
+                actual_center = guide_point
+            arcs.append(ArcEntity(layer=layer, center=actual_center, start=start_point, end=raw_end))
+            note_text = "parsed successfully (start/end swapped)" if cross > 0 else "parsed successfully"
+            if helper_logger:
+                helper_logger.record(
+                    seq=arc_counter,
+                    arc_offset=offset,
+                    layer=layer,
+                    start=start_point,
+                    center=actual_center,
+                    neighbors=helper_records,
+                    note=note_text,
+                )
+
+    component_circles, helper_segments = _collect_component_circles(payload)
+    if component_circles:
+        circles.extend(component_circles)
+
+    if helper_segments:
+        lines = [line for line in lines if not _matches_component_helper(line, helper_segments)]
+
+    # New-style component blocks encode un-exploded lettering and should not be
+    # mixed with already-decoded inline (exploded) component geometry. The
+    # resaved MCPro9-era files often contain both placement trailers and
+    # legacy inline component blobs; in those cases the new-style scanner can
+    # false-positive and introduce large "starburst" artifacts.
+    # Prefer placement-based instancing when available; fall back to inline blobs
+    # if instancing produced nothing.
+    if component_lines or component_arcs:
+        lines.extend(component_lines)
+        arcs.extend(component_arcs)
+        inserts.extend(component_inserts)
+    else:
+        lines.extend(inline_lines)
+        arcs.extend(inline_arcs)
+        inserts.extend(inline_inserts)
+
+    # If we already decoded inline glyph/component geometry, skip the heuristic
+    # text scanners to avoid double-rendering and false positives.
+    if not inline_lines and not component_lines and not component_arcs:
+        text_lines, _missing_fonts = _render_text_lines(payload)
+        if text_lines and len(text_lines) <= 20000:
+            lines.extend(text_lines)
+
+    # Prune instanced/inline lines that lie on emitted arcs to reduce duplication.
+    if arcs and lines:
+        lines = _prune_lines_against_arcs(lines, arcs)
+
+    # Deduplicate line segments
+    dedup_lines: dict[Tuple[int, Tuple[float, float], Tuple[float, float]], LineEntity] = {}
+    for entity in lines:
+        dedup_lines[(entity.layer, entity.start, entity.end)] = entity
+    dedup_arcs: dict[Tuple[int, Tuple[float, float], Tuple[float, float]], ArcEntity] = {}
+    for entity in arcs:
+        dedup_arcs[(entity.layer, entity.start, entity.end)] = entity
+
+    dedup_circles: dict[Tuple[int, Tuple[float, float]], CircleEntity] = {}
+    for entity in circles:
+        dedup_circles[(entity.layer, entity.center)] = entity
+
+    if duplicate_records:
+        sample = ", ".join(
+            f"0x{entry.offset:04X}->0x{entry.original_offset:04X}/etype={entry.etype}"
+            for entry in duplicate_records[:5]
+        )
+        print(
+            f"[warn] Detected {len(duplicate_records)} duplicate geometry record(s); "
+            f"sample: {sample}"
+        )
+        if duplicate_log:
+            _log_duplicate_records(duplicate_records, duplicate_log)
+            print(f"[i] Duplicate record log written to {duplicate_log}")
+
+    return (
+        list(dedup_lines.values()),
+        list(dedup_arcs.values()),
+        list(dedup_circles.values()),
+        inserts,
+    )
+
+
+
+
+_FONT_MANAGER: FontManager | None = None
+_LAST_MISSING_FONTS: set[str] = set()
+_WARNED_MISSING_DTA: set[str] = set()
+_WARNED_PUNCT_FLAG: set[str] = set()
+_WARNED_SERIF_FLAG: set[str] = set()
+
+
+def _get_font_manager() -> FontManager | None:
+    global _FONT_MANAGER
+    if _FONT_MANAGER is not None:
+        return _FONT_MANAGER
+    font_root = Path(__file__).resolve().parent / "FONTS"
+    if not font_root.exists():
+        return None
+    manager = FontManager(font_root)
+    if not manager.known_fonts():
+        return None
+    _FONT_MANAGER = manager
+    return _FONT_MANAGER
+
+
+def _render_text_lines(payload: bytes) -> Tuple[List[LineEntity], set[str]]:
+    manager = _get_font_manager()
+    if not manager:
+        return [], set()
+    entities: List[LineEntity] = []
+    missing: set[str] = set()
+    global _LAST_MISSING_FONTS
+    _LAST_MISSING_FONTS = set()
+    main_fallback = manager.get_font("MAIN")
+    for text_entity in _iter_text_entities(payload, manager):
+        font = manager.get_font(text_entity.font) or main_fallback
+        if not font:
+            missing.add(text_entity.font)
+            continue
+        rendered = font.render(text_entity.text, text_entity.metrics, layer=0)
+        if not rendered and text_entity.text.strip():
+            missing.add(text_entity.font)
+            continue
+        entities.extend(rendered)
+    _LAST_MISSING_FONTS = set(missing)
+    return entities, missing
+
+
+TEXT_FLOAT_COUNT = 8
+
+
+def _align4(value: int) -> int:
+    return (value + 3) & ~3
+
+
+def _read_ascii_lp_string(
+    payload: bytes,
+    offset: int,
+    *,
+    max_len: int = 96,
+) -> tuple[str | None, int]:
+    if offset >= len(payload):
+        return None, offset
+    length = payload[offset]
+    if 1 <= length <= max_len and offset + 1 + length <= len(payload):
+        chunk = payload[offset + 1 : offset + 1 + length]
+        if all(32 <= byte < 127 for byte in chunk):
+            return chunk.decode("ascii"), offset + 1 + length
+    first = payload[offset]
+    if first < 32 or first >= 127:
+        return None, offset
+    cursor = offset
+    chars: list[int] = []
+    while cursor < len(payload):
+        byte = payload[cursor]
+        if byte == 0:
+            break
+        if byte < 32 or byte >= 127:
+            return None, offset
+        chars.append(byte)
+        cursor += 1
+        if len(chars) >= max_len:
+            break
+    if not chars:
+        return None, offset
+    cursor = min(cursor + 1, len(payload))
+    return bytes(chars).decode("ascii"), cursor
+
+
+def _iter_text_entities(payload: bytes, manager: FontManager) -> Iterable[TextEntity]:
+    known_fonts = manager.known_fonts()
+    seen_offsets: set[int] = set()
+    yield from _iter_length_pref_text(payload, known_fonts, seen_offsets)
+    yield from _iter_cstring_text(payload, known_fonts, seen_offsets)
+    yield from _iter_glyph_label_text(payload, manager)
+
+
+def _iter_length_pref_text(
+    payload: bytes,
+    known_fonts: set[str],
+    seen_offsets: set[int],
+) -> Iterable[TextEntity]:
+    idx = 0
+    limit = len(payload)
+    while idx < limit - 64:
+        text_len = payload[idx]
+        if not (1 <= text_len <= 64):
+            idx += 1
+            continue
+        text_start = idx + 1
+        text_end = text_start + text_len
+        if text_end + TEXT_FLOAT_COUNT * 4 + 2 >= limit:
+            break
+        text_bytes = payload[text_start:text_end]
+        if not text_bytes or any(byte < 32 or byte > 126 for byte in text_bytes):
+            idx += 1
+            continue
+        metrics_offset, metrics = _locate_metrics(payload, _align4(text_end), TEXT_FLOAT_COUNT)
+        if metrics_offset is None:
+            idx = text_end
+            continue
+        cursor = metrics_offset + TEXT_FLOAT_COUNT * 4
+        font_len_offset = cursor
+        if font_len_offset >= limit:
+            break
+        raw_font_len = payload[font_len_offset]
+        font_name: str | None = None
+        cursor_after_font = font_len_offset + 1
+        if 1 <= raw_font_len <= 64:
+            font_end = cursor_after_font + raw_font_len
+            if font_end <= limit:
+                font_name = payload[cursor_after_font:font_end].decode("ascii", errors="ignore").upper()
+                cursor_after_font = font_end
+        if not font_name:
+            candidate, next_cursor = _read_ascii_lp_string(payload, font_len_offset)
+            if candidate:
+                font_name = candidate.upper()
+                cursor_after_font = next_cursor
+        if not font_name:
+            font_name, cursor_after_font = _match_known_font(payload, font_len_offset, known_fonts)
+        if not font_name:
+            idx = text_end
+            continue
+        if not _looks_like_font_name(font_name):
+            idx = text_end
+            continue
+        if metrics_offset in seen_offsets:
+            idx = text_end
+            continue
+        seen_offsets.add(metrics_offset)
+        yield TextEntity(text=text_bytes.decode("ascii"), font=font_name, metrics=metrics)
+        idx = cursor_after_font
+
+
+def _iter_cstring_text(
+    payload: bytes,
+    known_fonts: set[str],
+    seen_offsets: set[int],
+) -> Iterable[TextEntity]:
+    limit = len(payload)
+    idx = 0
+    while idx < limit - 64:
+        if payload[idx] < 32 or payload[idx] > 126:
+            idx += 1
+            continue
+        end = idx
+        while end < limit and 32 <= payload[end] < 127 and (end - idx) < 64:
+            end += 1
+        if end == idx or end + 1 >= limit or payload[end : end + 2] != b"\x00\x00":
+            idx = end + 1
+            continue
+        text_bytes = payload[idx:end]
+        metrics_offset, metrics = _locate_metrics(payload, _align4(end + 2), TEXT_FLOAT_COUNT)
+        if metrics_offset is None:
+            idx = end + 1
+            continue
+        if metrics_offset in seen_offsets:
+            idx = end + 1
+            continue
+        cursor = metrics_offset + TEXT_FLOAT_COUNT * 4
+        while cursor < limit and payload[cursor] == 0:
+            cursor += 1
+        font_name: str | None = None
+        cursor_after_font = cursor
+        scan_limit = min(cursor + 32, limit)
+        probe = cursor
+        while probe < scan_limit:
+            candidate, next_cursor = _read_ascii_lp_string(payload, probe)
+            if candidate:
+                candidate_upper = candidate.upper()
+                cursor_after_font = next_cursor
+                font_name = candidate_upper if candidate_upper in known_fonts else candidate_upper
+                break
+            probe += 1
+        if font_name is None:
+            font_name, cursor_after_font = _match_known_font(payload, cursor, known_fonts)
+        if not font_name or not _looks_like_font_name(font_name):
+            idx = end + 1
+            continue
+        seen_offsets.add(metrics_offset)
+        yield TextEntity(text=text_bytes.decode("ascii"), font=font_name, metrics=metrics)
+        idx = cursor_after_font
+
+
+def _iter_glyph_label_text(payload: bytes, manager: FontManager) -> Iterable[TextEntity]:
+    records = extract_glyph_records(payload)
+    if not records:
+        return
+    prefix_map = _build_font_prefix_map(manager)
+    if not prefix_map:
+        return
+    known_fonts = manager.known_fonts()
+    seen_keys: set[Tuple[str, int, int]] = set()
+    for record in records:
+        font_name, char = _decode_glyph_label(record.label, prefix_map)
+        if not font_name or not char or font_name not in known_fonts:
+            continue
+        if not char.strip():
+            continue
+        metrics = _metrics_from_glyph_record(record)
+        if not metrics:
+            continue
+        key = (font_name, int(record.values[0] * 1e4), int(record.values[1] * 1e4))
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        yield TextEntity(text=char, font=font_name, metrics=metrics)
+
+
+def _metrics_from_glyph_record(record: GlyphPlacementRecord) -> Tuple[float, ...] | None:
+    values = record.values
+    if len(values) != 5:
+        return None
+    x, y, rotation, scale_x, scale_y = values
+    if not all(math.isfinite(val) for val in (x, y, rotation, scale_x, scale_y)):
+        return None
+    if abs(x) > MAX_COORD_MAGNITUDE or abs(y) > MAX_COORD_MAGNITUDE:
+        return None
+    height = abs(scale_y)
+    if not (1e-3 <= height <= 1e3):
+        return None
+    width_scale = abs(scale_x)
+    width_value = width_scale / height if width_scale >= 1e-6 else 1.0
+    metrics = (
+        height,
+        0.0,
+        rotation,
+        0.0,
+        width_value,
+        0.0,
+        x,
+        y,
+    )
+    return metrics
+
+
+def _build_font_prefix_map(manager: FontManager) -> dict[str, str]:
+    mapping: dict[str, str] = {}
+    for name, config in manager.iter_font_configs():
+        tokens = set()
+        upper_name = name.upper()
+        tokens.add(upper_name)
+        tokens.add(upper_name.replace(" ", ""))
+        dta = config.get("dtafile", "").upper()
+        if dta:
+            tokens.add(dta)
+            tokens.add(f"F{dta}")
+        fontfile = config.get("fontfile", "").upper()
+        if fontfile:
+            tokens.add(fontfile.replace("MCALF", "M"))
+            tokens.add(fontfile.replace(".", ""))
+        for token in tokens:
+            if not token:
+                continue
+            mapping.setdefault(token, name)
+    return mapping
+
+
+def _decode_glyph_label(label: str, prefix_map: dict[str, str]) -> Tuple[str | None, str | None]:
+    upper = label.upper()
+    for split in range(len(upper), 0, -1):
+        prefix = upper[:split]
+        suffix = upper[split:]
+        font_name = prefix_map.get(prefix)
+        if not font_name or not suffix:
+            continue
+        char = _char_from_suffix(suffix)
+        if char:
+            return font_name, char
+    return None, None
+
+
+def _match_known_font(
+    payload: bytes,
+    offset: int,
+    known_fonts: set[str],
+) -> tuple[str | None, int]:
+    limit = len(payload)
+    for name in known_fonts:
+        encoded = name.encode("ascii", errors="ignore")
+        if not encoded:
+            continue
+        end = offset + len(encoded)
+        if end > limit:
+            continue
+        if payload[offset:end] == encoded:
+            return name, end
+    return None, offset
+
+
+def _looks_like_font_name(name: str, *, max_len: int = 32) -> bool:
+    if not name or len(name) > max_len:
+        return False
+    return all(32 <= ord(ch) < 127 for ch in name)
+
+
+def _locate_metrics(
+    payload: bytes,
+    start: int,
+    count: int,
+) -> tuple[int | None, tuple[float, ...]]:
+    limit = len(payload)
+    max_offset = min(start + 8, limit)
+    for candidate in range(start, max_offset):
+        end = candidate + count * 4
+        if end > limit:
+            break
+        values = struct.unpack_from(f"<{count}f", payload, candidate)
+        if not all(math.isfinite(val) and abs(val) <= 1e6 for val in values):
+            continue
+        if max(abs(val) for val in values) < 1e-3:
+            continue
+        return candidate, values
+    return None, ()
+
+
+def _load_glyphs_from_components(directory: Path) -> dict[str, Glyph]:
+    glyphs: dict[str, Glyph] = {}
+    scale = 1.0 / 32768.0
+    for definition in iter_component_files(directory):
+        segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+        bounds = [float("inf"), float("-inf"), float("inf"), float("-inf")]
+        for record in definition.records:
+            vals = record.values
+            if len(vals) < 12:
+                continue
+            coords = vals[4:12]
+            for idx in range(0, len(coords), 4):
+                x1, y1, x2, y2 = coords[idx : idx + 4]
+                if x1 == y1 == x2 == y2 == 0:
+                    continue
+                p1 = (x1 * scale, y1 * scale)
+                p2 = (x2 * scale, y2 * scale)
+                segments.append((p1, p2))
+                bounds[0] = min(bounds[0], p1[0], p2[0])
+                bounds[1] = max(bounds[1], p1[0], p2[0])
+                bounds[2] = min(bounds[2], p1[1], p2[1])
+                bounds[3] = max(bounds[3], p1[1], p2[1])
+        if not segments:
+            continue
+        min_x, max_x, min_y, max_y = bounds[0], bounds[1], bounds[2], bounds[3]
+        tuple_bounds = (min_x, min_y, max_x, max_y)
+        advance = max(max_x - min_x, 0.0)
+        glyphs[definition.label] = Glyph(
+            label=definition.label,
+            segments=segments,
+            bounds=tuple_bounds,
+            advance=advance,
+            baseline=min_y,
+        )
+    return glyphs
+
+
+def _glyph_from_component(component) -> Glyph:
+    segments = [
+        ((float(p1[0]), float(p1[1])), (float(p2[0]), float(p2[1])))
+        for p1, p2 in component.segments
+    ]
+    min_x, min_y, max_x, max_y = component.bbox
+    advance = max(component.advance, max_x - min_x, 0.0)
+    baseline = component.baseline if component.baseline is not None else min_y
+    return Glyph(
+        label=component.label,
+        segments=segments,
+        bounds=(min_x, min_y, max_x, max_y),
+        advance=advance,
+        baseline=baseline,
+    )
+
+
+def _segments_from_component_block(
+    block,
+    label: str,
+    *,
+    allow_arc_guess: bool = False,
+    bbox: Tuple[float, float, float, float] | None = None,
+) -> Tuple[
+    List[Tuple[Tuple[float, float], Tuple[float, float]]],
+    List[Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float]]],
+    float,
+]:
+    # Newer 0x4803 blocks sometimes store fixed-size polyline records instead
+    # of the legacy sentinel format. When dtype/count are zero, decode them
+    # as batches of int16 coordinate pairs or packed floats.
+    if getattr(block, "dtype", None) == 0 and getattr(block, "count", None) == 0:
+        return _decode_polyline_block(block, allow_arc_guess=allow_arc_guess, bbox=bbox)
+
+    try:
+        component = parse_component_bytes(label, block.payload)
+    except Exception:
+        return [], [], GLYPH_COORD_SCALE
+    segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+    arcs: List[Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float]]] = []
+    for record in component.records:
+        points = list(record.normalized_points())
+        if len(points) < 2:
+            continue
+        etype = None
+        if len(record.metadata) >= 3:
+            etype = record.metadata[2]
+        # Heuristic: when type is unknown (0/None) or 3, promote triplets to arcs.
+        if allow_arc_guess and etype in (0, None, 3) and len(points) >= 3:
+            # Always emit line segments for connectivity, optionally add arcs when a valid circle exists.
+            for idx in range(0, len(points) - 1):
+                segments.append((points[idx], points[idx + 1]))
+            triplet_count = len(points) // 3
+            for i in range(triplet_count):
+                p0, p1, p2 = points[i * 3 : i * 3 + 3]
+                solution = _circle_from_points(p0, p1, p2)
+                if solution is None:
+                    continue
+                cx, cy, radius = solution
+                if not math.isfinite(radius) or radius <= 1e-6:
+                    continue
+                arcs.append((p0, p1, p2))
+            continue
+        # Treat even pairs as segments, and any remaining triplets as arcs.
+        pair_count = (len(points) // 2) * 2
+        for idx in range(0, pair_count, 2):
+            segments.append((points[idx], points[idx + 1]))
+        triplet_start = pair_count
+        while triplet_start + 2 < len(points):
+            p0, p1, p2 = points[triplet_start : triplet_start + 3]
+            arcs.append((p0, p1, p2))
+            triplet_start += 3
+    return segments, arcs, GLYPH_COORD_SCALE
+
+
+def _decode_polyline_block(
+    block,
+    *,
+    allow_arc_guess: bool = False,
+    bbox: Tuple[float, float, float, float] | None = None,
+) -> Tuple[
+    List[Tuple[Tuple[float, float], Tuple[float, float]]],
+    List[Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float]]],
+    float,
+]:
+    # Treat the payload as int16 coords: [x0 y0 x1 y1 ...]. New-style component
+    # blocks often concatenate many small polylines separated by a sentinel of
+    # four zero shorts. Each sub-polyline begins with a 4-short header that we
+    # discard, followed by coordinate pairs in the normalized range [-1, 1].
+    # When a component definition bbox is available, remap the normalized
+    # points into that bbox so downstream transforms operate in the expected
+    # local space.
+    payload = block.payload
+    even_len = len(payload) // 2 * 2
+    shorts = struct.unpack("<{}h".format(even_len // 2), payload[:even_len])
+    base_scale = GLYPH_COORD_SCALE
+    segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+    arcs: List[Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float]]] = []
+
+    def _decode_structured_shorts() -> tuple[list[Tuple[Tuple[float, float], Tuple[float, float]]], float] | None:
+        # Treat payload as repeated 8-short records. Each record yields at most
+        # one segment: (x0, y0) -> (x1, y1) when the secondary point is nonzero.
+        even = len(payload) // 2 * 2
+        if even < 16:
+            return None
+        shorts_local = struct.unpack("<{}h".format(even // 2), payload[:even])
+        segments_local: list[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+        rec_size = 8
+        for i in range(0, len(shorts_local), rec_size):
+            rec = shorts_local[i : i + rec_size]
+            if len(rec) < rec_size:
+                break
+            x0, y0 = rec[2], rec[3]
+            x1, y1 = rec[6], rec[7]
+            if x1 or y1:
+                p0 = (x0 * COMPONENT_POINT_SCALE, y0 * COMPONENT_POINT_SCALE)
+                p1 = (x1 * COMPONENT_POINT_SCALE, y1 * COMPONENT_POINT_SCALE)
+                segments_local.append((p0, p1))
+        if not segments_local:
+            return None
+        return segments_local, 1.0
+
+    # Not enough shorts to be useful -> try structured shorts immediately.
+    if len(shorts) < 4:
+        struct_result = _decode_structured_shorts()
+        if struct_result is not None:
+            segs_struct, base_scale = struct_result
+            segments.extend(segs_struct)
+            return segments, arcs, base_scale
+        return [], [], GLYPH_COORD_SCALE
+
+    def _emit(points: List[Tuple[float, float]]) -> None:
+        nonlocal base_scale
+        if len(points) < 2:
+            return
+        pts = points
+        if bbox:
+            min_x, min_y, max_x, max_y = bbox
+            span_x = max(max_x - min_x, 1e-6)
+            span_y = max(max_y - min_y, 1e-6)
+            cx = (min_x + max_x) / 2.0
+            cy = (min_y + max_y) / 2.0
+            norm_scale_x = span_x / 2.0
+            norm_scale_y = span_y / 2.0
+            pts = [(cx + px * norm_scale_x, cy + py * norm_scale_y) for px, py in points]
+            base_scale = 1.0
+        for a, b in zip(pts, pts[1:]):
+            if a != b:
+                segments.append((a, b))
+        if allow_arc_guess and len(pts) >= 3 and len(pts) % 3 == 0:
+            for i in range(0, len(pts), 3):
+                p0, p1, p2 = pts[i : i + 3]
+                sol = _circle_from_points(p0, p1, p2)
+                if sol is None:
+                    continue
+                cx, cy, r = sol
+                if not math.isfinite(r) or r <= 1e-6:
+                    continue
+                arcs.append((p0, p1, p2))
+
+    # Split on quadruple-zero sentinels.
+    zero = (0, 0, 0, 0)
+    header_len = 2  # drop two shorts of metadata per sub-polyline
+    i = 0
+    chunk_start = 0
+    sentinels = 0
+    while i <= len(shorts):
+        if i + 3 < len(shorts) and shorts[i : i + 4] == zero:
+            chunk = shorts[chunk_start:i]
+            if len(chunk) > header_len:
+                coords = chunk[header_len:]
+                pts = [
+                    (coords[j] * COMPONENT_POINT_SCALE, coords[j + 1] * COMPONENT_POINT_SCALE)
+                    for j in range(0, len(coords) - 1, 2)
+                ]
+                _emit(pts)
+            i += 4
+            chunk_start = i
+            sentinels += 1
+            continue
+        i += 1
+    if sentinels == 0:
+        coords = shorts[header_len:]
+        pts = [
+            (coords[j] * COMPONENT_POINT_SCALE, coords[j + 1] * COMPONENT_POINT_SCALE)
+            for j in range(0, len(coords) - 1, 2)
+        ]
+        _emit(pts)
+    elif chunk_start < len(shorts):
+        chunk = shorts[chunk_start:]
+        if len(chunk) > header_len:
+            coords = chunk[header_len:]
+            pts = [
+                (coords[j] * COMPONENT_POINT_SCALE, coords[j + 1] * COMPONENT_POINT_SCALE)
+                for j in range(0, len(coords) - 1, 2)
+            ]
+            _emit(pts)
+
+    return segments, arcs, base_scale
+
+
+def _glyph_from_component_definition(definition) -> Glyph | None:
+    segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+    for record in definition.records:
+        points = record.normalized_points()
+        if len(points) < 2:
+            continue
+        if len(points) % 2 != 0:
+            points = points[:-1]
+        for idx in range(0, len(points), 2):
+            start = (float(points[idx][0]), float(points[idx][1]))
+            end = (float(points[idx + 1][0]), float(points[idx + 1][1]))
+            if start == end:
+                continue
+            segments.append((start, end))
+    bbox = definition.bounding_box()
+    if not bbox or not segments:
+        return None
+    min_x, min_y, max_x, max_y = bbox
+    advance = max(max_x - min_x, 0.0)
+    return Glyph(
+        label=definition.label,
+        segments=segments,
+        bounds=(min_x, min_y, max_x, max_y),
+        advance=advance,
+        baseline=min_y,
+    )
+
+
+def _transform_point(
+    point: Tuple[float, float],
+    sx: float,
+    sy: float,
+    cos_theta: float,
+    sin_theta: float,
+    tx: float,
+    ty: float,
+    *,
+    base_scale: float = GLYPH_COORD_SCALE,
+) -> Tuple[float, float]:
+    x_local = point[0] * base_scale * sx
+    y_local = point[1] * base_scale * sy
+    if abs(sin_theta) < 1e-9 and abs(cos_theta - 1.0) < 1e-9:
+        return (x_local + tx, y_local + ty)
+    x_rot = x_local * cos_theta - y_local * sin_theta
+    y_rot = x_local * sin_theta + y_local * cos_theta
+    return (x_rot + tx, y_rot + ty)
+
+
+def _load_line_entities_from_dxf(path: Path) -> list[LineEntity]:
+    data = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+    lines: list[LineEntity] = []
+    idx = 0
+    while idx + 1 < len(data):
+        code = data[idx].strip()
+        value = data[idx + 1].strip()
+        idx += 2
+        if code != "0" or value != "LINE":
+            continue
+        x1 = y1 = x2 = y2 = None
+        layer = 0
+        while idx + 1 < len(data):
+            code = data[idx].strip()
+            value = data[idx + 1].strip()
+            idx += 2
+            if code == "0":
+                idx -= 2
+                break
+            if code == "8":
+                try:
+                    layer = int(value)
+                except Exception:
+                    layer = 0
+            if code == "10":
+                x1 = float(value)
+            elif code == "20":
+                y1 = float(value)
+            elif code == "11":
+                x2 = float(value)
+            elif code == "21":
+                y2 = float(value)
+        if x1 is None or x2 is None or y1 is None or y2 is None:
+            continue
+        lines.append(LineEntity(layer=layer, start=(x1, y1), end=(x2, y2)))
+    return lines
+
+
+def _instantiate_glyph_segments(
+    segments: Sequence[Tuple[Tuple[float, float], Tuple[float, float]]],
+    values: Sequence[float],
+    *,
+    base_scale: float = GLYPH_COORD_SCALE,
+    layer: int = 0,
+) -> List[LineEntity]:
+    if len(values) != 5:
+        return []
+    tx, ty, rot_deg, sx, sy = [float(v) for v in values]
+    rotation_rad = math.radians(rot_deg) if abs(rot_deg) > 1e-9 else 0.0
+    cos_theta = math.cos(rotation_rad) if rotation_rad else 1.0
+    sin_theta = math.sin(rotation_rad) if rotation_rad else 0.0
+
+    entities: List[LineEntity] = []
+    for start, end in segments:
+        start_pt = _transform_point(start, sx, sy, cos_theta, sin_theta, tx, ty, base_scale=base_scale)
+        end_pt = _transform_point(end, sx, sy, cos_theta, sin_theta, tx, ty, base_scale=base_scale)
+        entities.append(LineEntity(layer=layer, start=start_pt, end=end_pt))
+    return entities
+
+
+def _instantiate_glyph_arcs(
+    arcs: Sequence[Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float]]],
+    values: Sequence[float],
+    *,
+    base_scale: float = GLYPH_COORD_SCALE,
+    layer: int = 0,
+) -> List[ArcEntity]:
+    if len(values) != 5:
+        return []
+    tx, ty, rot_deg, sx, sy = [float(v) for v in values]
+    rotation_rad = math.radians(rot_deg) if abs(rot_deg) > 1e-9 else 0.0
+    cos_theta = math.cos(rotation_rad) if rotation_rad else 1.0
+    sin_theta = math.sin(rotation_rad) if rotation_rad else 0.0
+
+    def xf(pt: Tuple[float, float]) -> Tuple[float, float]:
+        return _transform_point(pt, sx, sy, cos_theta, sin_theta, tx, ty, base_scale=base_scale)
+
+    entities: List[ArcEntity] = []
+    for p0, p1, p2 in arcs:
+        ws0, ws1, ws2 = xf(p0), xf(p1), xf(p2)
+        sol = _circle_from_points(ws0, ws1, ws2)
+        if sol is None:
+            continue
+        cx, cy, radius = sol
+        if radius <= 1e-6 or not math.isfinite(radius):
+            continue
+
+        def ang(pt: Tuple[float, float]) -> float:
+            return math.atan2(pt[1] - cy, pt[0] - cx) % math.tau
+
+        ang0 = ang(ws0)
+        ang1 = ang(ws1)
+        ang2 = ang(ws2)
+        sweep = (ang2 - ang0) % math.tau
+        rel1 = (ang1 - ang0) % math.tau
+        start, end = ws0, ws2
+        if rel1 > sweep + 1e-6:
+            start, end = end, start
+        entities.append(ArcEntity(layer=layer, center=(cx, cy), start=start, end=end))
+    return entities
+
+
+def _build_label_block_map(
+    definition,
+    labels: set[str],
+    *,
+    catalog_map: dict[str, int] | None = None,
+    block_index_map: dict[int, int] | None = None,
+    index_block_lists: dict[int, list[int]] | None = None,
+    index_label_order: dict[int, list[str]] | None = None,
+) -> dict[str, ComponentSubBlock]:
+    if not labels:
+        return {}
+    blocks_4803 = [blk for blk in definition.sub_blocks if getattr(blk, "tag", None) == 0x4803]
+
+    # Prefer the catalog map when available: map label -> block index.
+    if catalog_map:
+        result: dict[str, ComponentSubBlock] = {}
+        # If we have ordered blocks per index, use positional pairing of labels within the same index.
+        if index_block_lists and index_label_order:
+            for idx, lbls in index_label_order.items():
+                if not lbls:
+                    continue
+                blk_ord_list = index_block_lists.get(idx, [])
+                if not blk_ord_list:
+                    continue
+                for pos, lbl in enumerate(lbls):
+                    if lbl not in labels:
+                        continue
+                    blk_ord = blk_ord_list[min(pos, len(blk_ord_list) - 1)]
+                    if 0 <= blk_ord < len(blocks_4803):
+                        result[lbl] = blocks_4803[blk_ord]
+            if result and len(result) == len(labels):
+                return result
+        for label in labels:
+            idx = catalog_map.get(label)
+            if idx is None:
+                continue
+            blk_idx = None
+            if block_index_map:
+                blk_idx = block_index_map.get(idx)
+            if blk_idx is None:
+                blk_idx = idx
+            if 0 <= blk_idx < len(blocks_4803):
+                result[label] = blocks_4803[blk_idx]
+        if result:
+            return result
+
+    encoded = {
+        label: bytes([len(label)]) + label.encode("ascii", errors="ignore")
+        for label in labels
+        if label
+    }
+    result: dict[str, ComponentSubBlock] = {}
+    fallback_blocks: list[ComponentSubBlock] = list(blocks_4803)
+    for block in fallback_blocks:
+        if not block.payload:
+            continue
+        payload = block.payload
+        for label, needle in encoded.items():
+            if label in result:
+                continue
+            if payload.find(needle) != -1:
+                result[label] = block
+        if len(result) == len(encoded):
+            break
+
+    # If we failed to find all labels with the strict length-prefixed search,
+    # try a looser substring search (labels have been observed without the
+    # prefixed length byte in newer files).
+    if result and len(result) < len(encoded):
+        for block in fallback_blocks:
+            payload = block.payload
+            for label in labels:
+                if label in result:
+                    continue
+                if label and payload.find(label.encode("ascii", errors="ignore")) != -1:
+                    result[label] = block
+            if len(result) == len(encoded):
+                break
+
+    # Try TLV label chunks inside the definition body.
+    if labels:
+        for lbl, payload in iter_label_chunks(definition.raw_payload, definition):
+            if lbl in labels and lbl not in result and payload:
+                result[lbl] = ComponentSubBlock(tag=0x4803, dtype=0, count=0, payload=payload, offset=-1)
+
+    # As a last resort, if labels exist and we still have no matches, map the
+    # label occurrences (in order) to the 0x4803 blocks (in order).
+    if not result and labels and fallback_blocks:
+        # Parse ordered labels from the raw payload.
+        ordered_labels: list[str] = []
+        data = definition.raw_payload
+        idx = 0
+        limit = len(data)
+        while idx + 1 < limit:
+            length = data[idx]
+            if 1 <= length <= 16:
+                end = idx + 1 + length
+                if end <= limit:
+                    try:
+                        lbl = data[idx + 1 : end].decode("ascii")
+                    except UnicodeDecodeError:
+                        lbl = None
+                    if lbl and lbl in labels:
+                        ordered_labels.append(lbl)
+                        idx = end
+                        continue
+            idx += 1
+        blocks_ordered = [blk for blk in definition.sub_blocks if getattr(blk, "tag", None) == 0x4803]
+        for lbl, blk in zip(ordered_labels, blocks_ordered):
+            result[lbl] = blk
+    return result
+
+
+def _extract_new_style_component_lines(
+    payload: bytes,
+    *,
+    force_arc_guess: bool = False,
+) -> tuple[List[LineEntity], List[InsertEntity], List[ArcEntity]]:
+    definitions = {definition.component_id: definition for definition in iter_component_definitions(payload)}
+    if not definitions:
+        return [], [], []
+
+    placements = list(iter_placement_trailers(payload))
+    placement_records: list[tuple[PlacementTrailer, list[GlyphPlacementRecord]]] = []
+    component_labels: dict[int, set[str]] = defaultdict(set)
+    catalog_records = []
+    catalog_map: dict[str, int] = {}
+    index_label_order: dict[int, list[str]] = {}
+    try:
+        from diagnostics.dump_catalog_records import iter_catalog_records
+
+        catalog_records = list(iter_catalog_records(payload))
+        catalog_map = {rec.name: rec.index for rec in catalog_records}
+        for rec in catalog_records:
+            index_label_order.setdefault(rec.index, []).append(rec.name)
+    except Exception:
+        catalog_map = {}
+        index_label_order = {}
+
+    # If no placement trailers were found, attempt to harvest placement-like
+    # records directly from 0x4803 sub-blocks. Skip 0x3805 tables to avoid the
+    # fixed-stride label catalog. This keeps the scan bounded to block payloads
+    # instead of the whole deflate stream.
+    if not placements:
+        def _block_candidate_records(definition: ComponentDefinition) -> Iterable[tuple[PlacementTrailer, list[GlyphPlacementRecord]]]:
+            MIN_BLOCK_RECORDS = 5
+            MAX_BLOCK_RECORDS = 200
+            for blk_idx, blk in enumerate(definition.sub_blocks):
+                if getattr(blk, "tag", None) != 0x4803 or not blk.payload:
+                    continue
+                records = extract_glyph_records(blk.payload, allow_spaces=True, max_label_len=80)
+                if not records:
+                    # Allow a controlled raw scan when the structured parser
+                    # rejects the block (common for the stride-like MAIN tables).
+                    try:
+                        records_with_offsets = extract_glyph_records_with_offsets(
+                            blk.payload, allow_spaces=True, max_label_len=80
+                        )
+                        records = [rec for _, rec in records_with_offsets]
+                    except Exception:
+                        records = []
+                if len(records) < MIN_BLOCK_RECORDS or len(records) > MAX_BLOCK_RECORDS:
+                    continue
+                # Choose the dominant component_id from the records; fall back to
+                # the enclosing definition id.
+                comp_ids = Counter(rec.component_id for rec in records if rec.component_id)
+                component_id = comp_ids.most_common(1)[0][0] if comp_ids else definition.component_id
+                trailer = PlacementTrailer(
+                    name=f"blk{blk_idx}",
+                    component_id=component_id,
+                    instance_id=blk_idx,
+                    payload=b"",
+                )
+                yield trailer, records
+
+        for definition in definitions.values():
+            new_records = list(_block_candidate_records(definition))
+            placement_records.extend(new_records)
+            for trailer, records in new_records:
+                component_labels[trailer.component_id].update(record.label for record in records)
+        placements_from_blocks = bool(placement_records)
+    else:
+        placements_from_blocks = False
+
+    block_index_maps: dict[int, dict[int, int]] = {}
+    index_block_lists: dict[int, list[int]] = {}
+    for definition in definitions.values():
+        idx_map: dict[int, int] = {}
+        needle = b"\x15\xcd\x5b\x07"
+        for blk in definition.sub_blocks:
+            if getattr(blk, "tag", None) != 0x4803:
+                continue
+            pos = blk.payload.find(needle)
+            if pos == -1 or pos + 8 > len(blk.payload):
+                continue
+            idx_val = struct.unpack("<I", blk.payload[pos + 4 : pos + 8])[0]
+            idx_map.setdefault(idx_val, blk.offset)
+        if idx_map:
+            # Map catalog index -> block ordinal (offset within sub_blocks list).
+            offset_to_ord = {blk.offset: i for i, blk in enumerate(definition.sub_blocks) if getattr(blk, "tag", None) == 0x4803}
+            resolved = {idx_val: offset_to_ord[offset] for idx_val, offset in idx_map.items() if offset in offset_to_ord}
+            if resolved:
+                block_index_maps[definition.component_id] = resolved
+                for idx_val, offset in idx_map.items():
+                    ord_val = resolved.get(idx_val)
+                    if ord_val is not None:
+                        index_block_lists.setdefault(idx_val, []).append(ord_val)
+    # Ensure block ord lists are ordered and deduped
+    for k, v in list(index_block_lists.items()):
+        seen = set()
+        ordered = []
+        for ord_val in sorted(v):
+            if ord_val in seen:
+                continue
+            seen.add(ord_val)
+            ordered.append(ord_val)
+        index_block_lists[k] = ordered
+
+    MAX_TOTAL_RECORDS = 5000
+    MAX_PER_LABEL = 5000
+
+    for placement in placements:
+        glyph_records = extract_glyph_records(placement.payload, allow_spaces=True, max_label_len=80)
+        if not glyph_records:
+            continue
+        if len(glyph_records) > MAX_TOTAL_RECORDS:
+            # Likely a false-positive scan; keep going but trim per-label below.
+            pass
+        placement_records.append((placement, glyph_records))
+        component_labels[placement.component_id].update(record.label for record in glyph_records)
+
+    if not placement_records:
+        return [], [], []
+
+    # Some new-style drawings store a placement trailer whose component_id does
+    # not match the embedded component definition id. When we only have a
+    # single definition, treat it as the target for every placement so the
+    # components still render instead of dropping all geometry.
+    only_definition: ComponentDefinition | None = None
+    if len(definitions) == 1:
+        only_definition = next(iter(definitions.values()))
+
+    label_maps: dict[int, dict[str, ComponentSubBlock]] = {}
+    glyph_cache: dict[Tuple[int, int], Tuple[
+        List[Tuple[Tuple[float, float], Tuple[float, float]]],
+        List[Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float]]],
+        float,
+    ]] = {}
+    new_lines: List[LineEntity] = []
+    new_arcs: List[ArcEntity] = []
+    new_inserts: List[InsertEntity] = []
+
+    # Enable arc guessing only when the placement set is small; otherwise rely on
+    # straight geometry to avoid runaway arcs in noisy tables. A forced pass can
+    # override this (used when the first pass yields no geometry).
+    total_records = sum(len(grs) for _, grs in placement_records)
+    arc_guess = force_arc_guess or (not placements_from_blocks and total_records <= 500)
+    arc_limit = 20_000 if force_arc_guess else 10_000
+    # Hard caps to prevent runaway instancing. We trim rather than drop so we
+    # can still inspect partial output when pairings are imperfect.
+    line_cap = 200_000
+    arc_cap = arc_limit
+
+    all_labels = set().union(*component_labels.values()) if component_labels else set()
+
+    for placement, glyph_records in placement_records:
+        deduped: dict[Tuple[str, Tuple[int, int, int, int, int]], GlyphPlacementRecord] = {}
+        for rec in glyph_records:
+            tx, ty, rot, sx, sy = rec.values
+            key = (
+                rec.label,
+                (
+                    round(tx, 4),
+                    round(ty, 4),
+                    round(rot, 4),
+                    round(sx, 4),
+                    round(sy, 4),
+                ),
+            )
+            deduped.setdefault(key, rec)
+        glyph_records = list(deduped.values())
+        # Cap per-label explosion
+        per_label: dict[str, list[GlyphPlacementRecord]] = defaultdict(list)
+        for rec in glyph_records:
+            if len(per_label[rec.label]) < MAX_PER_LABEL:
+                per_label[rec.label].append(rec)
+        glyph_records = [rec for records in per_label.values() for rec in records]
+        definition = definitions.get(placement.component_id)
+        if not definition and only_definition is not None:
+            # Allow a controlled fallback when the placement cid does not match
+            # the lone definition (common in newer payloads).
+            definition = only_definition
+        if not definition:
+            continue
+        label_map = label_maps.get(definition.component_id)
+        if label_map is None:
+            labels_for_def = component_labels.get(placement.component_id, set()) or component_labels.get(
+                definition.component_id, set()
+            ) or all_labels
+            block_index_map = block_index_maps.get(definition.component_id)
+            label_map = _build_label_block_map(
+                definition,
+                labels_for_def,
+                catalog_map=catalog_map,
+                block_index_map=block_index_map,
+                index_block_lists=index_block_lists,
+                index_label_order=index_label_order,
+            )
+            label_maps[definition.component_id] = label_map
+        if not label_map:
+            continue
+        allowed_labels = set(label_map.keys())
+        for record in glyph_records:
+            if allowed_labels and record.label not in allowed_labels:
+                continue
+            block = label_map.get(record.label)
+            if not block:
+                continue
+            cache_key = (definition.component_id, block.offset)
+            cached = glyph_cache.get(cache_key)
+            if cached is None:
+                cached = _segments_from_component_block(
+                    block,
+                    record.label,
+                    allow_arc_guess=arc_guess,
+                    bbox=getattr(definition, "bbox", None),
+                )
+                glyph_cache[cache_key] = cached
+            segments, arcs, base_scale = cached
+            if not segments and not arcs:
+                continue
+            # Bbox sanity based on component definition, if available.
+            def_bbox = getattr(definition, "bbox", None)
+            if def_bbox:
+                min_x, min_y, max_x, max_y = def_bbox
+                span = max(max_x - min_x, max_y - min_y, 1e-3)
+                tol = max(span * 0.1, 1e-3)
+                corners = [
+                    (min_x, min_y),
+                    (min_x, max_y),
+                    (max_x, min_y),
+                    (max_x, max_y),
+                ]
+                tx, ty, rot_deg, sx, sy = record.values
+                rotation_rad = math.radians(rot_deg) if abs(rot_deg) > 1e-9 else 0.0
+                cos_theta = math.cos(rotation_rad) if rotation_rad else 1.0
+                sin_theta = math.sin(rotation_rad) if rotation_rad else 0.0
+                def _xf(pt):
+                    return _transform_point(pt, sx, sy, cos_theta, sin_theta, tx, ty)
+                ws_corners = [_xf(pt) for pt in corners]
+                ws_min_x = min(pt[0] for pt in ws_corners)
+                ws_max_x = max(pt[0] for pt in ws_corners)
+                ws_min_y = min(pt[1] for pt in ws_corners)
+                ws_max_y = max(pt[1] for pt in ws_corners)
+                ws_bbox = (ws_min_x - tol, ws_min_y - tol, ws_max_x + tol, ws_max_y + tol)
+            else:
+                ws_bbox = None
+
+            layer_hint = 0
+            if getattr(record, "field2", 0):
+                layer_hint = max(0, int(record.field2) // 256 - 1)
+            if segments:
+                instantiated = _instantiate_glyph_segments(
+                    segments,
+                    record.values,
+                    base_scale=base_scale,
+                    layer=layer_hint,
+                )
+                if ws_bbox:
+                    instantiated = [
+                        ln
+                        for ln in instantiated
+                        if _point_in_bbox(ln.start, ws_bbox) and _point_in_bbox(ln.end, ws_bbox)
+                    ]
+            if instantiated:
+                room = max(0, line_cap - len(new_lines))
+                instantiated = instantiated[:room]
+                new_lines.extend(instantiated)
+            if arcs:
+                instantiated = _instantiate_glyph_arcs(
+                    arcs,
+                    record.values,
+                    base_scale=base_scale,
+                    layer=layer_hint,
+                )
+                if ws_bbox:
+                    instantiated = [
+                        arc
+                        for arc in instantiated
+                        if _point_in_bbox(arc.start, ws_bbox) and _point_in_bbox(arc.end, ws_bbox)
+                    ]
+                if instantiated:
+                    room = max(0, arc_limit - len(new_arcs))
+                    if room <= 0:
+                        instantiated = []
+                    else:
+                        instantiated = instantiated[:room]
+                if instantiated:
+                    room = max(0, arc_cap - len(new_arcs))
+                    instantiated = instantiated[:room]
+                new_arcs.extend(instantiated)
+            # INSERT entities are not present in reference DXFs for these cases,
+            # so suppress them by default to avoid noise.
+
+    return new_lines, new_inserts, new_arcs
+
+
+REFERENCE_DXF_MAP = {
+    "MAIN": Path("FONTS/Mcalf092_exported_from_Monucad_unexploded.dxf"),
+    "VERMARCO": Path("FONTS/Mcalf020_exported_from_monucad.dxf"),
+}
+
+
+def _load_glyphs_from_reference(font_name: str) -> dict[str, Glyph]:
+    path = REFERENCE_DXF_MAP.get(font_name.upper())
+    if not path or not path.exists():
+        return {}
+    return _parse_unexploded_blocks(path)
+
+
+def _parse_unexploded_blocks(path: Path) -> dict[str, Glyph]:
+    data = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+    glyphs: dict[str, Glyph] = {}
+    idx = 0
+    in_blocks = False
+    while idx + 1 < len(data):
+        code = data[idx].strip()
+        value = data[idx + 1].strip()
+        idx += 2
+        if not in_blocks:
+            if code == "0" and value == "SECTION":
+                if idx + 1 < len(data) and data[idx].strip() == "2" and data[idx + 1].strip() == "BLOCKS":
+                    in_blocks = True
+                    idx += 2
+            continue
+        if code == "0" and value == "ENDSEC":
+            break
+        if code == "0" and value == "BLOCK":
+            block_name: str | None = None
+            segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+            while idx + 1 < len(data):
+                code = data[idx].strip()
+                value = data[idx + 1].strip()
+                idx += 2
+                if code == "2" and block_name is None:
+                    block_name = value
+                    continue
+                if code == "0" and value == "ENDBLK":
+                    if block_name and segments:
+                        bounds = _compute_bounds(segments)
+                        min_x, min_y, max_x, max_y = bounds
+                        advance = max(max_x - min_x, 0.0)
+                        glyphs[block_name] = Glyph(
+                            label=block_name,
+                            segments=segments,
+                            bounds=bounds,
+                            advance=advance,
+                            baseline=min_y,
+                        )
+                    break
+                if code == "0":
+                    entity_type = value
+                    new_segments, idx = _parse_block_entity(entity_type, data, idx)
+                    if new_segments:
+                        segments.extend(new_segments)
+                # other codes are metadata we can skip
+    return glyphs
+
+
+def _parse_kerning_file(path: Path) -> dict[Tuple[str, str], float]:
+    entries: dict[Tuple[str, str], float] = {}
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return entries
+    expected = 95 * 95 * 2
+    if len(data) < expected:
+        return entries
+    offset = 0
+    for row in range(95):
+        for col in range(95):
+            raw = int.from_bytes(data[offset : offset + 2], "little", signed=False)
+            offset += 2
+            if row == 0 and col == 0:
+                continue
+            if raw in (0, 1, 1000):
+                continue
+            signed = raw if raw < 0x8000 else raw - 0x10000
+            if signed == 0:
+                continue
+            first = PRINTABLE_ASCII[row] if row < len(PRINTABLE_ASCII) else chr(32 + row)
+            second = PRINTABLE_ASCII[col] if col < len(PRINTABLE_ASCII) else chr(32 + col)
+            entries[(first, second)] = signed / 1000.0
+    return entries
+
+
+def _load_reference_entities(path: Path) -> Tuple[List[LineEntity], List[ArcEntity], List[CircleEntity]]:
+    data = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+    idx = 0
+    lines: List[LineEntity] = []
+    arcs: List[ArcEntity] = []
+    circles: List[CircleEntity] = []
+
+    while idx + 1 < len(data):
+        code = data[idx].strip()
+        value = data[idx + 1].strip()
+        idx += 2
+        if code != "0":
+            continue
+        if value == "LINE":
+            attrs, idx = _collect_entity_attrs(data, idx)
+            lines.append(
+                LineEntity(
+                    layer=0,
+                    start=(attrs.get("10", 0.0), attrs.get("20", 0.0)),
+                    end=(attrs.get("11", 0.0), attrs.get("21", 0.0)),
+                )
+            )
+        elif value == "ARC":
+            attrs, idx = _collect_entity_attrs(data, idx)
+            center = (attrs.get("10", 0.0), attrs.get("20", 0.0))
+            radius = attrs.get("40", 0.0)
+            start_ang = math.radians(attrs.get("50", 0.0))
+            end_ang = math.radians(attrs.get("51", 0.0))
+            start = (center[0] + radius * math.cos(start_ang), center[1] + radius * math.sin(start_ang))
+            end = (center[0] + radius * math.cos(end_ang), center[1] + radius * math.sin(end_ang))
+            arcs.append(ArcEntity(layer=0, center=center, start=start, end=end))
+        elif value == "CIRCLE":
+            attrs, idx = _collect_entity_attrs(data, idx)
+            center = (attrs.get("10", 0.0), attrs.get("20", 0.0))
+            radius = attrs.get("40", 0.0)
+            circles.append(CircleEntity(layer=0, center=center, radius=radius))
+    return lines, arcs, circles
+
+
+def _collect_entity_attrs(lines: List[str], idx: int) -> Tuple[dict[str, float], int]:
+    attrs: dict[str, float] = {}
+    while idx + 1 < len(lines):
+        code = lines[idx].strip()
+        value = lines[idx + 1].strip()
+        idx += 2
+        if code == "0":
+            idx -= 2
+            break
+        try:
+            attrs[code] = float(value)
+        except ValueError:
+            attrs[code] = 0.0
+    return attrs, idx
+
+
+def _parse_block_entity(
+    entity_type: str,
+    data: List[str],
+    idx: int,
+) -> Tuple[List[Tuple[Tuple[float, float], Tuple[float, float]]], int]:
+    attrs: dict[str, float] = {}
+    while idx + 1 < len(data):
+        code = data[idx].strip()
+        value = data[idx + 1].strip()
+        idx += 2
+        if code == "0":
+            idx -= 2
+            break
+        try:
+            attrs[code] = float(value)
+        except ValueError:
+            attrs[code] = 0.0
+
+    def _approximate_arc(
+        center: Tuple[float, float],
+        radius: float,
+        start_deg: float,
+        end_deg: float,
+    ) -> List[Tuple[Tuple[float, float], Tuple[float, float]]]:
+        start_rad = math.radians(start_deg)
+        end_rad = math.radians(end_deg)
+        while end_rad < start_rad:
+            end_rad += math.tau
+        sweep = end_rad - start_rad
+        steps = max(6, int(abs(sweep) / (math.pi / 18)))
+        points: List[Tuple[float, float]] = []
+        for step in range(steps + 1):
+            t = step / steps
+            angle = start_rad + sweep * t
+            x = center[0] + radius * math.cos(angle)
+            y = center[1] + radius * math.sin(angle)
+            points.append((x, y))
+        segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+        for p1, p2 in zip(points, points[1:]):
+            segments.append((p1, p2))
+        return segments
+
+    segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+    if entity_type == "LINE":
+        start = (attrs.get("10", 0.0), attrs.get("20", 0.0))
+        end = (attrs.get("11", 0.0), attrs.get("21", 0.0))
+        segments.append((start, end))
+    elif entity_type == "ARC":
+        center = (attrs.get("10", 0.0), attrs.get("20", 0.0))
+        radius = attrs.get("40", 0.0)
+        start_ang = attrs.get("50", 0.0)
+        end_ang = attrs.get("51", 0.0)
+        if radius > 0:
+            segments.extend(_approximate_arc(center, radius, start_ang, end_ang))
+    elif entity_type == "CIRCLE":
+        center = (attrs.get("10", 0.0), attrs.get("20", 0.0))
+        radius = attrs.get("40", 0.0)
+        if radius > 0:
+            segments.extend(_approximate_arc(center, radius, 0.0, 360.0))
+
+    return segments, idx
+
+
+def _compute_bounds(
+    segments: Sequence[Tuple[Tuple[float, float], Tuple[float, float]]],
+) -> Tuple[float, float, float, float]:
+    min_x = min(min(p1[0], p2[0]) for p1, p2 in segments)
+    max_x = max(max(p1[0], p2[0]) for p1, p2 in segments)
+    min_y = min(min(p1[1], p2[1]) for p1, p2 in segments)
+    max_y = max(max(p1[1], p2[1]) for p1, p2 in segments)
+    return min_x, min_y, max_x, max_y
+
+
+PUNCT_SUFFIX_MAP = {
+    "PERID": ".",
+    "PERIOD": ".",
+    "DOT": ".",
+    "COMMA": ",",
+    "COLN": ":",
+    "COLON": ":",
+    "SEMI": ";",
+    "APOST": "'",
+    "QUOTE": '"',
+    "QUOT": '"',
+    "QUOT2": '"',
+    "DASH": "-",
+    "HYPHEN": "-",
+    "MINUS": "-",
+    "PLUS": "+",
+    "SPACE": " ",
+    "SP": " ",
+    "AMP": "&",
+    "AMPERSAND": "&",
+    "AND": "&",
+    "AT": "@",
+    "ATS": "@",
+    "EXCL": "!",
+    "QUES": "?",
+    "PERC": "%",
+    "PERCENT": "%",
+    "STAR": "*",
+    "ASTER": "*",
+    "SLASH": "/",
+    "FSLASH": "/",
+    "BSLASH": "\\",
+    "LBS": "#",
+    "HASH": "#",
+    "POUND": "#",
+    "LPAREN": "(",
+    "RPAREN": ")",
+}
+
+
+def _derive_font_mapping(
+    font_name: str,
+    glyphs: dict[str, Glyph],
+    config: dict[str, str] | None,
+) -> List[Tuple[str, str]]:
+    upper_name = font_name.upper()
+    if upper_name == "MAIN":
+        return list(MAIN_GLYPH_MAP)
+    if upper_name == "VERMARCO":
+        return _build_vm_mapping()
+    labels = list(glyphs.keys())
+    if not labels:
+        return []
+    prefixes = _candidate_prefixes(config, labels)
+    allow_lowercase = True
+    if config:
+        lc_flag = config.get("lowercase")
+        if lc_flag is not None:
+            allow_lowercase = lc_flag.strip().lower() == "yes"
+    mapping: dict[str, str] = {}
+    for label in labels:
+        label_upper = label.upper()
+        suffix = label_upper
+        for prefix in prefixes:
+            if prefix and label_upper.startswith(prefix):
+                suffix = label_upper[len(prefix) :]
+                break
+        char = _char_from_suffix(suffix)
+        if char and char not in mapping:
+            mapping[char] = label
+    ordered_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    if allow_lowercase:
+        ordered_chars += "abcdefghijklmnopqrstuvwxyz"
+    ordered_chars += "0123456789"
+    ordered_chars += " -.,'\"!@#$%^&*()/?"
+    result: List[Tuple[str, str]] = []
+    for ch in ordered_chars:
+        if ch in mapping:
+            result.append((ch, mapping[ch]))
+    for ch, label in mapping.items():
+        if ch not in ordered_chars:
+            result.append((ch, label))
+    return result
+
+
+def _candidate_prefixes(config: dict[str, str] | None, labels: Sequence[str]) -> List[str]:
+    prefixes: List[str] = []
+    if config:
+        raw_prefix = config.get("dtafile", "").strip()
+        token = re.sub(r"[^0-9A-Za-z]", "", raw_prefix).upper()
+        if token:
+            prefixes.append(token)
+            prefixes.append(f"F{token}")
+        fontfile = config.get("fontfile", "")
+        if fontfile:
+            token_ff = re.sub(r"[^0-9A-Za-z]", "", fontfile).upper()
+            if token_ff:
+                prefixes.append(token_ff)
+    inferred = _longest_alpha_prefix(labels)
+    if inferred:
+        prefixes.append(inferred)
+    prefixes.append("")
+    seen: List[str] = []
+    for prefix in prefixes:
+        if prefix not in seen:
+            seen.append(prefix)
+    return seen
+
+
+def _longest_alpha_prefix(labels: Sequence[str]) -> str:
+    if not labels:
+        return ""
+    prefix = labels[0].upper()
+    for label in labels[1:]:
+        candidate = label.upper()
+        while prefix and not candidate.startswith(prefix):
+            prefix = prefix[:-1]
+    while prefix and not prefix[-1].isalpha():
+        prefix = prefix[:-1]
+    return prefix
+
+
+def _char_from_suffix(suffix: str) -> str | None:
+    if not suffix:
+        return None
+    suffix = suffix.upper()
+    if len(suffix) == 1 and suffix.isalpha():
+        return suffix
+    if len(suffix) == 1 and suffix.isdigit():
+        return suffix
+    if suffix.isdigit():
+        try:
+            code = int(suffix)
+        except ValueError:
+            return None
+        if 32 <= code <= 126:
+            return chr(code)
+        return None
+    mapped = PUNCT_SUFFIX_MAP.get(suffix)
+    if mapped:
+        return mapped
+    return None
+
+
+def _build_vm_mapping() -> List[Tuple[str, str]]:
+    mapping: List[Tuple[str, str]] = []
+    for i in range(26):
+        ch = chr(ord("A") + i)
+        mapping.append((ch, f"VM{ch}"))
+    for digit in "0123456789":
+        mapping.append((digit, f"VM{digit}"))
+    mapping.extend(
+        [
+            ("-", "VM-"),
+            (".", "VMPERID"),
+            (",", "VMCOMMA"),
+            (";", "VMSEMI"),
+            (":", "VMCOLN"),
+            ("'", "VMAPOST"),
+            ('"', "VMQUOTE"),
+            ("&", "VM&"),
+        ]
+    )
+    return mapping
+
+
+MAIN_GLYPH_MAP: List[Tuple[str, str]] = [
+    *((chr(ord("A") + i), f"M92{chr(ord('A') + i)}") for i in range(26)),
+    *((str(i), f"M92{i}") for i in range(10)),
+    *((chr(ord("a") + i), f"M92{chr(ord('A') + i)}L") for i in range(26)),
+    ("-", "M92-"),
+    (".", "M92PERID"),
+    (",", "M92COMMA"),
+    (":", "M92COLN"),
+    (";", "M92SEMI"),
+    ('"', "M92QUOTE"),
+    ("'", "M92APOST"),
+    (" ", "M92SPACE"),
+]
+
+
+def _parse_component_place_entries(payload: bytes) -> tuple[float | None, list[tuple[str, tuple[float, float, float, float, float]]], int]:
+    marker = b"CComponentPlace"
+    idx = payload.find(marker)
+    if idx == -1:
+        return None, [], -1
+    ptr = idx + len(marker)
+    try:
+        # The legacy format stores a small header after the class label.  In the
+        # 2012-era files this appears to be two uint32 values followed by a
+        # 5-float transform for the *first* placement, then a chain of
+        # (name, unknown bytes, next_transform) tuples.  This means the
+        # transform "belongs" to the previous label and the final label can be
+        # a terminator with no trailing transform.
+        struct.unpack_from("<II", payload, ptr)
+        ptr += 8
+        tx0, ty0, rot0, sx0, sy0 = struct.unpack_from("<5f", payload, ptr)
+        ptr += 20
+    except struct.error:
+        return None, [], -1
+
+    entries: list[tuple[str, tuple[float, float, float, float, float]]] = []
+    current = (tx0, ty0, rot0, sx0, sy0)
+    while ptr + 1 < len(payload):
+        name_len = payload[ptr]
+        if not (1 <= name_len <= 8):
+            break
+        name_bytes = payload[ptr + 1 : ptr + 1 + name_len]
+        try:
+            name = name_bytes.decode("ascii")
+        except UnicodeDecodeError:
+            break
+        ptr += 1 + name_len
+        if payload[ptr:ptr + 1] == b"_":
+            ptr += 1
+        # If we don't have enough bytes for the trailing unknown+transform,
+        # treat this name as the terminator and reuse the last transform.
+        if ptr + 9 + 20 > len(payload):
+            entries.append((name, current))
+            break
+        ptr += 9  # skip unknown bytes
+        try:
+            next_transform = struct.unpack_from("<5f", payload, ptr)
+        except struct.error:
+            entries.append((name, current))
+            break
+        ptr += 20
+        entries.append((name, current))
+        current = tuple(float(v) for v in next_transform)
+
+    return None, entries, idx
+
+
+def _component_segments(definition) -> list[tuple[tuple[float, float], tuple[float, float]]]:
+    segments: list[tuple[tuple[float, float], tuple[float, float]]] = []
+    for record in definition.records:
+        points = record.normalized_points()
+        if len(points) < 2:
+            continue
+        if len(points) % 2 != 0:
+            points = points[:-1]
+        for idx in range(0, len(points), 2):
+            segments.append((points[idx], points[idx + 1]))
+    return segments
+
+
+def _segments_from_inline_chunk(chunk: bytes) -> list[tuple[tuple[float, float], tuple[float, float]]]:
+    # Inline component blobs in old .mcd files often omit the 28-short header and
+    # are just sequences of records delimited by the -0x7FFD sentinel.
+    if len(chunk) < 16:
+        return []
+    shorts_len = len(chunk) // 2
+    shorts = struct.unpack("<{}h".format(shorts_len), chunk[: shorts_len * 2])
+    sentinel = -0x7FFD
+    records: list[tuple[int, ...]] = []
+    current: list[int] = []
+    for value in shorts:
+        if value == sentinel:
+            if current:
+                records.append(tuple(current))
+                current = []
+            continue
+        current.append(value)
+    if current:
+        records.append(tuple(current))
+
+    # Heuristic: some blobs carry a leading header block before the first sentinel.
+    # Drop the first record if it clearly looks like a header (large offsets or
+    # unexpected type).
+    if records:
+        meta = records[0][:4]
+        if any(abs(v) > 1024 for v in meta) or (len(meta) >= 3 and meta[2] not in (0, 2)):
+            records = records[1:]
+
+    POINT_SCALE = 1.0 / 32768.0
+    segments: list[tuple[tuple[float, float], tuple[float, float]]] = []
+    for values in records:
+        if len(values) < 6:
+            continue
+        coords = values[4:]
+        if len(coords) % 2 != 0:
+            coords = coords[:-1]
+        points = [(coords[i] * POINT_SCALE, coords[i + 1] * POINT_SCALE) for i in range(0, len(coords), 2)]
+        if len(points) < 2:
+            continue
+        # Treat each record as independent stroke segments (pairwise) to avoid
+        # connecting unrelated strokes across the record.
+        if len(points) % 2 != 0:
+            points = points[:-1]
+        for idx in range(0, len(points), 2):
+            segments.append((points[idx], points[idx + 1]))
+    return segments
+
+
+def _segments_from_inline_floats(
+    chunk: bytes,
+    *,
+    stride: int = 16,
+    limit: float = 2.0,
+    min_segments: int = 10,
+) -> list[tuple[tuple[float, float], tuple[float, float]]]:
+    """Greedy float decoder for inline blobs that pack 4-float stroke tuples."""
+
+    segments: list[tuple[tuple[float, float], tuple[float, float]]] = []
+    seen: set[tuple[float, float, float, float]] = set()
+    for offset in range(0, len(chunk) - 16 + 1, stride):
+        try:
+            x1, y1, x2, y2 = struct.unpack_from("<4f", chunk, offset)
+        except struct.error:
+            break
+        if not all(math.isfinite(v) for v in (x1, y1, x2, y2)):
+            continue
+        if any(abs(v) > limit for v in (x1, y1, x2, y2)):
+            continue
+        if x1 == x2 and y1 == y2:
+            continue
+        key = (round(x1, 6), round(y1, 6), round(x2, 6), round(y2, 6))
+        if key in seen:
+            continue
+        seen.add(key)
+        segments.append(((x1, y1), (x2, y2)))
+    if len(segments) < min_segments:
+        return []
+    return segments
+
+
+def _point_in_bbox(
+    pt: tuple[float, float],
+    bbox: tuple[float, float, float, float],
+    *,
+    tol: float = 0.0,
+) -> bool:
+    x, y = pt
+    min_x, min_y, max_x, max_y = bbox
+    return (min_x - tol) <= x <= (max_x + tol) and (min_y - tol) <= y <= (max_y + tol)
+
+
+def _parse_inline_float_records(
+    chunk: bytes,
+    *,
+    coord_limit: float = 10.0,
+) -> tuple[
+    tuple[float, float, float, float] | None,
+    list[LineEntity],
+    list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]],
+]:
+    """
+    Parse legacy inline component blobs that store fixed-size float32 records.
+
+    Observed layout (Monu-CAD v9 era, exploded font components):
+      - 2 bytes: 0x01 0x80
+      - 4*float32 bbox: min_x, min_y, max_x, max_y
+      - 4 bytes: unknown
+      - records start at offset 22
+
+    Record formats:
+      - Line (etype=2): 34 bytes (layer,u32)(etype,u32)(x1,y1,x2,y2 floats)(u1,u2 u32)(tail u16)
+      - Arc  (etype=3): 42 bytes (layer,u32)(etype,u32)(start,mid,end as 6 floats)(u1,u2 u32)(tail u16)
+    """
+
+    if len(chunk) < 22 or chunk[:2] != b"\x01\x80":
+        return None, [], []
+
+    try:
+        min_x, min_y, max_x, max_y = struct.unpack_from("<4f", chunk, 2)
+    except struct.error:
+        return None, [], []
+    if not all(math.isfinite(v) for v in (min_x, min_y, max_x, max_y)):
+        return None, [], []
+    if any(abs(v) > coord_limit for v in (min_x, min_y, max_x, max_y)):
+        return None, [], []
+    if max_x < min_x or max_y < min_y:
+        return None, [], []
+    bbox = (float(min_x), float(min_y), float(max_x), float(max_y))
+    width = max_x - min_x
+    height = max_y - min_y
+    tol = max(1e-4, float(max(width, height)) * 0.02)
+
+    offset = 22
+    lines: list[LineEntity] = []
+    arcs: list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]] = []
+
+    while offset + 8 <= len(chunk):
+        try:
+            layer, etype = struct.unpack_from("<II", chunk, offset)
+        except struct.error:
+            break
+        if layer > 2048:
+            break
+        if etype not in (2, 3):
+            break
+
+        if etype == 2:
+            coord_off = offset + 8
+            if coord_off + 16 > len(chunk):
+                break
+            try:
+                x1, y1, x2, y2 = struct.unpack_from("<4f", chunk, coord_off)
+            except struct.error:
+                break
+            if not all(math.isfinite(v) for v in (x1, y1, x2, y2)):
+                offset += 34
+                continue
+            if any(abs(v) > coord_limit for v in (x1, y1, x2, y2)):
+                offset += 34
+                continue
+            p1 = (float(x1), float(y1))
+            p2 = (float(x2), float(y2))
+            if p1 != p2 and _point_in_bbox(p1, bbox, tol=tol) and _point_in_bbox(p2, bbox, tol=tol):
+                lines.append(LineEntity(layer=int(layer), start=p1, end=p2))
+            # Advance by full stride when possible; tolerate a truncated final record.
+            if offset + 34 <= len(chunk):
+                offset += 34
+            else:
+                break
+            continue
+
+        # etype == 3 (arc)
+        coord_off = offset + 8
+        if coord_off + 24 > len(chunk):
+            break
+        try:
+            x0, y0, x1, y1, x2, y2 = struct.unpack_from("<6f", chunk, coord_off)
+        except struct.error:
+            break
+        if not all(math.isfinite(v) for v in (x0, y0, x1, y1, x2, y2)):
+            offset += 42
+            continue
+        if any(abs(v) > coord_limit for v in (x0, y0, x1, y1, x2, y2)):
+            offset += 42
+            continue
+        start = (float(x0), float(y0))
+        mid = (float(x1), float(y1))
+        end = (float(x2), float(y2))
+        if (
+            _point_in_bbox(start, bbox, tol=tol)
+            and _point_in_bbox(mid, bbox, tol=tol)
+            and _point_in_bbox(end, bbox, tol=tol)
+        ):
+            arcs.append((int(layer), (start, mid, end)))
+        if offset + 42 <= len(chunk):
+            offset += 42
+        else:
+            break
+
+    return bbox, lines, arcs
+
+
+def _extract_bbox_from_inline_chunk(
+    chunk: bytes,
+    *,
+    coord_limit: float = 10.0,
+) -> tuple[float, float, float, float] | None:
+    """Best-effort bbox extractor for inline glyph blobs."""
+
+    if len(chunk) >= 22 and chunk[:2] == b"\x01\x80":
+        try:
+            min_x, min_y, max_x, max_y = struct.unpack_from("<4f", chunk, 2)
+        except struct.error:
+            return None
+        if not all(math.isfinite(v) for v in (min_x, min_y, max_x, max_y)):
+            return None
+        if any(abs(v) > coord_limit for v in (min_x, min_y, max_x, max_y)):
+            return None
+        if max_x < min_x or max_y < min_y:
+            return None
+        return (float(min_x), float(min_y), float(max_x), float(max_y))
+
+    marker = b"CComponentDefinition"
+    marker_pos = chunk.find(marker)
+    if marker_pos != -1:
+        bbox_off = marker_pos + len(marker)
+        if bbox_off + 16 <= len(chunk):
+            try:
+                min_x, min_y, max_x, max_y = struct.unpack_from("<4f", chunk, bbox_off)
+            except struct.error:
+                return None
+            if not all(math.isfinite(v) for v in (min_x, min_y, max_x, max_y)):
+                return None
+            if any(abs(v) > coord_limit for v in (min_x, min_y, max_x, max_y)):
+                return None
+            if max_x < min_x or max_y < min_y:
+                return None
+            return (float(min_x), float(min_y), float(max_x), float(max_y))
+
+    return None
+
+
+def _scan_inline_double_records(
+    chunk: bytes,
+    bbox: tuple[float, float, float, float],
+    *,
+    coord_limit: float = 10.0,
+) -> tuple[
+    list[LineEntity],
+    list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]],
+]:
+    """
+    Some older inline glyph blobs (notably MCPro9-resaved files) store the same
+    basic record layout as the float32 variant, but coordinates are float64 and
+    record boundaries are not easily walked sequentially. Scan for candidate
+    (layer,etype) headers and validate coordinates against the component bbox.
+    """
+
+    min_x, min_y, max_x, max_y = bbox
+    width = max_x - min_x
+    height = max_y - min_y
+    tol = max(1e-4, float(max(width, height)) * 0.02)
+
+    def scan(
+        *,
+        start_offset: int,
+        step: int,
+        lines: list[LineEntity],
+        arcs: list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]],
+        seen_lines: set[tuple[int, float, float, float, float]],
+        seen_arcs: set[tuple[int, float, float, float, float, float, float]],
+    ) -> None:
+        offset = start_offset
+        limit = len(chunk)
+        while offset + 8 <= limit:
+            try:
+                layer, etype = struct.unpack_from("<II", chunk, offset)
+            except struct.error:
+                break
+            if layer <= 2048 and etype in (2, 3):
+                if etype == 2 and offset + 8 + 32 <= limit:
+                    try:
+                        x1, y1, x2, y2 = struct.unpack_from("<4d", chunk, offset + 8)
+                    except struct.error:
+                        offset += step
+                        continue
+                    if (
+                        all(math.isfinite(v) for v in (x1, y1, x2, y2))
+                        and max(abs(v) for v in (x1, y1, x2, y2)) <= coord_limit
+                    ):
+                        p1 = (float(x1), float(y1))
+                        p2 = (float(x2), float(y2))
+                        if (
+                            p1 != p2
+                            and _point_in_bbox(p1, bbox, tol=tol)
+                            and _point_in_bbox(p2, bbox, tol=tol)
+                        ):
+                            key = (
+                                int(layer),
+                                round(p1[0], 6),
+                                round(p1[1], 6),
+                                round(p2[0], 6),
+                                round(p2[1], 6),
+                            )
+                            if key not in seen_lines:
+                                seen_lines.add(key)
+                                lines.append(LineEntity(layer=int(layer), start=p1, end=p2))
+                elif etype == 3 and offset + 8 + 48 <= limit:
+                    try:
+                        x0, y0, x1, y1, x2, y2 = struct.unpack_from("<6d", chunk, offset + 8)
+                    except struct.error:
+                        offset += step
+                        continue
+                    if (
+                        all(math.isfinite(v) for v in (x0, y0, x1, y1, x2, y2))
+                        and max(abs(v) for v in (x0, y0, x1, y1, x2, y2)) <= coord_limit
+                    ):
+                        p0 = (float(x0), float(y0))
+                        p1 = (float(x1), float(y1))
+                        p2 = (float(x2), float(y2))
+                        if (
+                            _point_in_bbox(p0, bbox, tol=tol)
+                            and _point_in_bbox(p1, bbox, tol=tol)
+                            and _point_in_bbox(p2, bbox, tol=tol)
+                        ):
+                            key = (
+                                int(layer),
+                                round(p0[0], 6),
+                                round(p0[1], 6),
+                                round(p1[0], 6),
+                                round(p1[1], 6),
+                                round(p2[0], 6),
+                                round(p2[1], 6),
+                            )
+                            if key not in seen_arcs:
+                                seen_arcs.add(key)
+                                arcs.append((int(layer), (p0, p1, p2)))
+            offset += step
+
+    lines: list[LineEntity] = []
+    arcs: list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]] = []
+    seen_lines: set[tuple[int, float, float, float, float]] = set()
+    seen_arcs: set[tuple[int, float, float, float, float, float, float]] = set()
+
+    # Records can start on either byte parity (observed in MCPro9-resaved files),
+    # so scan both even and odd offsets. This still keeps the hot path fast
+    # while avoiding the “every other record” drop caused by assuming 2-byte
+    # alignment only.
+    scan(
+        start_offset=0,
+        step=2,
+        lines=lines,
+        arcs=arcs,
+        seen_lines=seen_lines,
+        seen_arcs=seen_arcs,
+    )
+    scan(
+        start_offset=1,
+        step=2,
+        lines=lines,
+        arcs=arcs,
+        seen_lines=seen_lines,
+        seen_arcs=seen_arcs,
+    )
+    if not lines and not arcs:
+        scan(
+            start_offset=0,
+            step=1,
+            lines=lines,
+            arcs=arcs,
+            seen_lines=seen_lines,
+            seen_arcs=seen_arcs,
+        )
+
+    return lines, arcs
+
+
+def _parse_inline_labeled_float_records(
+    chunk: bytes,
+    *,
+    coord_limit: float = 5.0,
+    min_prims: int = 12,
+) -> tuple[
+    tuple[float, float, float, float] | None,
+    list[LineEntity],
+    list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]],
+]:
+    """
+    Some legacy inline components (notably the first component in some files)
+    store float-record geometry inside TLV-ish string labels like 'CLine' and
+    'CArc' without the leading 0x01 0x80 + bbox wrapper.
+    """
+
+    bbox: tuple[float, float, float, float] | None = None
+    marker = b"CComponentDefinition"
+    marker_pos = chunk.find(marker)
+    if marker_pos != -1:
+        bbox_off = marker_pos + len(marker)
+        if bbox_off + 16 <= len(chunk):
+            try:
+                min_x, min_y, max_x, max_y = struct.unpack_from("<4f", chunk, bbox_off)
+            except struct.error:
+                min_x = min_y = max_x = max_y = 0.0
+            if (
+                all(math.isfinite(v) for v in (min_x, min_y, max_x, max_y))
+                and max_x >= min_x
+                and max_y >= min_y
+                and max(abs(v) for v in (min_x, min_y, max_x, max_y)) <= coord_limit * 2
+            ):
+                bbox = (float(min_x), float(min_y), float(max_x), float(max_y))
+
+    labels = [b"CLine", b"CArc"]
+    hits: list[tuple[int, bytes, int]] = []
+    for label in labels:
+        pos = chunk.find(label)
+        if pos == -1:
+            continue
+        header_off = pos - 8
+        if header_off < 0:
+            continue
+        try:
+            _, dtype, count, size = struct.unpack_from("<HHHH", chunk, header_off)
+        except struct.error:
+            continue
+        if dtype != 0xFFFF or size != len(label) or count not in (0, 1):
+            continue
+        hits.append((pos, label, header_off))
+
+    if not hits:
+        return None, [], []
+
+    hits.sort(key=lambda item: item[0])
+    bounds: list[tuple[int, int, bytes]] = []
+    for idx, (pos, label, header_off) in enumerate(hits):
+        start = pos + len(label)
+        end = len(chunk)
+        if idx + 1 < len(hits):
+            next_header = hits[idx + 1][2]
+            end = max(start, min(end, next_header))
+        bounds.append((start, end, label))
+
+    lines: list[LineEntity] = []
+    arcs: list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]] = []
+
+    tol = 0.0
+    if bbox is not None:
+        w = bbox[2] - bbox[0]
+        h = bbox[3] - bbox[1]
+        tol = max(1e-4, max(w, h) * 0.02)
+
+    def _accept_pt(pt: tuple[float, float]) -> bool:
+        if not all(math.isfinite(v) for v in pt):
+            return False
+        if max(abs(pt[0]), abs(pt[1])) > coord_limit:
+            return False
+        if bbox is not None and not _point_in_bbox(pt, bbox, tol=tol):
+            return False
+        return True
+
+    allowed_tails = {0x8008, 0x8003, 0x0008, 0x0000}
+    seen_lines: set[tuple[int, float, float, float, float]] = set()
+    seen_arcs: set[tuple[int, float, float, float, float, float, float]] = set()
+
+    def _add_line(layer: int, p1: tuple[float, float], p2: tuple[float, float]) -> None:
+        if p1 == p2:
+            return
+        if not (_accept_pt(p1) and _accept_pt(p2)):
+            return
+        key = (
+            int(layer),
+            round(p1[0], 6),
+            round(p1[1], 6),
+            round(p2[0], 6),
+            round(p2[1], 6),
+        )
+        if key in seen_lines:
+            return
+        seen_lines.add(key)
+        lines.append(LineEntity(layer=int(layer), start=p1, end=p2))
+
+    def _add_arc(layer: int, p0: tuple[float, float], p1: tuple[float, float], p2: tuple[float, float]) -> None:
+        if not (_accept_pt(p0) and _accept_pt(p1) and _accept_pt(p2)):
+            return
+        key = (
+            int(layer),
+            round(p0[0], 6),
+            round(p0[1], 6),
+            round(p1[0], 6),
+            round(p1[1], 6),
+            round(p2[0], 6),
+            round(p2[1], 6),
+        )
+        if key in seen_arcs:
+            return
+        seen_arcs.add(key)
+        arcs.append((int(layer), (p0, p1, p2)))
+
+    for start, end, label in bounds:
+        # First try the common contiguous encoding (fast path).
+        offset = start
+        if label == b"CLine":
+            stride = 34
+            while offset + 8 + 16 <= end:
+                try:
+                    layer, etype = struct.unpack_from("<II", chunk, offset)
+                    x1, y1, x2, y2 = struct.unpack_from("<4f", chunk, offset + 8)
+                except struct.error:
+                    break
+                if etype != 2 or layer > 2048:
+                    break
+                _add_line(int(layer), (float(x1), float(y1)), (float(x2), float(y2)))
+                if offset + stride <= end:
+                    offset += stride
+                else:
+                    break
+        elif label == b"CArc":
+            stride = 42
+            while offset + 8 + 24 <= end:
+                try:
+                    layer, etype = struct.unpack_from("<II", chunk, offset)
+                    x0, y0, x1, y1, x2, y2 = struct.unpack_from("<6f", chunk, offset + 8)
+                except struct.error:
+                    break
+                if etype != 3 or layer > 2048:
+                    break
+                _add_arc(
+                    int(layer),
+                    (float(x0), float(y0)),
+                    (float(x1), float(y1)),
+                    (float(x2), float(y2)),
+                )
+                if offset + stride <= end:
+                    offset += stride
+                else:
+                    break
+
+        # Some payloads interleave line+arc records and padding inside the same
+        # labeled blob. Scan the full range for any remaining records.
+        scan_offset = start
+        while scan_offset + 8 <= end:
+            try:
+                layer, etype = struct.unpack_from("<II", chunk, scan_offset)
+            except struct.error:
+                break
+            if layer > 2048:
+                scan_offset += 2
+                continue
+            if etype == 2 and scan_offset + 8 + 16 <= end:
+                try:
+                    x1, y1, x2, y2 = struct.unpack_from("<4f", chunk, scan_offset + 8)
+                except struct.error:
+                    scan_offset += 2
+                    continue
+                if any(abs(v) > coord_limit for v in (x1, y1, x2, y2)):
+                    scan_offset += 2
+                    continue
+                if scan_offset + 34 <= end:
+                    tail = struct.unpack_from("<H", chunk, scan_offset + 32)[0]
+                    if tail not in allowed_tails:
+                        scan_offset += 2
+                        continue
+                _add_line(int(layer), (float(x1), float(y1)), (float(x2), float(y2)))
+            elif etype == 3 and scan_offset + 8 + 24 <= end:
+                try:
+                    x0, y0, x1, y1, x2, y2 = struct.unpack_from("<6f", chunk, scan_offset + 8)
+                except struct.error:
+                    scan_offset += 2
+                    continue
+                if any(abs(v) > coord_limit for v in (x0, y0, x1, y1, x2, y2)):
+                    scan_offset += 2
+                    continue
+                if scan_offset + 42 <= end:
+                    tail = struct.unpack_from("<H", chunk, scan_offset + 40)[0]
+                    if tail not in allowed_tails:
+                        scan_offset += 2
+                        continue
+                _add_arc(
+                    int(layer),
+                    (float(x0), float(y0)),
+                    (float(x1), float(y1)),
+                    (float(x2), float(y2)),
+                )
+            scan_offset += 2
+
+    if len(lines) + len(arcs) < min_prims:
+        return bbox, [], []
+    return bbox, lines, arcs
+
+
+def _decode_glyph_chunk(label: str, chunk: bytes) -> tuple[list[tuple[tuple[float, float], tuple[float, float]]], list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]], tuple[float, float, float, float]]:
+    try:
+        definition = parse_component_bytes(label, chunk)
+    except Exception:
+        return [], [], (0.0, 0.0, 0.0, 0.0)
+    segments: list[tuple[tuple[float, float], tuple[float, float]]] = []
+    arcs: list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]] = []
+    for record in definition.records:
+        etype = record.metadata[2] if len(record.metadata) >= 3 else None
+        pts = list(record.normalized_points())
+        if etype == 3 and len(pts) >= 3:
+            start, guide, end = pts[0], pts[1], pts[2]
+            arcs.append((start, guide, end))
+            continue
+        if len(pts) < 2:
+            continue
+        if len(pts) % 2 != 0:
+            pts = pts[:-1]
+        for idx in range(0, len(pts), 2):
+            p1, p2 = pts[idx], pts[idx + 1]
+            if p1 == p2:
+                continue
+            segments.append((p1, p2))
+
+    # Inline / embedded component blobs frequently include marker segments like
+    # (0,0)->(1/32768,0) and long rays to the origin used as stroke delimiters.
+    # Those poison DXF output (starburst artifacts) so we strip them here.
+    if segments:
+        min_len = 1e-4  # glyph-space (~1e-5 after scaling) marker floor
+        origin_tol = 1e-6
+        origin_count = sum(
+            1
+            for p1, p2 in segments
+            if (abs(p1[0]) <= origin_tol and abs(p1[1]) <= origin_tol)
+            or (abs(p2[0]) <= origin_tol and abs(p2[1]) <= origin_tol)
+        )
+        drop_origin = origin_count >= max(8, int(len(segments) * 0.08))
+        cleaned: list[tuple[tuple[float, float], tuple[float, float]]] = []
+        for p1, p2 in segments:
+            if math.hypot(p1[0] - p2[0], p1[1] - p2[1]) < min_len:
+                continue
+            if drop_origin and (
+                (abs(p1[0]) <= origin_tol and abs(p1[1]) <= origin_tol)
+                or (abs(p2[0]) <= origin_tol and abs(p2[1]) <= origin_tol)
+            ):
+                continue
+            cleaned.append((p1, p2))
+        segments = cleaned
+
+    xs = [p for seg in segments for p in (seg[0][0], seg[1][0])]
+    ys = [p for seg in segments for p in (seg[0][1], seg[1][1])]
+    for start, guide, end in arcs:
+        xs.extend([start[0], guide[0], end[0]])
+        ys.extend([start[1], guide[1], end[1]])
+    bbox = (0.0, 0.0, 0.0, 0.0) if not xs or not ys else (min(xs), min(ys), max(xs), max(ys))
+    return segments, arcs, bbox
+
+
+def _load_payload_glyph_components(payload: bytes) -> tuple[dict[str, Glyph], dict[str, list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]]]:
+    """Load glyph components directly from the payload (TLV font slices)."""
+
+    glyphs: dict[str, Glyph] = {}
+    arc_map: dict[str, list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]] = {}
+    try:
+        components = list(extract_components(payload, pad=32))
+    except Exception:
+        return glyphs, arc_map
+
+    # Some payloads contain multiple occurrences of the same label (e.g. label
+    # strings repeated inside placement metadata). Parse every candidate and
+    # keep the most plausible one (largest bbox area, then most primitives).
+    best: dict[str, tuple[float, int, list[tuple[tuple[float, float], tuple[float, float]]], list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]], tuple[float, float, float, float]]] = {}
+    for label, _, _, chunk in components:
+        segments, arcs, bbox = _decode_glyph_chunk(label, chunk)
+        if not segments and not arcs:
+            continue
+        min_x, min_y, max_x, max_y = bbox
+        width = max(0.0, max_x - min_x)
+        height = max(0.0, max_y - min_y)
+        area = width * height
+        prim_count = len(segments) + len(arcs)
+        prev = best.get(label)
+        if prev is None or (area, prim_count) > (prev[0], prev[1]):
+            best[label] = (area, prim_count, segments, arcs, bbox)
+
+    for label, (_, _, segments, arcs, bbox) in best.items():
+        min_x, min_y, max_x, max_y = bbox
+        advance = max(max_x - min_x, 0.0)
+        glyphs[label] = Glyph(
+            label=label,
+            segments=segments,
+            bounds=bbox,
+            advance=advance,
+            baseline=min_y,
+        )
+        if arcs:
+            arc_map[label] = arcs
+    return glyphs, arc_map
+
+
+def _collect_glyph_placements(payload: bytes) -> tuple[list[tuple[str, tuple[float, float, float, float, float]]], int]:
+    """Gather glyph placements from legacy inline ComponentPlace or placement trailers."""
+
+    width_hint, placements, place_offset = _parse_component_place_entries(payload)
+    if placements:
+        return placements, place_offset
+    trailer_placements: list[tuple[str, tuple[float, float, float, float, float]]] = []
+    trailers = list(iter_placement_trailers(payload))
+    for trailer in trailers:
+        for record in extract_glyph_records(trailer.payload):
+            if len(record.values) != 5:
+                continue
+            tx, ty, rot, sx, sy = record.values
+            trailer_placements.append((record.label, (tx, ty, rot, sx, sy)))
+    return trailer_placements, -1
+
+
+def _parse_carc_arcs(
+    payload: bytes,
+    labels: Sequence[str],
+    segments: dict[str, list[tuple[tuple[float, float], tuple[float, float]]]],
+) -> dict[str, list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]]:
+    """Decode arcs from the CArc chunk, assign to glyph labels by bbox proximity."""
+
+    arc_map: dict[str, list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]] = {}
+    chunk = None
+    for d in iter_component_definitions(payload):
+        for lbl, ch in iter_label_chunks(payload, d):
+            if lbl == "CArc":
+                chunk = ch
+                break
+    if not chunk:
+        return arc_map
+
+    marker1 = [0, 0, 1, 0]
+    marker2 = [-32760, 0, 0, 3]
+    try:
+        shorts = struct.unpack("<{}h".format(len(chunk) // 2), chunk)
+    except struct.error:
+        return arc_map
+    recs: list[list[int]] = []
+    cur: list[int] = []
+    for s in shorts:
+        if s == COMPONENT_SENTINEL:
+            if cur:
+                recs.append(cur)
+                cur = []
+        else:
+            cur.append(s)
+    if cur:
+        recs.append(cur)
+
+    triples: list[tuple[tuple[float, float], tuple[float, float], tuple[float, float]]] = []
+    for rec in recs:
+        if len(rec) < 10:
+            continue
+        data = rec[4:]
+        cleaned: list[int] = []
+        i = 0
+        while i < len(data):
+            if data[i : i + 4] == marker1:
+                i += 4
+                continue
+            if data[i : i + 4] == marker2:
+                i += 4
+                continue
+            cleaned.append(data[i])
+            i += 1
+        for j in range(0, len(cleaned) - 5, 6):
+            sub = cleaned[j : j + 6]
+            if len(sub) < 6:
+                continue
+            pts = [
+                (sub[k] * COMPONENT_POINT_SCALE, sub[k + 1] * COMPONENT_POINT_SCALE)
+                for k in range(0, 6, 2)
+            ]
+            xs = [p[0] for p in pts]
+            ys = [p[1] for p in pts]
+            bbox = (min(xs), min(ys), max(xs), max(ys))
+            size = max(bbox[2] - bbox[0], bbox[3] - bbox[1])
+            if size <= 3.0:
+                triples.append(tuple(pts))
+
+    if not triples:
+        return arc_map
+
+    # Build inline bboxes for assignment.
+    inline_bboxes: dict[str, tuple[float, float, float, float]] = {}
+    for lbl in labels:
+        segs = segments.get(lbl)
+        if not segs:
+            continue
+        xs = [p for seg in segs for p in (seg[0][0], seg[1][0])]
+        ys = [p for seg in segs for p in (seg[0][1], seg[1][1])]
+        inline_bboxes[lbl] = (min(xs), min(ys), max(xs), max(ys))
+
+    # Assign arcs by world-space overlap (max area) with a nearest-center fallback.
+    placements, _ = _collect_glyph_placements(payload)
+    if placements:
+        ws_bboxes: dict[str, tuple[float, float, float, float]] = {}
+        for lbl, vals in placements:
+            tx, ty, rot, sx, sy = vals
+            segs = segments.get(lbl, [])
+            if not segs:
+                continue
+            xs: list[float] = []
+            ys: list[float] = []
+            for p1, p2 in segs:
+                xs.extend([p1[0] * sx + tx, p2[0] * sx + tx])
+                ys.extend([p1[1] * sy + ty, p2[1] * sy + ty])
+            bbox = (min(xs), min(ys), max(xs), max(ys))
+            prev = ws_bboxes.get(lbl)
+            if prev is None:
+                ws_bboxes[lbl] = bbox
+            else:
+                ws_bboxes[lbl] = (
+                    min(prev[0], bbox[0]),
+                    min(prev[1], bbox[1]),
+                    max(prev[2], bbox[2]),
+                    max(prev[3], bbox[3]),
+                )
+
+        for trip in triples:
+            best_lbl = None
+            best_overlap = -1.0
+            best_dist = None
+            for lbl, vals in placements:
+                tx, ty, rot, sx, sy = vals
+                pts_ws = [(px * sx + tx, py * sy + ty) for px, py in trip]
+                arc_bbox = (
+                    min(p[0] for p in pts_ws),
+                    min(p[1] for p in pts_ws),
+                    max(p[0] for p in pts_ws),
+                    max(p[1] for p in pts_ws),
+                )
+                pb = ws_bboxes.get(lbl)
+                if not pb:
+                    continue
+                ox = max(0.0, min(arc_bbox[2], pb[2]) - max(arc_bbox[0], pb[0]))
+                oy = max(0.0, min(arc_bbox[3], pb[3]) - max(arc_bbox[1], pb[1]))
+                overlap = ox * oy
+                arc_cx = (arc_bbox[0] + arc_bbox[2]) * 0.5
+                arc_cy = (arc_bbox[1] + arc_bbox[3]) * 0.5
+                pb_cx = (pb[0] + pb[2]) * 0.5
+                pb_cy = (pb[1] + pb[3]) * 0.5
+                dist = abs(arc_cx - pb_cx) + abs(arc_cy - pb_cy)
+                if overlap > best_overlap or (overlap == best_overlap and (best_dist is None or dist < best_dist)):
+                    best_overlap = overlap
+                    best_dist = dist
+                    best_lbl = lbl
+            if best_lbl:
+                arc_map.setdefault(best_lbl, []).append(trip)
+    else:
+        arc_map["CArc"] = triples
+
+    return arc_map
+
+
+def _extract_inline_components(
+    payload: bytes,
+    labels: Sequence[str],
+    *,
+    stop_offset: int,
+) -> dict[str, tuple[list[LineEntity], list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]]]]:
+    """
+    Extract inline component geometry from legacy .mcd payloads.
+
+    Important: in older (2012-era) files, the length-prefixed label markers
+    (e.g. b"\\x04OUTG") appear *after* the component blob they label. This
+    means chunk boundaries are inferred as:
+      first_chunk = [stream_start : marker0_pos]
+      next_chunk  = [marker0_end : marker1_pos]
+      ...
+      last_chunk  = [markerN-1_end : markerN_pos]
+
+    Bytes after the final marker often belong to world-space geometry and/or
+    placement metadata and should not be treated as component-local strokes.
+    """
+
+    markers: list[tuple[int, str, int]] = []
+    for label in labels:
+        marker = bytes([len(label)]) + label.encode("ascii", errors="ignore")
+        pos = payload.find(marker, 0, stop_offset)
+        if pos != -1:
+            markers.append((pos, label, len(marker)))
+    markers.sort()
+    if not markers:
+        return {}
+
+    # Infer the start of the inline stream by searching backwards from the
+    # first marker for the 0x01 0x80 header that precedes float-record chunks.
+    first_marker_pos = markers[0][0]
+    search_back = min(first_marker_pos, 16_384)
+    window_start = first_marker_pos - search_back
+    best_start: int | None = None
+    best_score = 0
+    cursor = first_marker_pos
+    while True:
+        hit = payload.rfind(b"\x01\x80", window_start, cursor)
+        if hit == -1:
+            break
+        bbox, lines, arcs = _parse_inline_float_records(payload[hit:first_marker_pos])
+        score = len(lines) + len(arcs)
+        if score > best_score:
+            best_score = score
+            best_start = hit
+        cursor = hit
+    stream_start = best_start if best_start is not None and best_score >= 4 else (best_start or window_start)
+
+    extracted: dict[
+        str,
+        tuple[
+            list[LineEntity],
+            list[tuple[int, tuple[tuple[float, float], tuple[float, float], tuple[float, float]]]],
+        ],
+    ] = {}
+
+    prev_end = stream_start
+    for pos, label, marker_len in markers:
+        if pos <= prev_end:
+            prev_end = pos + marker_len
+            continue
+        chunk = payload[prev_end:pos]
+        prev_end = pos + marker_len
+
+        bbox_hint, lines, arcs = _parse_inline_float_records(chunk)
+        if bbox_hint is not None and (lines or arcs):
+            extracted[label] = (lines, arcs)
+            continue
+
+        bbox_hint2, lines, arcs = _parse_inline_labeled_float_records(chunk)
+        if bbox_hint2 is not None and (lines or arcs):
+            extracted[label] = (lines, arcs)
+            continue
+
+        bbox = bbox_hint or bbox_hint2 or _extract_bbox_from_inline_chunk(chunk)
+        if bbox is not None:
+            dbl_lines, dbl_arcs = _scan_inline_double_records(chunk, bbox)
+            if dbl_lines or dbl_arcs:
+                extracted[label] = (dbl_lines, dbl_arcs)
+                continue
+
+        # Fallback to the short/sentinel parser for older component blobs.
+        if chunk.find(struct.pack("<h", COMPONENT_SENTINEL)) != -1:
+            segs, arc_triplets, _ = _decode_glyph_chunk(label, chunk)
+            if not segs and not arc_triplets:
+                continue
+            fallback_lines = [LineEntity(layer=0, start=a, end=b) for a, b in segs if a != b]
+            fallback_arcs = [(0, trip) for trip in arc_triplets]
+            extracted[label] = (fallback_lines, fallback_arcs)
+
+    return extracted
+
+
+def _find_first_component_trailer_start(payload: bytes) -> int:
+    """Return the earliest offset of a 0x075BCD15 placement trailer, or -1."""
+
+    magic = struct.pack("<I", 0x075BCD15)
+    idx = 0
+    best = None
+    while True:
+        hit = payload.find(magic, idx)
+        if hit == -1:
+            break
+        # Trailer format: <len:1><name:len><magic:4>..., so backtrack to find
+        # the length byte.
+        start = None
+        for name_len in range(1, 33):
+            candidate = hit - 1 - name_len
+            if candidate < 0:
+                continue
+            if payload[candidate] != name_len:
+                continue
+            name_bytes = payload[candidate + 1 : candidate + 1 + name_len]
+            if not name_bytes:
+                continue
+            if not all(32 <= b < 127 for b in name_bytes):
+                continue
+            start = candidate
+            break
+        if start is not None:
+            best = start if best is None else min(best, start)
+        idx = hit + 1
+    return -1 if best is None else best
+
+
+def _compute_component_bbox(
+    placements: Sequence[tuple[str, tuple[float, float, float, float, float]]],
+    segments: dict[str, list[tuple[tuple[float, float], tuple[float, float]]]],
+    *,
+    use_scales: bool,
+) -> tuple[float, float, float, float] | None:
+    xs: list[float] = []
+    ys: list[float] = []
+    for label, values in placements:
+        segs = segments.get(label)
+        if not segs:
+            continue
+        tx, ty, _, sx, sy = values
+        if not use_scales:
+            sx = sy = 1.0
+        for p1, p2 in segs:
+            xs.extend([p1[0] * sx + tx, p2[0] * sx + tx])
+            ys.extend([p1[1] * sy + ty, p2[1] * sy + ty])
+    if not xs or not ys:
+        return None
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def _extract_inline_component_geometry(payload: bytes) -> tuple[list[LineEntity], list[InsertEntity], list[ArcEntity]]:
+    placements, place_offset = _collect_glyph_placements(payload)
+    if not placements:
+        return [], [], []
+
+    # New-style files (TW84/YIKES/etc.) often include a placement trailer whose
+    # component_id does *not* match the component definition id embedded in the
+    # payload. Treat those as non-inline to avoid starburst artifacts.
+    if place_offset == -1:
+        definition_ids = {definition.component_id for definition in iter_component_definitions(payload)}
+        trailer_ids = {trailer.component_id for trailer in iter_placement_trailers(payload)}
+        if trailer_ids and definition_ids and trailer_ids.isdisjoint(definition_ids):
+            return [], [], []
+
+    labels = [label for label, _ in placements]
+    stop_offset = place_offset if place_offset != -1 else len(payload)
+    if place_offset == -1:
+        trailer_start = _find_first_component_trailer_start(payload)
+        if trailer_start != -1:
+            # Allow markers that occur exactly at the trailer start (e.g. the
+            # final '\x02SL' marker is also the start of the placement trailer).
+            name_len = payload[trailer_start] if trailer_start < len(payload) else 0
+            marker_end = trailer_start + 1 + int(name_len)
+            if marker_end > trailer_start:
+                stop_offset = min(stop_offset, min(marker_end, len(payload)))
+            else:
+                stop_offset = min(stop_offset, trailer_start)
+    label_list = list(dict.fromkeys(labels))
+
+    extracted = _extract_inline_components(payload, label_list, stop_offset=stop_offset)
+
+    lines: list[LineEntity] = []
+    inserts: list[InsertEntity] = []
+    arcs_out: list[ArcEntity] = []
+
+    for label, values in placements:
+        local_lines, local_arcs = extracted.get(label, ([], []))
+        if not local_lines and not local_arcs:
+            continue
+        tx, ty, rot, sx, sy = values
+        rotation_rad = math.radians(rot) if abs(rot) > 1e-6 else 0.0
+        cos_theta = math.cos(rotation_rad) if rotation_rad else 1.0
+        sin_theta = math.sin(rotation_rad) if rotation_rad else 0.0
+
+        def xf(pt: tuple[float, float]) -> tuple[float, float]:
+            x = pt[0] * sx
+            y = pt[1] * sy
+            if rotation_rad:
+                x, y = (x * cos_theta - y * sin_theta, x * sin_theta + y * cos_theta)
+            return (x + tx, y + ty)
+
+        for ln in local_lines:
+            a = xf(ln.start)
+            b = xf(ln.end)
+            if a != b and all(_looks_like_coordinate(v) for v in (*a, *b)):
+                lines.append(LineEntity(layer=0, start=a, end=b))
+
+        for layer, (p0, p1, p2) in local_arcs:
+            ws0 = xf(p0)
+            ws1 = xf(p1)
+            ws2 = xf(p2)
+            if not all(_looks_like_coordinate(v) for v in (*ws0, *ws1, *ws2)):
+                continue
+            solution = _circle_from_points(ws0, ws1, ws2)
+            if solution is None:
+                continue
+            cx, cy, radius = solution
+            if not math.isfinite(radius) or radius <= 1e-6:
+                continue
+            center = (cx, cy)
+
+            def _angle(pt: tuple[float, float]) -> float:
+                return math.atan2(pt[1] - cy, pt[0] - cx) % math.tau
+
+            ang0 = _angle(ws0)
+            ang1 = _angle(ws1)
+            ang2 = _angle(ws2)
+            sweep = (ang2 - ang0) % math.tau
+            rel1 = (ang1 - ang0) % math.tau
+            start = ws0
+            end = ws2
+            if rel1 > sweep + 1e-6:
+                start, end = end, start
+
+            arcs_out.append(ArcEntity(layer=0, center=center, start=start, end=end))
+
+    # Deduplicate lines with rounding to trim over-segmentation noise.
+    rounded: dict[Tuple[int, Tuple[float, float], Tuple[float, float]], LineEntity] = {}
+    for ln in lines:
+        key = (
+            ln.layer,
+            (round(ln.start[0], 4), round(ln.start[1], 4)),
+            (round(ln.end[0], 4), round(ln.end[1], 4)),
+        )
+        rounded[key] = ln
+    lines = list(rounded.values())
+
+    # Deduplicate arcs (helps when promotion/carc parsing produces overlaps).
+    arc_index: dict[Tuple[int, float, float, float, float, float], ArcEntity] = {}
+    for arc in arcs_out:
+        cx, cy = arc.center
+        radius = math.hypot(arc.start[0] - cx, arc.start[1] - cy)
+        start_ang = math.atan2(arc.start[1] - cy, arc.start[0] - cx)
+        end_ang = math.atan2(arc.end[1] - cy, arc.end[0] - cx)
+        key = (
+            arc.layer,
+            round(cx, 5),
+            round(cy, 5),
+            round(radius, 5),
+            round(start_ang, 5),
+            round(end_ang, 5),
+        )
+        arc_index[key] = arc
+    arcs_out = list(arc_index.values())
+
+    # Prune line segments that are represented by arcs.
+    if arcs_out:
+        lines = _prune_lines_against_arcs(lines, arcs_out)
+
+    return lines, inserts, arcs_out
+
+
+def _prune_lines_against_arcs(
+    lines: list[LineEntity],
+    arcs: list[ArcEntity],
+    *,
+    tol: float = 1e-3,
+) -> list[LineEntity]:
+    """Remove line segments that lie on emitted arcs (same layer) to reduce duplication."""
+
+    def point_on_arc(pt, arc: ArcEntity) -> bool:
+        cx, cy = arc.center
+        r = math.hypot(arc.start[0] - cx, arc.start[1] - cy)
+        if r <= 1e-9:
+            return False
+        tol_r = max(tol, r * 1e-4)
+        d = abs(math.hypot(pt[0] - cx, pt[1] - cy) - r)
+        if d > tol_r:
+            return False
+        start_ang = math.atan2(arc.start[1] - cy, arc.start[0] - cx) % math.tau
+        end_ang = math.atan2(arc.end[1] - cy, arc.end[0] - cx) % math.tau
+        ang = math.atan2(pt[1] - cy, pt[0] - cx) % math.tau
+        sweep = (end_ang - start_ang) % math.tau
+        rel = (ang - start_ang) % math.tau
+        tol_ang = max(1e-3, tol_r / r)
+        return rel <= sweep + tol_ang
+
+    # Fast index by layer
+    arcs_by_layer: dict[int, list[ArcEntity]] = {}
+    for a in arcs:
+        arcs_by_layer.setdefault(a.layer, []).append(a)
+
+    pruned: list[LineEntity] = []
+    for ln in lines:
+        layer_arcs = arcs_by_layer.get(ln.layer, [])
+        removed = False
+        for arc in layer_arcs:
+            if point_on_arc(ln.start, arc) and point_on_arc(ln.end, arc):
+                removed = True
+                break
+        if not removed:
+            pruned.append(ln)
+    return pruned
+
+
+def _collect_component_circles(
+    payload: bytes,
+) -> Tuple[List[CircleEntity], List[Tuple[Tuple[float, float], Tuple[float, float]]]]:
+    definitions = {definition.component_id: definition for definition in iter_component_definitions(payload)}
+    if not definitions:
+        return [], []
+
+    circle_cache: dict[int, List[CirclePrimitive]] = {}
+    helper_cache: dict[int, List[Tuple[Tuple[float, float], Tuple[float, float]]]] = {}
+
+    for component_id, definition in definitions.items():
+        circles = extract_circle_primitives(definition)
+        if circles:
+            circle_cache[component_id] = circles
+            helper_cache[component_id] = [(circle.center, circle.rim) for circle in circles]
+
+    if not circle_cache:
+        return [], []
+
+    placements = list(iter_component_placements(payload))
+    entities: List[CircleEntity] = []
+    helper_segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+
+    def _merge(component_id: int) -> None:
+        primitives = circle_cache.get(component_id)
+        if not primitives:
+            return
+        for primitive in primitives:
+            entities.append(
+                CircleEntity(
+                    layer=0,
+                    center=primitive.center,
+                    radius=primitive.radius,
+                )
+            )
+        helper_segments.extend(helper_cache.get(component_id, []))
+
+    if placements:
+        for placement in placements:
+            _merge(placement.component_id)
+
+    if not entities:
+        for component_id in circle_cache.keys():
+            _merge(component_id)
+
+    return entities, helper_segments
+
+
+def _extract_short_component_lines(payload: bytes) -> List[LineEntity]:
+    short_lines: List[LineEntity] = []
+    for definition in iter_component_definitions(payload):
+        for label, chunk in iter_label_chunks(payload, definition):
+            if label not in {"CLine", "CArc", "CCircle"}:
+                continue
+            segments = _segments_from_short_chunk(chunk)
+            for start, end in segments:
+                if not _points_match(start, end):
+                    short_lines.append(LineEntity(layer=0, start=start, end=end))
+    return short_lines
+
+
+def _segments_from_short_chunk(chunk: bytes) -> List[Tuple[Tuple[float, float], Tuple[float, float]]]:
+    try:
+        definition = parse_component_bytes("TLV", chunk)
+    except Exception:
+        return []
+    segments: List[Tuple[Tuple[float, float], Tuple[float, float]]] = []
+    for record in definition.records:
+        points = record.normalized_points()
+        if len(points) < 2:
+            continue
+        if len(points) % 2 != 0:
+            points = points[:-1]
+        for idx in range(0, len(points), 2):
+            p1 = points[idx]
+            p2 = points[idx + 1]
+            segments.append((p1, p2))
+    return segments
+
+
+def _matches_component_helper(
+    line: LineEntity,
+    helpers: Sequence[Tuple[Tuple[float, float], Tuple[float, float]]],
+) -> bool:
+    for center, rim in helpers:
+        if _points_match(line.start, center) and _points_match(line.end, rim):
+            return True
+        if _points_match(line.start, rim) and _points_match(line.end, center):
+            return True
+    return False
+
+
+def write_dxf(
+    lines: Sequence[LineEntity],
+    arcs: Sequence[ArcEntity],
+    circles: Sequence[CircleEntity],
+    destination: Path,
+    inserts: Sequence[InsertEntity] | None = None,
+) -> None:
+    """
+    Emit a bare-bones DXF file that places every line onto its original layer
+    (falling back to MCD_Layer_<id> labels) and keeps Z at 0.
+    """
+
+    def emit(code: str, value: str) -> str:
+        return f"{code}\n{value}\n"
+
+    chunks: List[str] = []
+
+    # Optional placeholder BLOCK definitions for any inserts we plan to emit.
+    if inserts:
+        block_names = {ins.name for ins in inserts}
+        chunks.append(emit("0", "SECTION"))
+        chunks.append(emit("2", "BLOCKS"))
+        for name in sorted(block_names):
+            chunks.append(emit("0", "BLOCK"))
+            chunks.append(emit("8", "0"))
+            chunks.append(emit("2", name))
+            chunks.append(emit("70", "0"))
+            chunks.append(emit("10", "0.0"))
+            chunks.append(emit("20", "0.0"))
+            chunks.append(emit("30", "0.0"))
+            chunks.append(emit("3", name))
+            chunks.append(emit("1", name))
+            chunks.append(emit("0", "ENDBLK"))
+        chunks.append(emit("0", "ENDSEC"))
+
+    chunks.append(emit("0", "SECTION"))
+    chunks.append(emit("2", "ENTITIES"))
+
+    for line in lines:
+        layer_name = f"MCD_Layer_{line.layer}"
+        chunks.append(emit("0", "LINE"))
+        chunks.append(emit("8", layer_name))
+        chunks.append(emit("10", f"{line.start[0]:.6f}"))
+        chunks.append(emit("20", f"{line.start[1]:.6f}"))
+        chunks.append(emit("30", "0.0"))
+        chunks.append(emit("11", f"{line.end[0]:.6f}"))
+        chunks.append(emit("21", f"{line.end[1]:.6f}"))
+        chunks.append(emit("31", "0.0"))
+
+    for arc in arcs:
+        layer_name = f"MCD_Layer_{arc.layer}"
+        radius = math.hypot(arc.start[0] - arc.center[0], arc.start[1] - arc.center[1])
+        if radius < 1e-9:
+            continue
+
+        def _angle(pt: Tuple[float, float]) -> float:
+            return math.degrees(math.atan2(pt[1] - arc.center[1], pt[0] - arc.center[0])) % 360.0
+
+        start_ang = _angle(arc.start)
+        end_ang = _angle(arc.end)
+
+        chunks.append(emit("0", "ARC"))
+        chunks.append(emit("8", layer_name))
+        chunks.append(emit("10", f"{arc.center[0]:.6f}"))
+        chunks.append(emit("20", f"{arc.center[1]:.6f}"))
+        chunks.append(emit("40", f"{radius:.6f}"))
+        chunks.append(emit("50", f"{start_ang:.6f}"))
+        chunks.append(emit("51", f"{end_ang:.6f}"))
+
+    for circle in circles:
+        layer_name = f"MCD_Layer_{circle.layer}"
+        if circle.radius < 1e-9:
+            continue
+        chunks.append(emit("0", "CIRCLE"))
+        chunks.append(emit("8", layer_name))
+        chunks.append(emit("10", f"{circle.center[0]:.6f}"))
+        chunks.append(emit("20", f"{circle.center[1]:.6f}"))
+        chunks.append(emit("40", f"{circle.radius:.6f}"))
+
+    if inserts:
+        for ins in inserts:
+            layer_name = f"MCD_Layer_{ins.layer}"
+            chunks.append(emit("0", "INSERT"))
+            chunks.append(emit("8", layer_name))
+            chunks.append(emit("2", ins.name))
+            chunks.append(emit("10", f"{ins.position[0]:.6f}"))
+            chunks.append(emit("20", f"{ins.position[1]:.6f}"))
+            chunks.append(emit("30", "0.0"))
+            chunks.append(emit("41", f"{ins.scale[0]:.6f}"))
+            chunks.append(emit("42", f"{ins.scale[1]:.6f}"))
+            chunks.append(emit("43", "1.0"))
+            if abs(ins.rotation) > 1e-9:
+                chunks.append(emit("50", f"{ins.rotation:.6f}"))
+
+    chunks.append(emit("0", "ENDSEC"))
+    chunks.append(emit("0", "EOF"))
+    destination.write_text("".join(chunks), encoding="ascii")
+
+
+def parse_args(argv: Sequence[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Decompress a MONU-CAD .mcd file and spit out a DXF."
+    )
+    parser.add_argument("input", type=Path, help="Path to the source .mcd file")
+    parser.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        help="Optional DXF destination (defaults to <input>.dxf)",
+    )
+    parser.add_argument(
+        "--start-offset",
+        type=int,
+        default=0,
+        help="Byte offset to start scanning for the hidden deflate stream",
+    )
+    parser.add_argument(
+        "--stop-offset",
+        type=int,
+        default=None,
+        help="Optional byte offset (exclusive) to stop scanning",
+    )
+    parser.add_argument(
+        "--min-payload",
+        type=int,
+        default=DEFAULT_MIN_PAYLOAD,
+        help="Ignore deflate candidates whose decompressed size is smaller than this",
+    )
+    parser.add_argument(
+        "--dump-arc-helpers",
+        type=Path,
+        help="Write raw helper record context for each type-3 arc to this path",
+    )
+    parser.add_argument(
+        "--arc-helper-window",
+        type=int,
+        default=16,
+        help="Number of subsequent records to capture per arc when dumping helpers",
+    )
+    parser.add_argument(
+        "--duplicate-log",
+        type=Path,
+        help="Write every duplicate geometry record to this path for Pack Data analysis",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+    blob = args.input.read_bytes()
+
+    print(f"[+] Loaded {args.input} ({len(blob)} bytes)")
+    streams = collect_deflate_streams(
+        blob,
+        min_payload=args.min_payload,
+        start_offset=args.start_offset,
+        stop_offset=args.stop_offset,
+    )
+    if not streams:
+        raise RuntimeError(
+            "Unable to locate a deflate payload. "
+            "Try passing --start-offset/--stop-offset to narrow the search window."
+        )
+    streams_sorted = sorted(streams, key=lambda item: len(item[1]), reverse=True)
+    offset, payload = streams_sorted[0]
+    print(f"[+] Found deflate stream at offset {offset} (payload {len(payload)} bytes)")
+    if len(streams_sorted) > 1:
+        best_size = len(payload)
+        significant = [
+            (ofs, data)
+            for ofs, data in streams_sorted[1:]
+            if best_size - len(data) >= 512
+        ]
+        if significant:
+            preview = ", ".join(f"0x{ofs:X}/{len(data)}B" for ofs, data in significant[:5])
+            print(f"[i] Additional deflate streams detected ({len(significant)} significant): {preview}")
+
+    helper_logger = ArcHelperLogger(args.dump_arc_helpers, window=args.arc_helper_window) if args.dump_arc_helpers else None
+
+    lines, arcs, circles, inserts = parse_entities(
+        payload,
+        helper_logger=helper_logger,
+        duplicate_log=args.duplicate_log,
+    )
+    if helper_logger:
+        helper_logger.flush()
+    if not lines and not arcs and not circles:
+        if _LAST_MISSING_FONTS:
+            missing_list = ", ".join(sorted(_LAST_MISSING_FONTS))
+            raise RuntimeError(
+                f"No supported entities were discovered inside the payload (unsupported fonts: {missing_list})."
+            )
+        raise RuntimeError("No supported entities were discovered inside the payload.")
+    print(
+        f"[+] Extracted {len(lines)} line entities, {len(arcs)} arc entities, "
+        f"and {len(circles)} circle entities"
+    )
+
+    output_path = args.output or args.input.with_suffix(".dxf")
+    write_dxf(lines, arcs, circles, output_path, inserts=inserts)
+    print(f"[+] DXF written to {output_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

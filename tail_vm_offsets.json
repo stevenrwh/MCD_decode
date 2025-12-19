@@ -1,0 +1,350 @@
+{
+  "tail_stats": {
+    "(0, 256, 0, 768)": {
+      "count": 642,
+      "min_offset": 937,
+      "max_offset": 37614,
+      "avg_gap": 57.21840873634945,
+      "ranges": [
+        {
+          "start": 937,
+          "end": 2081,
+          "count": 29
+        },
+        {
+          "start": 2207,
+          "end": 3947,
+          "count": 43
+        },
+        {
+          "start": 4031,
+          "end": 5651,
+          "count": 43
+        },
+        {
+          "start": 5795,
+          "end": 5921,
+          "count": 4
+        },
+        {
+          "start": 5987,
+          "end": 7099,
+          "count": 29
+        },
+        {
+          "start": 7183,
+          "end": 7225,
+          "count": 2
+        },
+        {
+          "start": 7309,
+          "end": 8001,
+          "count": 19
+        },
+        {
+          "start": 8085,
+          "end": 9113,
+          "count": 27
+        },
+        {
+          "start": 9179,
+          "end": 9465,
+          "count": 8
+        },
+        {
+          "start": 9591,
+          "end": 10753,
+          "count": 30
+        },
+        {
+          "start": 10819,
+          "end": 12031,
+          "count": 31
+        },
+        {
+          "start": 12115,
+          "end": 12435,
+          "count": 9
+        },
+        {
+          "start": 12501,
+          "end": 12957,
+          "count": 13
+        },
+        {
+          "start": 13067,
+          "end": 13193,
+          "count": 4
+        },
+        {
+          "start": 13371,
+          "end": 13639,
+          "count": 7
+        },
+        {
+          "start": 13791,
+          "end": 13959,
+          "count": 5
+        },
+        {
+          "start": 14127,
+          "end": 14337,
+          "count": 6
+        },
+        {
+          "start": 14447,
+          "end": 14531,
+          "count": 3
+        },
+        {
+          "start": 14641,
+          "end": 14725,
+          "count": 3
+        },
+        {
+          "start": 14927,
+          "end": 15793,
+          "count": 22
+        },
+        {
+          "start": 15877,
+          "end": 16129,
+          "count": 7
+        },
+        {
+          "start": 16247,
+          "end": 16541,
+          "count": 8
+        },
+        {
+          "start": 16641,
+          "end": 17777,
+          "count": 29
+        },
+        {
+          "start": 17903,
+          "end": 19079,
+          "count": 29
+        },
+        {
+          "start": 19305,
+          "end": 19853,
+          "count": 15
+        },
+        {
+          "start": 19937,
+          "end": 20189,
+          "count": 7
+        },
+        {
+          "start": 21903,
+          "end": 23419,
+          "count": 39
+        },
+        {
+          "start": 23555,
+          "end": 23959,
+          "count": 11
+        },
+        {
+          "start": 24025,
+          "end": 24949,
+          "count": 23
+        },
+        {
+          "start": 25151,
+          "end": 27091,
+          "count": 47
+        },
+        {
+          "start": 27175,
+          "end": 28309,
+          "count": 28
+        },
+        {
+          "start": 28375,
+          "end": 29829,
+          "count": 36
+        },
+        {
+          "start": 29955,
+          "end": 30333,
+          "count": 10
+        },
+        {
+          "start": 36800,
+          "end": 36902,
+          "count": 4
+        },
+        {
+          "start": 37240,
+          "end": 37614,
+          "count": 12
+        }
+      ]
+    },
+    "(0, 0, 1, 0)": {
+      "count": 116,
+      "min_offset": 19145,
+      "max_offset": 38774,
+      "avg_gap": 170.68695652173912,
+      "ranges": [
+        {
+          "start": 19145,
+          "end": 19247,
+          "count": 4
+        },
+        {
+          "start": 31378,
+          "end": 31840,
+          "count": 12
+        },
+        {
+          "start": 31909,
+          "end": 31951,
+          "count": 2
+        },
+        {
+          "start": 32161,
+          "end": 32203,
+          "count": 2
+        },
+        {
+          "start": 33673,
+          "end": 33715,
+          "count": 2
+        },
+        {
+          "start": 33841,
+          "end": 35171,
+          "count": 34
+        },
+        {
+          "start": 35236,
+          "end": 35278,
+          "count": 2
+        },
+        {
+          "start": 35404,
+          "end": 36734,
+          "count": 34
+        },
+        {
+          "start": 37756,
+          "end": 37874,
+          "count": 4
+        },
+        {
+          "start": 38000,
+          "end": 38774,
+          "count": 20
+        }
+      ]
+    },
+    "(30795, -32705, -23451, -25539)": {
+      "count": 38,
+      "min_offset": 20255,
+      "max_offset": 21845,
+      "avg_gap": 42.972972972972975,
+      "ranges": [
+        {
+          "start": 20255,
+          "end": 21719,
+          "count": 37
+        },
+        {
+          "start": 21845,
+          "end": 21845,
+          "count": 1
+        }
+      ]
+    },
+    "(0, 256, 0, 1792)": {
+      "count": 34,
+      "min_offset": 30399,
+      "max_offset": 37170,
+      "avg_gap": 205.1818181818182,
+      "ranges": [
+        {
+          "start": 30399,
+          "end": 30693,
+          "count": 8
+        },
+        {
+          "start": 32273,
+          "end": 32315,
+          "count": 2
+        },
+        {
+          "start": 32483,
+          "end": 32651,
+          "count": 5
+        },
+        {
+          "start": 32819,
+          "end": 32903,
+          "count": 3
+        },
+        {
+          "start": 32973,
+          "end": 33015,
+          "count": 2
+        },
+        {
+          "start": 33183,
+          "end": 33351,
+          "count": 5
+        },
+        {
+          "start": 33519,
+          "end": 33603,
+          "count": 3
+        },
+        {
+          "start": 36960,
+          "end": 37170,
+          "count": 6
+        }
+      ]
+    },
+    "(0, 256, 0, 1536)": {
+      "count": 14,
+      "min_offset": 30763,
+      "max_offset": 31309,
+      "avg_gap": 42.0,
+      "ranges": [
+        {
+          "start": 30763,
+          "end": 31309,
+          "count": 14
+        }
+      ]
+    },
+    "(-21504, -7304, 189, 5824)": {
+      "count": 2,
+      "min_offset": 37672,
+      "max_offset": 37714,
+      "avg_gap": 42.0,
+      "ranges": [
+        {
+          "start": 37672,
+          "end": 37714,
+          "count": 2
+        }
+      ]
+    },
+    "(0, 0, 22019, 16461)": {
+      "count": 1,
+      "min_offset": 38851,
+      "max_offset": 38851,
+      "avg_gap": null,
+      "ranges": [
+        {
+          "start": 38851,
+          "end": 38851,
+          "count": 1
+        }
+      ]
+    }
+  }
+}

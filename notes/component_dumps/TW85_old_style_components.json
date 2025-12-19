@@ -1,0 +1,29 @@
+{
+  "source": "old_style_mcd_files\\TW85.mcd",
+  "payload_size": 54455,
+  "components": [
+    {
+      "offset": 264,
+      "length": 54191,
+      "component_id": "0x6e694c43",
+      "bbox": [
+        -0.3490000069141388,
+        0.0,
+        0.3490000069141388,
+        1.0
+      ],
+      "header_values": [
+        4294901782,
+        327681,
+        1852394563,
+        101,
+        512,
+        274877952,
+        190
+      ],
+      "sub_blocks": [],
+      "tlv_primitive_count": 0
+    }
+  ],
+  "placements": []
+}

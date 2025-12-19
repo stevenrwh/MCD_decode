@@ -1,0 +1,17 @@
+Reference: new_style_mcd_files/TW84.dxf
+Candidate: tmp_TW84_current.dxf
+
+Entity type       Ref      Cand     Delta
+-----------------------------------------
+ARC                   13        11       -2 -
+CIRCLE                 3         3        0  
+LINE                1195       611     -584 -
+
+Per-layer deltas:
+
+[ARC]
+  MCD_Layer_0          ref=13     cand=11     delta=-2
+
+[LINE]
+  MCD_Layer_0          ref=1181   cand=604    delta=-577
+  MCD_Layer_1          ref=14     cand=7      delta=-7

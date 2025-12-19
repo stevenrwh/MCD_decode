@@ -1,0 +1,1 @@
+AddGroupToDrawingGroupMgr 1

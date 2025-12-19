@@ -1,0 +1,98 @@
+{
+  "events": [
+    {
+      "event": "window-ready",
+      "title": "Untitled - MONU-CAD Pro [9.2.10"
+    },
+    {
+      "event": "save-command",
+      "mode": "all",
+      "path": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_all.mcd"
+    },
+    {
+      "title": "Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763324997_Save_As.png",
+      "body": [
+        "Save &in:",
+        "File &name:",
+        "Save as &type:"
+      ]
+    },
+    {
+      "title": "Confirm Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763324998_Confirm_Save_As.png"
+    },
+    {
+      "event": "save-command",
+      "mode": "specific",
+      "path": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_specific.mcd"
+    },
+    {
+      "title": "Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763325018_Save_As.png",
+      "body": [
+        "Save &in:",
+        "File &name:",
+        "Save as &type:"
+      ]
+    },
+    {
+      "title": "Confirm Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763325018_Confirm_Save_As.png"
+    },
+    {
+      "event": "save-command",
+      "mode": "only",
+      "path": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_only.mcd"
+    },
+    {
+      "title": "Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763325038_Save_As.png",
+      "body": [
+        "Save &in:",
+        "File &name:",
+        "Save as &type:"
+      ]
+    },
+    {
+      "title": "Confirm Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763325039_Confirm_Save_As.png"
+    },
+    {
+      "event": "save-command",
+      "mode": "masters",
+      "path": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_masters.mcd"
+    },
+    {
+      "title": "Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763325059_Save_As.png",
+      "body": [
+        "Save &in:",
+        "File &name:",
+        "Save as &type:"
+      ]
+    },
+    {
+      "title": "Confirm Save As",
+      "screenshot": "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\with_frida\\1763325059_Confirm_Save_As.png"
+    }
+  ],
+  "files": [
+    [
+      "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_all.mcd",
+      "all"
+    ],
+    [
+      "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_specific.mcd",
+      "specific"
+    ],
+    [
+      "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_only.mcd",
+      "only"
+    ],
+    [
+      "C:\\Dev\\MCD_decode\\analysis\\security_sweep\\line_masters.mcd",
+      "masters"
+    ]
+  ]
+}

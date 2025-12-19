@@ -1,0 +1,2248 @@
+[Modified Roman]
+dtafile = mr			; comment
+fontfile = mcalf001
+lowercase = no
+serifs = no
+
+[Condensed Roman]
+dtafile = cr			; comment
+fontfile = mcalf002
+lowercase = no
+serifs = no
+
+[Outline Roman]
+dtafile = out			; comment
+fontfile = mcalf003
+lowercase = no
+serifs = yes
+
+[Classic Roman]
+dtafile = cl			; comment
+fontfile = mcalf004
+lowercase = no
+serifs = no
+
+[Square Raised Medium]
+dtafile = sq			; comment
+fontfile = mcalf005
+lowercase = no
+serifs = no
+
+[Square Raised Bold]
+dtafile = sqb			; comment
+fontfile = mcalf006
+lowercase = no
+serifs = no
+
+[Hebrew]
+dtafile = heb			; comment
+fontfile = mcalf007
+lowercase = no
+serifs = no
+
+[Government Text]
+dtafile = go			; comment
+fontfile = mcalf008
+lowercase = no
+serifs = no
+
+[Press Condensed Roman]
+dtafile = skc
+fontfile = mcalf009
+lowercase = no
+serifs = yes
+smallest = .75
+
+[Press Modified Roman]
+dtafile = skm
+fontfile = mcalf010
+lowercase = no
+serifs = yes
+smallest = .75
+
+[Common Gothic]
+dtafile = cg
+fontfile = mcalf011
+lowercase = no
+serifs = no
+smallest = .5
+
+[Russian]
+dtafile = rus
+fontfile = mcalf012
+lowercase = no
+serifs = no
+
+[Script Sand Blast]
+dtafile = scs
+fontfile = mcalf013
+lowercase = yes
+serifs = no
+
+[Script Outline]
+dtafile = sco
+fontfile = mcalf014
+lowercase = yes
+serifs = no
+
+[Old English Outline]
+dtafile = ooe
+fontfile = mcalf015
+lowercase = yes
+serifs = no
+
+[Old English SB]
+dtafile = oe
+fontfile = mcalf016
+lowercase = yes
+serifs = no
+
+[Uncial Gothic]
+dtafile = ug
+fontfile = mcalf017
+lowercase = no
+serifs = no
+
+[Triple Cut]
+dtafile = tri
+fontfile = mcalf018
+lowercase = no
+serifs = no
+
+[NYC-Russian]
+dtafile = run
+fontfile = mcalf019
+lowercase = no
+serifs = no
+
+[Vermarco]
+dtafile = vm
+fontfile = mcalf020
+lowercase = no
+serifs = no
+smallest = .5
+
+[Helvetica Medium]
+dtafile = hlm
+fontfile = mcalf021
+lowercase = yes
+serifs = no
+
+[21]
+dtafile = 21
+fontfile = 21
+lowercase = no
+serifs = no
+
+[Helvetica Bold]
+dtafile = m22
+fontfile = mcalf022
+lowercase = yes
+serifs = no
+
+[Amer-1]
+dtafile = am
+fontfile = mcalf023
+lowercase = no
+Serifs = no
+smallest = .75
+
+[Troman]
+dtafile = tm
+fontfile = mcalf024
+lowercase = yes
+serifs = no
+
+;[W3D]
+;dtafile = w3d
+;fontfile = mcalf025
+;lowercase = no
+;serifs = no
+
+[Roman Shaded]
+dtafile = rs
+fontfile = mcalf026
+lowercase = no
+serifs = no
+
+[Armenian]
+dtafile = ar
+fontfile = mcalf027
+lowercase = yes
+serifs = no
+
+[European]
+dtafile = eur
+fontfile = mcalf028
+lowercase = no
+serifs = no
+
+[Fancy Gothic]
+dtafile = fg
+fontfile = mcalf029
+lowercase = no
+serifs = no
+
+[Brush Script]
+dtafile = bsc
+fontfile = mcalf030
+lowercase = yes
+serifs = no
+
+[Roman Italic Bold]
+dtafile = m31
+fontfile = mcalf031
+lowercase = yes
+serifs = no
+
+[Comm. Gothic]
+dtafile = m32
+fontfile = mcalf032
+lowercase = no
+serifs = no
+smallest = 1
+
+[Opti SB]
+dtafile = m33
+fontfile = mcalf033
+lowercase = no
+serifs = no
+
+[Opti Outline]
+dtafile = m34
+fontfile = mcalf034
+lowercase = no
+serifs = yes
+
+[Clar Medium]
+dtafile = m35
+fontfile = mcalf035
+lowercase = yes
+serifs = no
+
+;[ShevrusM]
+;dtafile = m36
+;fontfile = mcalf036
+;lowercase = no
+;serifs = no
+
+[Flintstone]
+dtafile = m37
+fontfile = mcalf037
+lowercase = yes
+serifs = no
+
+[Roman Italic Med.]
+dtafile = m38
+fontfile = mcalf038
+lowercase = yes
+serifs = no
+
+[Modern]
+dtafile = m39
+fontfile = mcalf039
+lowercase = no
+serifs = no
+
+[Classic Roman-2]
+dtafile = m40
+fontfile = mcalf040
+lowercase = yes
+serifs = no
+
+[Polished Edge]
+dtafile = m41
+fontfile = mcalf041
+lowercase = no
+serifs = no
+
+[Celtic]
+dtafile = m42
+fontfile = mcalf042
+lowercase = yes
+serifs = no
+
+[Bevel Panel Let1]
+dtafile = m43
+fontfile = mcalf043
+lowercase = no
+serifs = no
+
+[K & O SB-1]
+dtafile = m44
+fontfile = mcalf044
+lowercase = yes
+serifs = no
+
+[K & O Outline-1]
+dtafile = m45
+fontfile = mcalf045
+lowercase = yes
+serifs = no
+
+;[ShevrusC]
+;dtafile = m46
+;fontfile = mcalf046
+;lowercase = no
+;serifs = no
+
+[Old English SB-2]
+dtafile = m47
+fontfile = mcalf047
+lowercase = yes
+serifs = no
+
+[Stylish SB-1]
+dtafile = m48
+fontfile = mcalf048
+lowercase = yes
+serifs = no
+
+[MGC Hebrew]
+dtafile = m49
+fontfile = mcalf049
+lowercase = no
+serifs = no
+
+[K & O SB-2]
+dtafile = m50
+fontfile = mcalf050
+lowercase = no
+serifs = no
+
+[DS Covenant]
+dtafile = m51
+fontfile = mcalf051
+lowercase = yes
+serifs = no
+
+[GM Script]
+dtafile = m52
+fontfile = mcalf052
+lowercase = yes
+serifs = no
+
+[CQC Script 1]
+dtafile = m53
+fontfile = mcalf053
+lowercase = yes
+serifs = no
+smallest = .75
+
+[Bold Roman 1]
+dtafile = m54
+fontfile = mcalf054
+lowercase = no
+serifs = no
+
+[Smith SIP]
+dtafile = m55
+fontfile = mcalf055
+lowercase = no
+serifs = no
+
+[Smith UK]
+dtafile = m56
+fontfile = mcalf056
+lowercase = no
+serifs = no
+
+[Palatine 1]
+dtafile = m57
+fontfile = mcalf057
+lowercase = yes
+serifs = no
+
+[Smith CDSIP]
+dtafile = m58
+fontfile = mcalf058
+lowercase = no
+serifs = no
+
+[Greek SB #1]
+dtafile = m59
+fontfile = mcalf059
+lowercase = no
+serifs = no
+
+[Govt2]
+dtafile = m60
+fontfile = mcalf060
+lowercase = no
+serifs = no
+
+[Mod Roman Sanserif]
+dtafile = m61
+fontfile = mcalf061
+lowercase = no
+serifs = no
+
+[Cond Roman Sanserif]
+dtafile = m62
+fontfile = mcalf062
+lowercase = no
+serifs = no
+
+[Outline Clar Medium]
+dtafile = m63
+fontfile = mcalf063
+lowercase = yes
+serifs = no
+
+[Valley Script]
+dtafile = m64
+fontfile = mcalf064
+lowercase = yes
+serifs = no
+
+[Old English SB-3]
+dtafile = m65
+fontfile = mcalf065
+lowercase = yes
+serifs = no
+
+[Henry SB-1]
+dtafile = m66
+fontfile = mcalf066
+lowercase = no
+serifs = no
+
+[Helvetica Light]
+dtafile = m67
+fontfile = mcalf067
+lowercase = yes
+serifs = no
+
+[GM Roman]
+dtafile = m68
+fontfile = mcalf068
+lowercase = no
+serifs = no
+
+[Smith SIP #2]
+dtafile = m69
+fontfile = mcalf069
+lowercase = no
+serifs = no
+
+[Smith UK#2]
+dtafile = m70
+fontfile = mcalf070
+lowercase = no
+serifs = no
+
+[Fancy Fam Name #1]
+dtafile = m71
+fontfile = mcalf071
+lowercase = no
+serifs = no
+
+[Fancy Fam Name #2]
+dtafile = m72
+fontfile = mcalf072
+lowercase = no
+serifs = no
+
+[Fancy Fam Name #3]
+dtafile = m73
+fontfile = mcalf073
+lowercase = no
+serifs = no
+
+[Bailey #1]
+dtafile = m74
+fontfile = mcalf074
+lowercase = no
+serifs = no
+
+[Bailey #2]
+dtafile = m75
+fontfile = mcalf075
+lowercase = no
+serifs = no
+
+[Shamrock]
+dtafile = m76
+fontfile = mcalf076
+lowercase = yes
+serifs = no
+
+[Oliveanti #1]
+dtafile = m77
+fontfile = mcalf077
+lowercase = yes
+serifs = no
+
+[OLSON]
+dtafile = m78
+fontfile = mcalf078
+lowercase = no
+serifs = no
+
+[INDIV. CONDENSED]
+dtafile = m79
+fontfile = mcalf079
+lowercase = no
+serifs = no
+
+[INDIV. MODIFIED]
+dtafile = m80
+fontfile = mcalf080
+lowercase = no
+serifs = no
+
+[SLOV]
+dtafile = m81
+fontfile = mcalf081
+lowercase = no
+serifs = no
+
+[GUMPY1]
+dtafile = m82
+fontfile = mcalf082
+lowercase = yes
+serifs = no
+
+[CLAREN1]
+dtafile = m83
+fontfile = mcalf083
+lowercase = yes
+serifs = no
+
+[PALMER]
+dtafile = m84
+fontfile = mcalf084
+lowercase = no
+serifs = no
+
+[PEEBLES SCRIPT]
+dtafile = m85
+fontfile = mcalf085
+lowercase = yes
+serifs = no
+smallest = 1.0
+
+[OUTLINE EUROPEAN]
+dtafile = m86
+fontfile = mcalf086
+lowercase = no
+serifs = yes
+
+[SMYTH RUSTIK]
+dtafile = m87
+fontfile = mcalf087
+lowercase = no
+serifs = no
+
+[SMYTH RUSTIKSO]
+dtafile = m88
+fontfile = mcalf088
+lowercase = no
+serifs = no
+
+
+[BAY CG OUTLINE]
+dtafile = m89
+fontfile = mcalf089
+lowercase = no
+serifs = no
+
+[SMYTH STEELE]
+dtafile = m90
+fontfile = mcalf090
+lowercase = no
+serifs = no
+
+[LAKEHEAD MR]
+dtafile = m91
+fontfile = mcalf091
+lowercase = no
+serifs = no
+
+[MAIN]
+dtafile = m92
+fontfile = mcalf092
+lowercase = yes
+serifs = no
+
+
+;[SABINE PAL]
+;dtafile = m93
+;fontfile = mcalf093
+;lowercase = yes
+;serifs = no
+
+;[SABINE DEV]
+;dtafile = m94
+;fontfile = mcalf094
+;lowercase = yes
+;serifs = no
+
+;[SABINE ZAP]
+;dtafile = m95
+;fontfile = mcalf095
+;lowercase = yes
+;serifs = no
+
+;[OLSON OLD ENGLISH]
+;dtafile = m96
+;fontfile = mcalf096
+;lowercase = yes
+;serifs = no
+
+;[OLSON OUTLINE]
+;dtafile = m97
+;fontfile = mcalf097
+;lowercase = no
+;serifs = no
+
+;[ROLLA FANCY]
+;dtafile = m98
+;fontfile = mcalf098
+;lowercase = yes
+;serifs = no
+
+[VIRNDA]
+dtafile = VRI
+fontfile = Virnda
+255extended = yes
+
+[ARIAL]
+dtafile = ARIAL
+fontfile = ARIAL
+255extended = yes
+
+[NEWJERUSALEM]
+dtafile = NJ
+fontfile = NewJeru
+lowercase = no
+serifs = no
+
+[BOARD LETTER-ROMAN]
+dtafile = Boa
+fontfile = BoardLetter
+lowercase = no
+serifs = yes
+
+[uRoman]
+dtafile = m50
+fontfile = uRoman
+lowercase = yes
+serifs = no
+
+[COPA]
+dtafile = COPA
+fontfile = Copa
+255extended = yes
+
+[SCRIPTMT]
+dtafile = SCRIPTMT
+fontfile = ScriptMT
+255extended = yes
+
+[TWCENMT]
+dtafile = TWCENMT
+fontfile = TwCenMT
+255extended = yes
+
+[COURIER]
+dtafile = COURIER
+fontfile = Courier
+255extended = yes
+
+[TIMESR]
+dtafile = TIMESR
+fontfile = TIMESR
+255extended = yes
+
+[VIVALDI]
+dtafile = VIVALDI
+fontfile = Vivaldi
+255extended = yes
+
+[VIV NORM]
+dtafile = VIV NORM
+fontfile = Viv NORM
+255extended = yes
+
+[PHYLLISD]
+dtafile = PHYLLISD
+fontfile = PhyllisD
+255extended = yes
+
+[ALGERIAN]
+dtafile = ALGERIAN
+fontfile = Algerian
+255extended = yes
+
+[ZAPEL]
+dtafile = ZAPEL
+fontfile = ZAPEL
+255extended = yes
+
+[CENTSCBK]
+dtafile = CENTSCBK
+fontfile = CentScbk
+255extended = yes
+
+[AVANTGAR]
+dtafile = AVANTGAR
+fontfile = AvantGar
+255extended = yes
+
+[CURLZ]
+dtafile = CURLZ
+fontfile = CURLZ
+255extended = yes
+
+[BASKVIL]
+dtafile = BASKVIL
+fontfile = BASKVIL
+255extended = yes
+
+[PAP]
+dtafile = PAP
+fontfile = Pap
+255extended = yes
+
+[REGROM]
+dtafile = REGROM
+fontfile = REGROM
+255extended = yes
+
+[COPPERBT]
+dtafile = COPPERBT
+fontfile = CopperBT
+255extended = yes
+
+[FLAMENCO]
+dtafile = FLAMENCO
+fontfile = FLAMENCO
+255extended = yes
+
+[PRISTINA]
+dtafile = PRISTINA
+fontfile = PRISTINA
+255extended = yes
+
+[ARIAL NW]
+dtafile = ARIAL NW
+fontfile = ARIAL NW
+255extended = yes
+
+[HELVLTC]
+dtafile = HELVLTC
+fontfile = HELVLTC
+255extended = yes
+
+[BRUSHSC]
+dtafile = BRUSHSC
+fontfile = BrushSc
+255extended = yes
+
+[HAETTEN]
+dtafile = HAETTEN
+fontfile = HAETTEN
+255extended = yes
+
+[LUCINDA]
+dtafile = LUCINDA
+fontfile = LUCINDA
+255extended = yes
+
+[GARAMOND]
+dtafile = GARAMOND
+fontfile = Garamond
+255extended = yes
+
+[BATANG]
+dtafile = BATANG
+fontfile = BATANG
+255extended = yes
+
+[GOUDY]
+dtafile = GOUDY
+fontfile = GOUDY
+255extended = yes
+
+[COMICSAN]
+dtafile = COMICSAN
+fontfile = ComicSan
+255extended = yes
+
+[LUCIDA]
+dtafile = LUCIDA
+fontfile = LUCIDA
+255extended = yes
+
+[BODONI]
+dtafile = BODONI
+fontfile = BODONI
+255extended = yes
+
+[GEORGIA]
+dtafile = GEORGIA
+fontfile = Georgia
+255extended = yes
+
+[GARABOLD]
+dtafile = GARABOLD
+fontfile = GARABP:D
+255extended = yes
+
+[GARAMOND BOLD]
+dtafile = GARABOLD
+fontfile = GARABOLD
+255extended = yes
+
+[GARBOLD]
+dtafile = GARBOLD
+fontfile = GARBOLD
+255extended = yes
+
+[FREESTYL]
+dtafile = FREESTYL
+fontfile = FREESTYL
+255extended = yes
+
+[TWCEN]
+dtafile = TWCEN
+fontfile = TWCEN
+255extended = yes
+
+[GABOLD]
+dtafile = GABOLD
+fontfile = GABOLD
+255extended = yes
+
+[CENTAUR]
+dtafile = CENTAUR
+fontfile = CENTAUR
+255extended = yes
+
+[GENEVA]
+dtafile = GENEVA
+fontfile = Geneva
+255extended = yes
+
+[GNVA]
+dtafile = GNVA
+fontfile = Gnva
+255extended = yes
+
+[CICERO]
+dtafile = CICERO
+fontfile = CICERO
+255extended = yes
+
+[BERKLEY]
+dtafile = BERKLEY
+fontfile = BERKLEY
+255extended = yes
+
+[LTR GOTH]
+dtafile = LTR GOTH
+fontfile = LTR GOTH
+255extended = yes
+
+[verslnt]
+dtafile = vms
+fontfile = vms
+lowercase = no
+serifs = no
+
+
+[GABRIOLA]
+dtafile = GAB
+fontfile = GABRIOLA
+255extended = yes
+
+[HARR]
+dtafile = HARR
+fontfile = HARR
+255extended = yes
+
+[BELLEROSE]
+dtafile = BELLROSE
+fontfile = Bellrose
+255extended = yes
+
+[TANG]
+dtafile = TANG
+fontfile = tang
+255extended = yes
+
+[GARAMON]
+dtafile = GARAMON
+fontfile = GARAMON
+255extended = yes
+
+[CAMBRIA]
+dtafile = CAMB
+fontfile = CAMBRIA
+255extended = yes
+
+[HELV]
+dtafile = HELV
+fontfile = HEL
+255extended = yes
+
+[ERA]
+dtafile = ERA
+fontfile = ERA
+255extended = yes
+
+[BCHANCE]
+dtafile = BCH
+fontfile = BChance
+255extended = yes
+
+[ARIAL2]
+dtafile = ARIL
+fontfile = ARIAL2
+255extended = yes
+
+[VIVA]
+dtafile = VIVA
+fontfile = VIVA
+255extended = yes
+
+[GARYMOND]
+dtafile = GARY
+fontfile = GARYMOND
+255extended = yes
+
+[GRENDEL]
+dtafile = GRN
+fontfile = Grendel
+255extended = yes
+
+[RUEHL]
+dtafile = RUEHL
+fontfile = RUEHL
+255extended = yes
+
+[SAKKAL]
+dtafile = SAKKAL
+fontfile = SAKKAL
+255extended = yes
+
+[TF ARROW]
+dtafile = TFA
+fontfile = TFARROW
+255extended = yes
+
+[ROMSERIF]
+dtafile = ROMSERIF
+fontfile = ROMSERIF
+255extended = yes
+
+[RSITAL]
+dtafile = RSITAL
+fontfile = RSITAL
+255extended = yes
+
+[CARI]
+dtafile = CARI
+fontfile = CARI
+255extended = yes
+
+[FRIZ]
+dtafile = FRIZ
+fontfile = Friz
+255extended = yes
+
+[ADOBE BOLD]
+dtafile = ADO
+fontfile = Adobers
+255extended = yes
+
+[ADOBERS ITALIC]
+dtafile = ADI
+fontfile = AdobeIT
+255extended = yes
+
+[BITCHIP]
+dtafile = BIT 
+fontfile = Bitchip
+255extended = yes
+
+[BIT CHIP]
+dtafile = BIT
+fontfile = Bit Chip
+255extended = yes
+
+[DIOGENES]
+dtafile = DIO
+fontfile = DIOGENES
+255extended = yes
+
+[CAPITAL]
+dtafile = CAPI
+fontfile = CAPITAL
+255extended = yes
+
+[FF ROMAN]
+dtafile = FFR
+fontfile = FF Roman
+255extended = yes
+
+[VICTOR]
+dtafile = VIC
+fontfile = VICTOR
+255extended = yes
+
+[VICTORN]
+dtafile = VICT
+fontfile = VICTORN
+255extended = yes
+
+[CHOCBOX]
+dtafile = CHOCBOX
+fontfile = ChocBox
+255extended = yes
+
+[CBFANCY]
+dtafile = CBFANCY
+fontfile = CBFancy
+255extended = yes
+
+[HARRI]
+dtafile = HARRI
+fontfile = Harri
+255extended = yes
+
+[BOOK]
+dtafile = BOOK
+fontfile = BOOK
+255extended = yes
+
+[MCORSIVA]
+dtafile = MCORSIVA
+fontfile = MCorsiva
+255extended = yes
+
+[CBOOK]
+dtafile = CMB1
+fontfile = CBook
+255extended = yes
+
+[CBOOK2]
+dtafile = CB2
+fontfile = Cbook2
+255extended = yes
+
+[YUGOTH]
+dtafile = YUGOTH
+fontfile = YUGOTH
+255extended = yes
+
+[PROJ]
+dtafile = PROJ5
+fontfile = PROJ
+255extended = yes
+
+[CORBEL BOLD]
+dtafile = CORBEL
+fontfile = Corbel
+255extended = yes
+
+[BROADNIB]
+dtafile = BROADNIB
+fontfile = BROADNIB
+255extended = yes
+
+[FRANKLIN]
+dtafile = FRA
+fontfile = FRANKLIN
+255extended = yes
+
+[WESTMINSTER]
+dtafile = WEST
+fontfile = Westmin
+255extended = yes
+
+[PARCHMENT]
+dtafile = PARC
+fontfile = PARC
+255extended = yes
+
+[ENCHLAND]
+dtafile = ENCHLAND
+fontfile = EnchLand
+255extended = yes
+
+[ENCHLANB]
+dtafile = ENCHLANB
+fontfile = EnchLanB
+255extended = yes
+
+[CALSONB]
+dtafile = CALSONB
+fontfile = CalsonB
+255extended = yes
+
+[CENTURY]
+dtafile = CENT
+fontfile = CENTURY
+255extended = yes
+
+[SNELL SCRIPT]
+dtafile = SNELL
+fontfile = SNELL
+255extended = yes
+
+[ROUND SCRIPT]
+dtafile = ROUND
+fontfile = ROUND
+255extended = yes
+
+[MAIANDRA GD]
+dtafile = MND
+fontfile = MAIANDRA
+255extended = yes
+
+[RAPHAEL STD]
+dtafile = RAPH
+fontfile = Raphael
+255extended = yes
+
+[TRAJAN]
+dtafile = TRAJAN
+fontfile = TRAJAN
+255extended = yes
+
+[CELT]
+dtafile = CELT
+fontfile = Celtic 2
+255extended = yes
+
+[MALGUN]
+dtafile = MALG
+fontfile = MALGUN
+255extended = yes
+
+[MODERN25]
+dtafile = MODERN25
+fontfile = MODERN25
+255extended = yes
+
+[PARKAVE]
+dtafile = PARK
+fontfile = ParkAve
+255extended = yes
+
+[GREGORIA]
+dtafile = GREGORIA
+fontfile = Gregoria
+255extended = yes
+
+[MONOCORSIVA]
+dtafile = MONOCORS
+fontfile = MonoCors
+255extended = yes
+
+[GALAXYOU]
+dtafile = GALAXYOU
+fontfile = GalaxyOu
+255extended = yes
+
+[AICA17]
+dtafile = AICA17
+fontfile = AICA17
+255extended = yes
+
+[LUCIDA CASUAL]
+dtafile = LCC
+fontfile = Lucida C
+255extended = yes
+
+
+
+[CHAPARRAL P]
+dtafile = CHAP
+fontfile = Chap
+255extended = yes
+
+[LUCIDA ITAL]
+dtafile = LCI
+fontfile = Lucida I
+255extended = yes
+
+[EDWARDIAN SCRIPT ITC]
+dtafile = EDW
+fontfile = EDWARD
+255extended = yes
+
+[KLEYMISSKY]
+dtafile = KLEY
+fontfile = kley
+255extended = yes
+
+[CORBEL REG]
+dtafile = CORBY
+fontfile = CORBY
+255extended = yes
+
+[TIMES ROMAN ITALICIZED]
+dtafile = TROMITAL
+fontfile = TROMITAL
+255extended = yes
+
+[PALATINO LINOTYPE]
+dtafile = PALA
+fontfile = PALA
+255extended = yes
+
+[MS GOTHIC]
+dtafile = MSG
+fontfile = MSG
+255extended = yes
+
+[HEAVEN MATTERS]
+dtafile = HEAVMATT
+fontfile = HeavMatt
+255extended = yes
+
+[AICA 11]
+dtafile = AICA 11
+fontfile = AICA 11
+255extended = yes
+
+[AICA 17]
+dtafile = AICA 17
+fontfile = AICA 17
+255extended = yes
+
+[OLDE ENGLISH]
+dtafile = OLDE
+fontfile = OLDE
+255extended = yes
+
+[RICHARD MURRAY]
+dtafile = RICH
+fontfile = Rich
+255extended = yes
+
+[CALIBRI]
+dtafile = CALI
+fontfile = CALIBRI
+255extended = yes
+
+[FRAKTUR]
+dtafile = FRAKTUR
+fontfile = FRAKTUR
+255extended = yes
+
+[FRAKBOLD]
+dtafile = FRAK
+fontfile = FRAKBOLD
+255extended = yes
+
+[HERCULAN]
+dtafile = HERC
+fontfile = Herculan
+255extended = yes
+
+[COMIC]
+dtafile = COMIC
+fontfile = COMIC
+255extended = yes
+
+[HERC]
+dtafile = HERCU
+fontfile = HERC
+255extended = yes
+
+[MINV]
+dtafile = MINERVA
+fontfile = MINV
+255extended = yes
+
+[ALDIBT]
+dtafile = ALDIBT
+fontfile = AldiBT
+255extended = yes
+
+[REVIVAL]
+dtafile = REVIV
+fontfile = REVIV
+255extended = yes
+
+[REVIVAL 565]
+dtafile = REVIV
+fontfile = REVIV
+255extended = yes
+
+[SHANGRI-LA]
+dtafile = SHANGRI
+fontfile = Shangri
+255extended = yes
+
+[SIGNATURE]
+dtafile = SIG
+fontfile = Sig
+255extended = yes
+
+[INDIAN]
+dtafile = BITS
+fontfile = Bits
+255extended = yes
+
+[BENGUIAT]
+dtafile = BEN
+fontfile = BEN
+255extended = yes
+
+[BENGUIAT LIGHT]
+dtafile = BENL
+fontfile = BENL
+255extended = yes
+
+[ITALPRES]
+dtafile = ITALPRES
+fontfile = ItalPres
+255extended = yes
+
+[GABRIOLA ITALIC]
+dtafile = GABBY
+fontfile = GabItal
+255extended = yes
+
+[MODERN NO. 20]
+dtafile = MOD20
+fontfile = Mod20
+255extended = yes
+
+[MODERN NO. 20 BOLD]
+dtafile = MOD20B
+fontfile = Mod20B
+255extended = yes
+
+[LIBRE BASKERVILLE]
+dtafile = LIBRE
+fontfile = libbask
+255extended = yes
+
+[OPTI BLD]
+dtafile = OPTI BLD
+fontfile = OPTI BLD
+255extended = yes
+
+[VIKING]
+dtafile = VIKING
+fontfile = VIKING
+255extended = yes
+
+[HOEFLER]
+dtafile = HOEFLER
+fontfile = Hoefler
+255extended = yes
+
+[BROADWAY]
+dtafile = BROADWAY
+fontfile = BROADWAY
+255extended = yes
+
+[CELTIC GARAMOND]
+dtafile = CELT IC
+fontfile = Celtic G
+255extended = yes
+
+[CELTIC HAND]
+dtafile = CELT H
+fontfile = Celtic H
+255extended = yes
+
+[HUMAST]
+dtafile = HUMA
+fontfile = Humanst
+255extended = yes
+
+[VICEROY]
+dtafile = VICEROY
+fontfile = Viceroy
+255extended = yes
+
+[OPTIMUS]
+dtafile = OPTIMUS
+fontfile = Optimus
+255extended = yes
+
+[WALTOGRAPH]
+dtafile = DISNEY
+fontfile = Disney
+255extended = yes
+
+[CHARIS SIL]
+dtafile = CHA
+fontfile = CHARIS
+255extended = yes
+
+[CHARIS]
+dtafile = CHARI
+fontfile = CHARITAL
+255extended = yes
+
+[CHARIS B]
+dtafile = CHARBLD
+fontfile = CHARBOLD
+255extended = yes
+
+[CHARIS BOLD]
+dtafile = CHARBOLD
+fontfile = CHARBLD
+255extended = yes
+
+[CHARIS BOLD ITAL]
+dtafile = CHARBDIT
+fontfile = CHARITBD
+255extended = yes
+
+[CENTURY GOTHIC]
+dtafile = CENGOTH
+fontfile = CenGoth
+255extended = yes
+
+[AICA21 FREEFORM]
+dtafile = AICA21
+fontfile = AICA21
+255extended = yes
+
+[AICA21 FREE]
+dtafile = AICA-FRE
+fontfile = AICA-FRE
+255extended = yes
+
+[CALIGULA DODGY]
+dtafile = CALDODG
+fontfile = CALDOG
+255extended = yes
+
+[DS FETTE KANZLEI]
+dtafile = DS FETTE
+fontfile = DS Fette
+255extended = yes
+
+[GERMANIKA]
+dtafile = GERMANIK
+fontfile = Germanik
+255extended = yes
+
+[KORINTH SERIAL BOLD]
+dtafile = KOR
+fontfile = KOR
+255extended = yes
+
+[GOUDY HANDTOOLED BOLD]
+dtafile = GOU
+fontfile = GOUD
+255extended = yes
+
+[GOUDY HANDTOOLED]
+dtafile = GOUDH
+fontfile = GOUDH
+255extended = yes
+
+[BURBANK BIG CONDENSED]
+dtafile = BBUR
+fontfile = Burbank
+255extended = yes
+
+[MINION PRO SEMIBOLD]
+dtafile = MINIONSB
+fontfile = MinionSB
+255extended = yes
+
+[NEWSGOTHICMTBOLD]
+dtafile = NGMTB
+fontfile = NGMTB
+255extended = yes
+
+[MURRAY HILL BOLD]
+dtafile = MURHIL
+fontfile = Murhill
+255extended = yes
+
+[AICA 21]
+dtafile = AICA 21
+fontfile = AICA 21
+255extended = yes
+
+[AICA 6]
+dtafile = AICA 6
+fontfile = AICA 6
+255extended = yes
+
+[ABOVE THE SKY SCRIPT]
+dtafile = ATSCRIPT
+fontfile = ATScript
+255extended = yes
+
+[AICA 16 DEC SCRPT]
+dtafile = A16
+fontfile = AICA16
+255extended = yes
+
+[AICA 18]
+dtafile = AICA 18
+fontfile = AICA 18
+255extended = yes
+
+[AICA 18 BOLD]
+dtafile = AICA 18B
+fontfile = AICA 18B
+255extended = yes
+
+[AICA 18 LIGHT]
+dtafile = AICA 18L
+fontfile = AICA 18L
+255extended = yes
+
+[FRANKFURTER]
+dtafile = FRNKFRTR
+fontfile = FRNKFRTR
+255extended = yes
+
+[CATANEO BT]
+dtafile = CAT
+fontfile = CAT
+255extended = yes
+
+[RAMARAJA]
+dtafile = RAMA
+fontfile = Ramaraja
+255extended = yes
+
+[GOUDY OLD STYLE]
+dtafile = GOS
+fontfile = GOS
+255extended = yes
+
+[ALDI BLD IT]
+dtafile = ALDIBLD
+fontfile = AldiBld
+255extended = yes
+
+[DYMAXION SCRIPT]
+dtafile = DYNA
+fontfile = DYNA
+255extended = yes
+
+[ALEGREYA MED]
+dtafile = ALEGM
+fontfile = ALEGM
+255extended = yes
+
+[AICA25 MODERN]
+dtafile = AICA25
+fontfile = AICA25
+255extended = yes
+smallest = 1
+
+[BOOKMAN OLD]
+dtafile = BOOKMAN
+fontfile = BOOKMAN
+255extended = yes
+
+[BOOKMAN OLD STYLE]
+dtafile = BOOKMA
+fontfile = booma
+255extended = yes
+
+[MS REF SAN SERIF]
+dtafile = SANSERIF
+fontfile = SANSERIF
+255extended = yes
+
+[BRADLEY HAND ITC]
+dtafile = BRAD
+fontfile = BRAD
+255extended = yes
+
+[WARNOCK]
+dtafile = WARNOCK
+fontfile = WARNOCK
+255extended = yes
+
+[OPTIMA REGULAR]
+dtafile = OPTREG
+fontfile = OPTREG
+255extended = yes
+
+[ROCKWELL]
+dtafile = ROC
+fontfile = ROC
+255extended = yes
+
+[ROCKWELL LIGHT]
+dtafile = ROCK
+fontfile = ROCK
+255extended = yes
+
+[ROCKWELL NOVA LIGHT]
+dtafile = RWNL
+fontfile = RWNL
+255extended = yes
+
+[CASTELLAR]
+dtafile = CASTELLA
+fontfile = Castella
+255extended = yes
+
+[CASTELLAR BOLD]
+dtafile = CASTELBO
+fontfile = CastelBo
+255extended = yes
+
+[ISA REG]
+dtafile = ISA REG
+fontfile = Isa Reg
+255extended = yes
+
+[ISA BLD]
+dtafile = ISA BLD
+fontfile = Isa Bld
+255extended = yes
+
+[JUNO IT]
+dtafile = JUNO IT
+fontfile = Juno It
+255extended = yes
+
+[JUNCONIT]
+dtafile = JUNCONIT
+fontfile = JunConIT
+255extended = yes
+
+[AICA 10 ROMAN COND]
+dtafile = AICA10
+fontfile = AICA10
+255extended = yes
+
+[TRAJANUS ROMAN]
+dtafile = TRAJROM
+fontfile = TRAJROM
+255extended = yes
+
+[SAKKAL BOLD]
+dtafile = SAKBLD
+fontfile = SAKBLD
+255extended = yes
+
+[LATO BOLD]
+dtafile = LATOB
+fontfile = LATOB
+255extended = yes
+
+[LATO BLACK]
+dtafile = LATOBK
+fontfile = LATOBK
+255extended = yes
+
+[ADELON SERIAL MEDIUM]
+dtafile = ASM
+fontfile = ASM
+255extended = yes
+
+[ADELON--SERIAL-REGULAR]
+dtafile = ASR
+fontfile = ASR
+255extended = yes
+
+[AICA 6 H&M ROMAN]
+dtafile = AICAHM
+fontfile = AICAHM
+255extended = yes
+
+[WALTER]
+dtafile = WAL
+fontfile = Walter
+255extended = yes
+
+[WALTOGRAPH UI]
+dtafile = WALT
+fontfile = Walt
+255extended = yes
+
+[KLEYMISSKY 2]
+dtafile = KLY
+fontfile = KLY
+255extended = yes
+
+[KLEYMISSKY3]
+dtafile = KLYE
+fontfile = KLYE
+255extended = yes
+
+[EXPRESSWAY CON BOLD]
+dtafile = EXP
+fontfile = EXPR
+255extended = yes
+
+[EXPRESSWAY BOLD]
+dtafile = EXPRS
+fontfile = EXPRS
+255extended = yes
+
+[AICA 19 NARROW BLOCK]
+dtafile = AICA19
+fontfile = AICA19NB
+255extended = yes
+
+[TIMES NEW ROMAN BOLD]
+dtafile = TNRB
+fontfile = TNRB
+255extended = yes
+
+[RESERVE COND BOLD]
+dtafile = RCB
+fontfile = RCB
+255extended = yes
+
+[ITC GIOVANNI STD BOLD]
+dtafile = GIOVANNI
+fontfile = GIOVANNI
+255extended = yes
+
+[ITC GIOVANNI]
+dtafile = GIOVANN
+fontfile = ITCGIOVA
+255extended = yes
+
+[ARNOBOLD]
+dtafile = ARNOBOLD
+fontfile = ArnoBold
+255extended = yes
+
+[ARNOSEMI]
+dtafile = ARNOSEMI
+fontfile = ARNOSEMI
+255extended = yes
+
+[ARNOSEM2]
+dtafile = ARNOSEM2
+fontfile = ARNOSEM2
+255extended = yes
+
+[ARNOCAPT]
+dtafile = ARNOCAPT
+fontfile = ARNOCAPT
+255extended = yes
+
+[BRUSH SCRIPT BOLD]
+dtafile = BRUSHSCB
+fontfile = BrushScB
+255extended = yes
+
+[JF COTSWOLD]
+dtafile = JFC
+fontfile = Cotswold
+255extended = yes
+
+[SIGNPAINTER]
+dtafile = SIGN
+fontfile = SignP
+255extended = yes
+
+[BERTHOLDR MAINZER FRAKTUR]
+dtafile = BMF
+fontfile = Berthold
+255extended = yes
+
+[CUP AND TALON]
+dtafile = CUP
+fontfile = CupTalon
+255extended = yes
+
+[DUVALL]
+dtafile = DUV
+fontfile = Duvall
+255extended = yes
+
+[SNELL BOLD]
+dtafile = SNELLBOL
+fontfile = SnellBol
+255extended = yes
+
+[MERIDIEN MEDIUM]
+dtafile = MERIDIEN
+fontfile = MERIDIEN
+255extended = yes
+
+[PALATINO SANS]
+dtafile = PAL
+fontfile = Palatino
+255extended = yes
+
+[TRASK]
+dtafile = SST
+fontfile = Trask
+lowercase = no
+serifs = no
+smallest = .75
+
+[SHELLEY SCRIPT]
+dtafile = SHELLEYS
+fontfile = SHELLEYS
+255extended = yes
+
+[DUVALL REG]
+dtafile = DUVALLRE
+fontfile = DuvallRE
+255extended = yes
+
+[DUVALL SMALL CAPS]
+dtafile = DUVALLSC
+fontfile = DuvallSC
+255extended = yes
+
+[DUVALL CONDENSED]
+dtafile = DUVALLCO
+fontfile = DUVALLCO
+255extended = yes
+
+[DUVALL COND BOLD]
+dtafile = DUVALLCB
+fontfile = DUVALLCB
+255extended = yes
+
+[YOU'RE INVITED HEAVY]
+dtafile = YOUINVHE
+fontfile = YouInvHe
+255extended = yes
+
+[RESERVE COND MED]
+dtafile = RCM
+fontfile = Reserve
+255extended = yes
+
+[CELTIC GAELIGE]
+dtafile = CLT
+fontfile = CELTICGA
+255extended = yes
+
+[HOBO REGULAR]
+dtafile = HOBOREG
+fontfile = HoboReg
+255extended = yes
+
+[HOBO BOLD]
+dtafile = HOBOBOLD
+fontfile = HoboBold
+255extended = yes
+
+[PIROUETTE SEPARATE 1]
+dtafile = PIROUETT
+fontfile = Pirouett
+255extended = yes
+
+[PIROUETTE 1 BOLD]
+dtafile = PIROBOLD
+fontfile = PiroBold
+255extended = yes
+
+[AICA 10 ROMAN BOLD]
+dtafile = AICA10RB
+fontfile = AICA10RB
+255extended = yes
+
+[CELTIC GAELIGE BOLD]
+dtafile = CELGAEB
+fontfile = CelGaeB
+255extended = yes
+
+[LYDIAN CURSIVE]
+dtafile = LYDIANCU
+fontfile = LydianCu
+255extended = yes
+
+[LYDIAN CURSIVE BOLD]
+dtafile = LYDIANBC
+fontfile = LydianBC
+255extended = yes
+
+[DK HOFSTAD]
+dtafile = HOF
+fontfile = HOFSTAD
+255extended = yes
+
+[STRANGER THINGS FONT]
+dtafile = ITC
+fontfile = ITC BNG
+255extended = yes
+
+[AICA25 MODERN ITALIC]
+dtafile = ITALMOD
+fontfile = 25MItal
+255extended = yes
+
+[CALIFORNIAN FB BOLD]
+dtafile = CALIBOLD
+fontfile = CaliBold
+255extended = yes
+
+[CALIFORNIAN ITAL BOLD]
+dtafile = CAL ITBD
+fontfile = CAL ItBd
+255extended = yes
+
+[CAMBRIA BOLD]
+dtafile = CAMBOLD
+fontfile = CAM BOLD
+255extended = yes
+
+[SEGOE PRINT]
+dtafile = SEGOE
+fontfile = Segoe
+255extended = yes
+
+[TEKTON BOLD]
+dtafile = TKTN
+fontfile = Tekton
+255extended = yes
+
+[TEKTON]
+dtafile = TKTON
+fontfile = Tektnreg
+255extended = yes
+
+[NEUTRAFACE TEXT BOOK]
+dtafile = NEUTRA
+fontfile = Neutra
+255extended = yes
+
+[HENDERSON SANS BOLD]
+dtafile = HENDSANB
+fontfile = HendSanB
+255extended = yes
+
+[HENDERSON SANS ITALIC]
+dtafile = HENSANLI
+fontfile = HenSanLI
+255extended = yes
+[CALLIGRAPHY PEN BOLD]
+dtafile = CALLIGPE
+fontfile = CalligPe
+255extended = yes
+
+[COLLEGIATE BLACK]
+dtafile = COLLEBK
+fontfile = COLLEBK
+255extended = yes
+
+[COLLEGIATE INSIDE]
+dtafile = COLLEG
+fontfile = COLLEG
+255extended = yes
+
+[SMOOTH PAPYRUS]
+dtafile = SPY
+fontfile = Smooth
+255extended = yes
+
+[COCHIN BOLD]
+dtafile = COCHINBD
+fontfile = COCHINBD
+255extended = yes
+
+[BODONI BOLD]
+dtafile = BOD
+fontfile = BODBOLD
+255extended = yes
+
+[AMBROSIA]
+dtafile = AMB
+fontfile = AMBROSIA
+255extended = yes
+
+[AMBROBOLD]
+dtafile = AMBO
+fontfile = AMBOBOLD
+255extended = yes
+
+[GOTH ITL BOLD]
+dtafile = GOTHITL
+fontfile = GOTHITL
+255extended = yes
+
+[ARIAL BLACK]
+dtafile = ARL
+fontfile = ArialBlk
+255extended = yes
+
+[BERLIN SANS FB]
+dtafile = BER
+fontfile = BerlinFB
+255extended = yes
+
+[STARDATE]
+dtafile = STARDATE
+fontfile = STARDATE
+255extended = yes
+
+[FRIZ QUADRATA]
+dtafile = FRZ
+fontfile = FRIZQUAD
+255extended = yes
+
+[ALMA TORAN]
+dtafile = ALMATORA
+fontfile = ALMATORA
+255extended = yes
+
+[ALMA TORAN BOLD]
+dtafile = ALMATBLD
+fontfile = ALMATBLD
+255extended = yes
+
+[BOSOX]
+dtafile = BOSOX
+fontfile = BOSOX
+255extended = yes
+
+
+[MONTSERRAT]
+dtafile = MONTSERR
+fontfile = Montserr
+255extended = yes
+
+[BRITTANIC MED]
+dtafile = BRITMED
+fontfile = BRITMED
+255extended = yes
+
+[AICA 11 ITALIC]
+dtafile = AICA11IT
+fontfile = AICA11IT
+255extended = yes
+
+[SIMSUN]
+dtafile = SIMSUN
+fontfile = SIMSUN
+255extended = yes
+
+[SIMSUNBLD]
+dtafile = SUNBLD
+fontfile = SIMSUNB
+255extended = yes
+
+[BOLD ROMAN ITALIC]
+dtafile = BRITALIC
+fontfile = BRitalic
+255extended = yes
+
+[MEATHFLF]
+dtafile = MEATHFLF
+fontfile = MEATHFLF
+255extended = yes
+
+[MEATHBLD]
+dtafile = MEATHBLD
+fontfile = MEATHBLD
+255extended = yes
+
+[MEATH]
+dtafile = MEATH
+fontfile = MEATH
+255extended = yes
+
+[MLC UNCIAL GOTHIC]
+dtafile = MLC
+fontfile = MLCUNCIA
+255extended = yes
+
+[AICA 16 BOLD]
+dtafile = AICA16
+fontfile = AICA 16B
+255extended = yes
+
+[CENTURY GOTHIC BOLD]
+dtafile = CENTGTHB
+fontfile = CENTGTHB
+255extended = yes
+
+[TW CEN MT BOLD]
+dtafile = TWCENBLD
+fontfile = TWCENBLD
+255extended = yes
+
+[UNCIAL]
+dtafile = ANTIQUA
+fontfile = antiqua
+255extended = yes
+
+[GARA]
+dtafile = GARA
+fontfile = MOND
+255extended = yes
+
+[MURRAY HILL]
+dtafile = MUR
+fontfile = murray
+255extended = yes
+
+[MURRAY BOLD]
+dtafile = MURBLD
+fontfile = MURBLD
+255extended = yes
+
+[CANDARA]
+dtafile = CANDARA
+fontfile = CANDARA
+255extended = yes
+
+[COPPERPLATE GOTHIC LIGHT]
+dtafile = COP
+fontfile = COPPERGL
+255extended = yes
+
+[ZYPHYTEOFFSETITALICMEDIUM]
+dtafile = ZYPHYTE
+fontfile = ZYPHYTE
+255extended = yes
+
+[JTALVITO]
+dtafile = ALVITO
+fontfile = BOLD
+255extended = yes
+
+[MICROSOFT HIMALAYA]
+dtafile = HIMALAYA
+fontfile = HIMALAYA
+255extended = yes
+
+[CELT ST CHARLES]
+dtafile = STCHARLE
+fontfile = StCharle
+255extended = yes
+
+[WORLDWIDE]
+dtafile = WLD
+fontfile = WRLDWD
+255extended = yes
+
+[BANGERS]
+dtafile = BANGERS
+fontfile = BANGERS
+255extended = yes
+
+[REGAL ROMAN ITALIC]
+dtafile = REGROMIT
+fontfile = REGROMIT
+255extended = yes
+
+[GOTHAM BOLD]
+dtafile = GOTHAM
+fontfile = GOTHAM
+255extended = yes
+
+[BRITANNIC MEDIUM ITALICS]
+dtafile = BRITITAL
+fontfile = BRITITAL
+255extended = yes
+
+[MLC MOD ROMAN HANDCUT A]
+dtafile = MLCMRHC
+fontfile = MLCMRHC
+255extended = yes
+
+[MLC MOD ROMAN HANDCUT B]
+dtafile = MLCMRHCB
+fontfile = MLCMRHCB
+255extended = yes
+
+[GERMANIA ONE]
+dtafile = GERMONE
+fontfile = GermOne
+255extended = yes
+
+[WASABI MEDIUM]
+dtafile = WASABI
+fontfile = WASAB
+255extended = yes
+
+[WASABI-MEDIUM-ITALIC]
+dtafile = WASABI I
+fontfile = WASABI I
+255extended = yes
+
+[CLASSIC]
+dtafile = CLASSIC
+fontfile = Classic
+255extended = yes
+
+[ZW]
+dtafile = ZWADOBE
+fontfile = zwadobef
+255extended = yes
+
+[NUNITO]
+dtafile = NUN
+fontfile = nun
+255extended = yes
+
+[AQUITAINE INITIALS]
+dtafile = AQUITAIN
+fontfile = AQUITAIN
+255extended = yes
+
+[BARLOW]
+dtafile = BARLOW
+fontfile = BARLOW
+255extended = yes
+
+[OPENSANS]
+dtafile = OPENSANS
+fontfile = OPENSANS
+255extended = yes
+
+[BALLANTINES SCRIPT]
+dtafile = BALLAN
+fontfile = BALLAN
+255extended = yes
+
+[ANTIQUE OLIVE]
+dtafile = ANTIQ OL
+fontfile = ANTIQ OL
+255extended = yes
+
+[CENTSCBKBLD]
+dtafile = CSBB
+fontfile = CNTSBBLD
+255extended = yes
+
+[TEXGYRESCHOLAR]
+dtafile = TEX
+fontfile = TEXGYRE
+255extended = yes
+
+[FRANKLIN GOTHIC HEAVY]
+dtafile = FGH
+fontfile = FRNKGOTH
+255extended = yes
+
+[BERLING ROMAN]
+dtafile = BERLING
+fontfile = BERLING
+255extended = yes
+
+[BERLING BOLD]
+dtafile = BER BOLD
+fontfile = BER BOLD
+255extended = yes
+
+[MATH TECHNICAL]
+dtafile = MATH TEC
+fontfile = MATH TEC
+255extended = yes
+
+[WALTER 2025]
+dtafile = WALTD
+fontfile = WaltD
+255extended = yes
+
+[GARAMONF BOLD]
+dtafile = GARBOL
+fontfile = GARBOL
+255extended = yes

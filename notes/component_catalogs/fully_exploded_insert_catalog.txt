@@ -1,0 +1,28 @@
+File: old_style_mcd_files/TW84_monucad_export_fully_exploded.dxf
+Defined BLOCK names (top 3 shown):
+  *Model_Space              1
+  *Paper_Space              1
+  *Paper_Space0             1
+INSERT usage: (none)
+
+File: old_style_mcd_files/TW87_monucad_export_fully_exploded.dxf
+Defined BLOCK names (top 3 shown):
+  *Model_Space              1
+  *Paper_Space              1
+  *Paper_Space0             1
+INSERT usage: (none)
+
+File: old_style_mcd_files/WI36_monucad_export_fully_exploded.dxf
+Defined BLOCK names (top 3 shown):
+  *Model_Space              1
+  *Paper_Space              1
+  *Paper_Space0             1
+INSERT usage: (none)
+
+File: old_style_mcd_files/WI37_monucad_export_fully_exploded.dxf
+Defined BLOCK names (top 3 shown):
+  *Model_Space              1
+  *Paper_Space              1
+  *Paper_Space0             1
+INSERT usage: (none)
+

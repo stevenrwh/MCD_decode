@@ -1,0 +1,27 @@
+[
+  {
+    "use_frida": false,
+    "events": [
+      {
+        "event": "window-ready",
+        "title": "Untitled - MONU-CAD Pro [9.2.10"
+      },
+      {
+        "event": "save-command"
+      },
+      {
+        "title": "Save As",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\no_frida\\1763281115_Save_As.png",
+        "body": [
+          "Save &in:",
+          "File &name:",
+          "Save as &type:"
+        ]
+      },
+      {
+        "title": "Confirm Save As",
+        "screenshot": "C:\\Dev\\MCD_decode\\analysis\\line_save\\no_frida\\1763281116_Confirm_Save_As.png"
+      }
+    ]
+  }
+]

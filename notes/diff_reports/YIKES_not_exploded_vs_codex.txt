@@ -1,0 +1,20 @@
+Reference: old_style_mcd_files\YIKES_monucad_export_not_exploded.dxf
+Candidate: old_style_mcd_files\YIKES.dxf
+
+Entity type       Ref      Cand     Delta
+-----------------------------------------
+ARC                    0       160      160 *
+INSERT                 4         0       -4 -
+LINE                  15      2323     2308 *
+
+Per-layer deltas:
+
+[ARC]
+  MCD_Layer_0          ref=0      cand=160    delta=+160
+
+[INSERT]
+  0                    ref=4      cand=0      delta=-4
+
+[LINE]
+  MCD_Layer_0          ref=0      cand=2323   delta=+2323
+  0                    ref=15     cand=0      delta=-15

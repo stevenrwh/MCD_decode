@@ -1,0 +1,35 @@
+Reference: /mnt/c/Dev/MCD_decode/old_style_mcd_files/TW85_monucad_export_partially_exploded.dxf
+Candidate: analysis/regressions/dxfs/TW85_partial.dxf
+
+Entity type       Ref      Cand     Delta
+-----------------------------------------
+ARC                  553        71     -482 -
+CIRCLE                 0         1        1 *
+INSERT                39         0      -39 -
+LINE                 202      4677     4475 *
+
+Per-layer deltas:
+
+[ARC]
+  0                    ref=473    cand=0      delta=-473
+  MCD_Layer_0          ref=0      cand=70     delta=+70
+  2                    ref=60     cand=0      delta=-60
+  1                    ref=20     cand=0      delta=-20
+  MCD_Layer_1          ref=0      cand=1      delta=+1
+
+[CIRCLE]
+  MCD_Layer_1          ref=0      cand=1      delta=+1
+
+[INSERT]
+  1                    ref=39     cand=0      delta=-39
+
+[LINE]
+  MCD_Layer_0          ref=0      cand=4617   delta=+4617
+  0                    ref=167    cand=0      delta=-167
+  2                    ref=32     cand=0      delta=-32
+  MCD_Layer_2147876864 ref=0      cand=20     delta=+20
+  MCD_Layer_11         ref=0      cand=18     delta=+18
+  MCD_Layer_2147680256 ref=0      cand=14     delta=+14
+  MCD_Layer_2          ref=0      cand=6      delta=+6
+  1                    ref=3      cand=0      delta=-3
+  MCD_Layer_1          ref=0      cand=2      delta=+2

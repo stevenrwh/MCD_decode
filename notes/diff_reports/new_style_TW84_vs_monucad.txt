@@ -1,0 +1,25 @@
+Reference: old_style_mcd_files\TW84_monucad_export_fully_exploded.dxf
+Candidate: new_style_mcd_files\TW84.dxf
+
+Entity type       Ref      Cand     Delta
+-----------------------------------------
+ARC                 8221        13    -8208 -
+CIRCLE                 5         3       -2 -
+LINE               21149      1195   -19954 -
+
+Per-layer deltas:
+
+[ARC]
+  0                    ref=8179   cand=0      delta=-8179
+  1                    ref=42     cand=0      delta=-42
+  MCD_Layer_0          ref=0      cand=13     delta=+13
+
+[CIRCLE]
+  0                    ref=5      cand=0      delta=-5
+  MCD_Layer_0          ref=0      cand=3      delta=+3
+
+[LINE]
+  0                    ref=21115  cand=0      delta=-21115
+  MCD_Layer_0          ref=0      cand=1181   delta=+1181
+  1                    ref=34     cand=0      delta=-34
+  MCD_Layer_1          ref=0      cand=14     delta=+14

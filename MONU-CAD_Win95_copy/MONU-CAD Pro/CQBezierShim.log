@@ -1,0 +1,113 @@
+2025-11-15 21:59:37.033 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-15 22:07:42.584 [dump] MiniDumpWriteDump ok
+2025-11-15 22:07:42.584 [dump] dump path created for CQBezierToArcM
+2025-11-15 22:07:42.584 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-15 23:07:19.366 [io] IAT hooks applied for ReadFile/WriteFile
+2025-11-15 23:07:51.889 [dump] MiniDumpWriteDump ok
+2025-11-15 23:07:51.889 [dump] dump path created for CQBezierToArcM
+2025-11-15 23:07:51.889 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-15 23:16:32.075 [io] ReadFile/WriteFile hooks installed
+2025-11-15 23:17:53.077 [dump] MiniDumpWriteDump ok
+2025-11-15 23:17:53.077 [dump] dump path created for CQBezierToArcM
+2025-11-15 23:17:53.078 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-15 23:21:28.019 [io] ReadFile/WriteFile hooks installed
+2025-11-15 23:22:01.069 [dump] MiniDumpWriteDump ok
+2025-11-15 23:22:01.069 [dump] dump path created for CQBezierToArcM
+2025-11-15 23:22:01.069 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-15 23:22:30.702 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-15 23:33:28.648 [io] ReadFile/WriteFile hooks installed
+2025-11-15 23:34:02.674 [dump] MiniDumpWriteDump ok
+2025-11-15 23:34:02.675 [dump] dump path created for CQBezierToArcM
+2025-11-15 23:34:02.675 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-15 23:34:25.733 [CQBezierToArcM] a=0xbc6a7efa b=0x3f589374 c=0x2
+2025-11-16 02:10:05.410 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:10:21.404 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:13:18.021 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:14:32.335 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:14:58.548 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:15:33.359 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:16:16.511 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:16:57.744 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:17:28.112 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:18:31.603 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:19:12.845 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:20:40.998 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:21:14.488 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:22:09.302 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:22:57.722 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:23:14.523 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:23:40.145 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:24:12.046 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:24:25.473 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:24:39.395 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:25:25.117 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:25:49.963 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:26:03.667 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:26:16.330 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:29:11.910 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:34:29.992 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:38:12.490 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:38:32.934 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:38:52.362 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:39:11.266 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:39:30.570 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:39:56.523 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:40:15.403 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:41:11.011 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:41:39.256 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:41:56.606 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:42:11.162 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:42:28.371 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:42:48.650 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:43:15.716 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:44:03.857 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:44:38.281 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:44:55.329 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:45:10.872 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:45:46.838 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:46:05.337 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:46:32.704 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:46:52.972 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:47:16.976 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:47:35.491 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:48:20.399 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:48:44.155 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:49:00.824 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:49:33.722 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:50:02.711 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:50:44.783 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:51:07.628 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:51:27.091 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:55:18.093 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:55:45.932 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:56:18.558 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:56:34.585 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:56:53.558 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:57:28.550 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:59:04.978 [io] ReadFile/WriteFile hooks installed
+2025-11-16 02:59:16.286 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:00:57.682 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:05:24.579 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:06:39.383 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:08:25.933 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:13:54.403 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:14:12.181 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:15:09.531 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:15:41.194 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:16:34.656 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:17:06.919 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:18:24.033 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:19:16.589 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:19:48.398 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:32:21.303 [io] ReadFile/WriteFile hooks installed
+2025-11-16 03:34:52.148 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:09:54.500 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:10:14.092 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:12:13.462 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:12:28.660 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:12:59.337 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:13:11.745 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:24:30.446 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:27:33.744 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:27:42.836 [io] ReadFile/WriteFile hooks installed
+2025-11-16 15:29:47.559 [io] ReadFile/WriteFile hooks installed

@@ -1,0 +1,26 @@
+{
+  "source": "piano keys.mcc",
+  "component_blocks": [
+    {
+      "component_id": 1852394563,
+      "bbox": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "header_ints": [
+        4294904230,
+        327681,
+        1852394563,
+        101,
+        512,
+        0,
+        3489660672
+      ],
+      "sub_blocks": [],
+      "circles": []
+    }
+  ],
+  "instance_blocks": []
+}

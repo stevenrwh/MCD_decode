@@ -1,0 +1,28 @@
+{
+  "source": "c:\\Dev\\MCD_decode\\MONU-CAD_Win95_copy\\Mcc\\Demo-ALL\\HANDS96.mcc",
+  "component_blocks": [
+    {
+      "offset": 264,
+      "length": 11500,
+      "component_id": 1852394563,
+      "bbox": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "header_ints": [
+        4294902041,
+        327681,
+        1852394563,
+        101,
+        512,
+        4112007168,
+        3170336958
+      ],
+      "sub_blocks": [],
+      "circles": []
+    }
+  ],
+  "instance_blocks": []
+}
