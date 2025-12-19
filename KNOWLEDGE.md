@@ -69,6 +69,7 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - `diagnostics/dump_placement_blocks.py` is the quickest way to see which 0x4803 blocks carry placement-style records.
 - Deflate scanning lives in `monucad/deflate_io.py`; `monucad/entities.py` now holds core entity dataclasses as part of the ongoing modularization of `mcd_to_dxf.py`.
 - Font logic now lives in `monucad/fonts.py`; `mcd_to_dxf.py` imports TextEntity/Glyph/FontDefinition/FontManager and related constants from there (inline font classes removed).
+- Font mapping + label-prefix heuristics + VM mapping + reference DXF/kerning helpers now also live in `monucad/fonts.py` (moved from `mcd_to_dxf.py`); `mcd_to_dxf.py` now aliases them from the module.
 - Geometry helpers/constants (bbox checks, arc-line pruning, tolerance values) live in `monucad/geometry.py`; `mcd_to_dxf.py` now imports them instead of defining inline versions.
 - Placement parsing/instancing (catalog-aware label → block mapping, placement trailer parsing, block fallback) now lives in `monucad/placement.py`; `mcd_to_dxf.py` imports `collect_candidate_records` and `extract_new_style_component_lines` from there.
 - Shared arc math (`circle_from_points`) is exported from `monucad/geometry.py` so placement/fonts/etc. can consume it without local copies.
