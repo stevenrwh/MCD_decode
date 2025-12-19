@@ -73,6 +73,7 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - Geometry helpers/constants (bbox checks, arc-line pruning, tolerance values) live in `monucad/geometry.py`; `mcd_to_dxf.py` now imports them instead of defining inline versions.
 - Placement parsing/instancing (catalog-aware label → block mapping, placement trailer parsing, block fallback) now lives in `monucad/placement.py`; `mcd_to_dxf.py` imports `collect_candidate_records` and `extract_new_style_component_lines` from there.
 - Shared arc math (`circle_from_points`) is exported from `monucad/geometry.py` so placement/fonts/etc. can consume it without local copies.
+- DXF writing now lives in `monucad/mcd.py` (`write_dxf`); `mcd_to_dxf.py` imports it instead of defining its own copy.
 
 ## 10) File Security Modes (MCD Save)
 - Automated sweep script: `tools/mcpro9_security_sweep.py` runs the “LI” macro, then saves four variants by clicking the File Security options: **All Your Satellites**, **Specific Satellite**, **Only You**, **Masters Only**. Output files: `line_all.mcd`, `line_specific.mcd`, `line_only.mcd`, `line_masters.mcd` (saved into Monu-CAD’s default Drawing Save dir to avoid zero-byte stubs).

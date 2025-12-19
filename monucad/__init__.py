@@ -51,6 +51,7 @@ from .placement import (
     instantiate_glyph_arcs,
     extract_new_style_component_lines,
 )
+from .mcd import write_dxf
 
 __all__ = [
     "DEFAULT_MIN_PAYLOAD",
@@ -103,4 +104,5 @@ __all__ = [
     "instantiate_glyph_segments",
     "instantiate_glyph_arcs",
     "extract_new_style_component_lines",
+    "write_dxf",
 ]
