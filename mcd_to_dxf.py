@@ -27,6 +27,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable, List, Sequence, Tuple
 from monucad.deflate_io import DEFAULT_MIN_PAYLOAD, brute_force_deflate, collect_deflate_streams
+from monucad.entities import ArcEntity, CircleEntity, DuplicateRecord, InsertEntity, LineEntity
 from component_parser import (
     ComponentSubBlock,
     CirclePrimitive,
@@ -53,47 +54,6 @@ HELPER_AXIS_TOL = 1e-3
 PRINTABLE_ASCII = tuple(chr(i) for i in range(32, 127))
 DUP_FINGERPRINT_PLACES = 6
 GLYPH_COORD_SCALE = 64.0
-
-
-@dataclass(frozen=True)
-class LineEntity:
-    layer: int
-    start: Tuple[float, float]
-    end: Tuple[float, float]
-
-
-@dataclass(frozen=True)
-class ArcEntity:
-    layer: int
-    center: Tuple[float, float]
-    start: Tuple[float, float]
-    end: Tuple[float, float]
-
-
-@dataclass(frozen=True)
-class CircleEntity:
-    layer: int
-    center: Tuple[float, float]
-    radius: float
-
-
-@dataclass(frozen=True)
-class DuplicateRecord:
-    offset: int
-    original_offset: int
-    layer: int
-    etype: int
-    start: Tuple[float, float]
-    end: Tuple[float, float]
-
-
-@dataclass(frozen=True)
-class InsertEntity:
-    name: str
-    position: Tuple[float, float]
-    rotation: float
-    scale: Tuple[float, float]
-    layer: int = 0
 
 
 def _log_duplicate_records(records: Sequence[DuplicateRecord], destination: Path) -> None:

@@ -29,7 +29,6 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
   - Map `label -> block` via `label -> index -> sentinel-bearing block`.
   - Fallbacks (substring search, ordered mapping) remain but are noisy.
 
-## 4) Placement Trailers
 ## 4) Placement Data
 - `iter_placement_trailers` currently finds **zero** trailers in new-style TW84; placement records live inside specific 0x4803 sub-blocks of the lone component definition instead of a standalone trailer.
 - `diagnostics/dump_placement_blocks.py` reports block-local candidates. For TW84 (`--raw`):
@@ -40,8 +39,8 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 
 ## 5) Current Converter Status (TW84)
 - Reference DXF (`TW84_exported_from_MCPRO9.dxf`): ~1,195 lines / 13 arcs / 3 circles.
-- Current run (Dec 18 build, default options): 611 lines / 11 arcs / 3 circles. No placement trailer is found, so only inline geometry renders.
-- Old-style TW84 run: ~298 lines only (way too low).
+- Current run (Dec 19 block-fallback build): 4,906 lines / 0 arcs / 2 circles. Block-scoped placement parsing instantiates far too many lines and suppresses arc promotion.
+- Legacy inline-only path (no placements): 611 lines / 11 arcs / 3 circles. Old-style TW84 path: ~298 lines (too low).
 
 ## 6) Diagnostics Toolkit
 - `diagnostics/detect_format.py` – old vs new-style hint.
@@ -68,5 +67,6 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - Catalog names are only in the decompressed payload (not raw file).
 - BBox sanity: use drawing/component bbox to filter out geometry that exceeds expected extents.
 - `diagnostics/dump_placement_blocks.py` is the quickest way to see which 0x4803 blocks carry placement-style records.
+- Deflate scanning lives in `monucad/deflate_io.py`; `monucad/entities.py` now holds core entity dataclasses as part of the ongoing modularization of `mcd_to_dxf.py`.
 
 Keep this file as the canonical knowledge base. All older docs live in `docs_archive/`. Update this file as discoveries are made; avoid adding new scattered notes.
