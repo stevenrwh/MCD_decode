@@ -504,6 +504,23 @@ def extract_new_style_component_lines(
             for trailer, records in new_records:
                 component_labels[trailer.component_id].update(record.label for record in records)
         placements_from_blocks = bool(placement_records)
+
+        if placements_from_blocks:
+            # Heuristic: keep only the richest block-scoped placement sources to avoid
+            # instancing every tiny 0x4803 block. Rank by distinct labels and cap the count.
+            ranked: list[tuple[int, PlacementTrailer, list[GlyphPlacementRecord]]] = []
+            for trailer, records in placement_records:
+                label_count = len({rec.label for rec in records if rec.label})
+                if label_count < 3:
+                    continue
+                ranked.append((label_count, trailer, records))
+            ranked.sort(key=lambda item: item[0], reverse=True)
+            MAX_BLOCK_CANDIDATES = 12
+            selected = ranked[:MAX_BLOCK_CANDIDATES]
+            placement_records = [(trailer, records) for _, trailer, records in selected]
+            component_labels.clear()
+            for trailer, records in placement_records:
+                component_labels[trailer.component_id].update(record.label for record in records)
     else:
         placements_from_blocks = False
 

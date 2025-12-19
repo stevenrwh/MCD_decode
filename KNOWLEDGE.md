@@ -77,6 +77,12 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - Placement parsing/instancing (catalog-aware label → block mapping, placement trailer parsing, block fallback) now lives in `monucad/placement.py`; `mcd_to_dxf.py` imports `collect_candidate_records` and `extract_new_style_component_lines` from there.
 - Shared arc math (`circle_from_points`) is exported from `monucad/geometry.py` so placement/fonts/etc. can consume it without local copies.
 - DXF writing now lives in `monucad/mcd.py` (`write_dxf`); `mcd_to_dxf.py` imports it instead of defining its own copy.
+- Component helper utilities (circle helper merge, TLV short-line extraction/filtering) now live in `monucad/mcd.py`; `mcd_to_dxf.py` imports `_collect_component_circles`, `_extract_short_component_lines`, and `_matches_component_helper` from there.
+- Duplicate arc-line pruning implementation removed from `mcd_to_dxf.py`; it now solely uses the shared `prune_lines_against_arcs` from `monucad/geometry.py`. Local `point_in_bbox` override also removed; the shared geometry helper is used directly.
+- Inline float helpers (`_segments_from_inline_floats`, `_parse_inline_float_records`, `_extract_bbox_from_inline_chunk`) moved into `monucad/mcd.py` for reuse; converter imports them now.
+- Additional inline helpers moved into `monucad/mcd.py` (`_scan_inline_double_records`, `_parse_inline_labeled_float_records`, `_decode_glyph_chunk`, `_load_payload_glyph_components`, plus inline placement/arc parsing and bbox helpers). `mcd_to_dxf.py` now calls `_extract_inline_component_geometry` from that module, keeping the converter lean.
+- Placement fallback (when no placement trailers) now caps block-scoped candidates to the richest 12 0x4803 blocks by distinct labels to avoid instancing every small block.
+- New diagnostic: `diagnostics/old_style_catalog.py` extracts label/catalog hits from older-style payloads (heuristic int16 windows around label strings).
 
 ## 10) File Security Modes (MCD Save)
 - Automated sweep script: `tools/mcpro9_security_sweep.py` runs the “LI” macro, then saves four variants by clicking the File Security options: **All Your Satellites**, **Specific Satellite**, **Only You**, **Masters Only**. Output files: `line_all.mcd`, `line_specific.mcd`, `line_only.mcd`, `line_masters.mcd` (saved into Monu-CAD’s default Drawing Save dir to avoid zero-byte stubs).
