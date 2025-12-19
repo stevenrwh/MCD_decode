@@ -1,0 +1,7 @@
+"""
+Core MonuCAD parsing utilities split into modules for reuse.
+"""
+
+from .deflate_io import DEFAULT_MIN_PAYLOAD, brute_force_deflate, collect_deflate_streams
+
+__all__ = ["DEFAULT_MIN_PAYLOAD", "brute_force_deflate", "collect_deflate_streams"]
