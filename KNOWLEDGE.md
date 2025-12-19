@@ -51,6 +51,8 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - `component_parser.py` – parses component definitions, TLV primitives, and sub-blocks.
 - `placement_parser.py` – extracts placement trailers and glyph records.
 - `diagnostics/quick_manifest.py` – single-file summary: deflate offsets/sizes, marker presence, component/placement counts, catalog count (best effort), and geometry counts via `parse_entities` (best effort). Useful for rapid triage of .mcd/.mcc blobs.
+- `diagnostics/quick_manifest_mcc.py` – MCC-focused summary: deflate streams, component definition list (id/bbox/sub-blocks), placement trailers; optional JSON.
+- `diagnostics/fnt_probe.py` – font probe for .fnt/.dta/.decompressed (or DXF with `--from-dxf`): shows deflate streams, glyph counts/labels, bbox/advance stats, and kerning pair count.
 
 ## 7) Known Structures (new-style TW84)
 - Component definitions: 1 definition (ID 14338). Sub-block counts: 3,943 × 0x4803 + 2 × 0x3805. Definition bbox is present.
