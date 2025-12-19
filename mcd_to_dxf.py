@@ -28,6 +28,7 @@ from pathlib import Path
 from typing import Iterable, List, Sequence, Tuple
 from monucad.deflate_io import DEFAULT_MIN_PAYLOAD, brute_force_deflate, collect_deflate_streams
 from monucad.entities import ArcEntity, CircleEntity, DuplicateRecord, InsertEntity, LineEntity
+from monucad.logging import ArcHelperLogger, log_duplicate_records
 from component_parser import (
     ComponentSubBlock,
     CirclePrimitive,
@@ -57,18 +58,8 @@ GLYPH_COORD_SCALE = 64.0
 
 
 def _log_duplicate_records(records: Sequence[DuplicateRecord], destination: Path) -> None:
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    lines: List[str] = []
-    for idx, entry in enumerate(records, start=1):
-        lines.append(
-            f"#{idx:04d} offset=0x{entry.offset:04X} original=0x{entry.original_offset:04X} "
-            f"layer={entry.layer} etype={entry.etype}"
-        )
-        lines.append(
-            f"       start=({entry.start[0]:.6f},{entry.start[1]:.6f}) "
-            f"end=({entry.end[0]:.6f},{entry.end[1]:.6f})"
-        )
-    destination.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
+    # Backward shim for callers inside this module; actual implementation lives in monucad.logging.
+    log_duplicate_records(records, destination)
 
 @dataclass
 class TextEntity:
@@ -402,50 +393,6 @@ def _is_alignment_helper(line: LineEntity) -> bool:
     if min(abs(y) for y in y_vals) > HELPER_AXIS_TOL:
         return False
     return True
-
-
-@dataclass
-class ArcHelperLogger:
-    destination: Path
-    window: int = 16
-
-    def __post_init__(self) -> None:
-        self._lines: List[str] = []
-
-    def record(
-        self,
-        *,
-        seq: int,
-        arc_offset: int,
-        layer: int,
-        start: Tuple[float, float],
-        center: Tuple[float, float],
-        neighbors: Sequence[Tuple[int, int, int, float, float, float, float]],
-        note: str | None = None,
-    ) -> None:
-        header = (
-            f"Arc #{seq} offset=0x{arc_offset:04X} layer={layer} "
-            f"start=({start[0]:.6f},{start[1]:.6f}) center=({center[0]:.6f},{center[1]:.6f})"
-        )
-        if note:
-            header += f" | {note}"
-        self._lines.append(header)
-        if not neighbors:
-            self._lines.append("  (no trailing helper records captured)")
-            return
-        for rel_idx, (offset, n_layer, etype, x1, y1, x2, y2) in enumerate(neighbors, start=1):
-            self._lines.append(
-                f"  helper[{rel_idx:02}] off=0x{offset:04X} layer={n_layer:<10} "
-                f"etype={etype:<10} "
-                f"p1=({x1:.6f},{y1:.6f}) p2=({x2:.6f},{y2:.6f})"
-            )
-
-    def flush(self) -> None:
-        if not self._lines:
-            return
-        text = "\n".join(self._lines) + "\n"
-        self.destination.write_text(text, encoding="utf-8")
-
 
 def _looks_like_coordinate(value: float) -> bool:
     return math.isfinite(value) and abs(value) <= MAX_COORD_MAGNITUDE
