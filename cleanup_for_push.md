@@ -1,12 +1,22 @@
 # Git Repository Cleanup for GitHub Push
 
-## Problem
-The repository is ~439 MB with large binary files in history, causing push timeouts.
+## ✅ COMPLETED - Dec 19, 2025
 
-## Largest Files in History
+**Repository successfully pushed to GitHub**: https://github.com/stevenrwh/MCD_decode
+
+### Results
+| Metric | Before | After |
+|--------|--------|-------|
+| Repo size | 439 MB | 66 MB |
+| Push time | Timeout (300s+) | ~13 seconds |
+
+## What Was Removed from History
+
+Used `git filter-repo --invert-paths` to remove:
+
 | Size | Path |
 |------|------|
-| 135 MB | `MONU-CAD_Win95_copy/MONU-CAD Pro/*.dmp` (crash dumps) |
+| ~680 MB | `MONU-CAD_Win95_copy/` (entire folder) |
 | 52 MB | `Monucad9_Operations_Logfile.CSV` |
 | 23 MB | `FONTS/ARIALUNI.TTF` |
 | 15 MB | `FONTS/BATANG.TTF` |
@@ -17,57 +27,37 @@ The repository is ~439 MB with large binary files in history, causing push timeo
 | 6 MB | `MONU-CAD_Win95_copy/help/*.chm` |
 | 3-4 MB | `MONU-CAD_Win95_copy/MONU-CAD Pro/MCPro*.exe` |
 
-## Recommended Cleanup
-
-### Option 1: Remove Large Binaries from History (Recommended)
-
-Run this PowerShell script to remove large/unnecessary files from Git history:
+## Commands Used
 
 ```powershell
-cd c:\Dev\MCD_decode
-
-# Create backup branch first
+# 1. Create backup branch
 git branch backup-before-cleanup
 
-# Remove large files from history using git filter-repo
+# 2. Remove large files from history
 git filter-repo --invert-paths `
-    --path-glob 'MONU-CAD_Win95_copy/MONU-CAD Pro/*.dmp' `
-    --path-glob 'MONU-CAD_Win95_copy/MONU-CAD Pro/*.exe' `
-    --path 'MONU-CAD_Win95_copy/help/' `
-    --path 'tools/' `
-    --path 'analysis/MCPro9_unpacked.exe' `
-    --path-glob 'FONTS/*.TTF' `
-    --path-glob 'FONTS/*.ttf' `
-    --path 'Monucad9_Operations_Logfile.CSV' `
-    --path 'Monucad9_opening_10x10_try2_rect.CSV' `
-    --path-glob 'vm_chunk*.json' `
+    --path-glob "MONU-CAD_Win95_copy/MONU-CAD Pro/*.dmp" `
+    --path-glob "MONU-CAD_Win95_copy/MONU-CAD Pro/*.exe" `
+    --path "MONU-CAD_Win95_copy/help/" `
+    --path "tools/" `
+    --path "analysis/MCPro9_unpacked.exe" `
+    --path-glob "FONTS/*.TTF" `
+    --path-glob "FONTS/*.ttf" `
+    --path "Monucad9_Operations_Logfile.CSV" `
+    --path "Monucad9_opening_10x10_try2_rect.CSV" `
+    --path-glob "vm_chunk*.json" `
     --force
 
-# Re-add remote (filter-repo removes it)
-git remote add origin git@github.com:stevenrwh/MCD_decode.git
+# 3. Re-add remote and push
+git remote add origin https://github.com/stevenrwh/MCD_decode.git
+git push -u origin main
 
-# Force push to GitHub
-git push -u origin main --force
+# 4. Remove entire MONU-CAD_Win95_copy from tracking
+git rm -r --cached "MONU-CAD_Win95_copy/"
+git commit -m "Ignore entire MONU-CAD_Win95_copy folder"
+git push
 ```
 
-### Option 2: Fresh Start (if filter-repo causes issues)
-
-```powershell
-# Rename current repo
-Rename-Item .git .git_backup
-
-# Create fresh git history
-git init
-git add .
-git commit -m "Initial commit - clean history"
-git remote add origin git@github.com:stevenrwh/MCD_decode.git
-git branch -M main
-git push -u origin main --force
-```
-
-## Update .gitignore First
-
-Before cleanup, update `.gitignore` to prevent re-adding large files:
+## Current .gitignore
 
 ```gitignore
 # Python

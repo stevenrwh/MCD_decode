@@ -1,29 +1,45 @@
 # Repo Status and GitHub Push Plan
 
-## Current state
-- Git repo initialized on branch `main`.
-- Commits:
-  1. **Initial snapshot before modularization** – full tree (all tools/assets included).
-  2. **Extract deflate helpers and add format guide** – adds `monucad/deflate_io.py`, `docs/format_guide.md`, and rewires `mcd_to_dxf.py` to import deflate helpers.
-- Remote configured: `origin` -> `git@github.com:stevenrwh/MCD_decode.git`.
+## Current State ✅
+- **GitHub repo live**: https://github.com/stevenrwh/MCD_decode
+- Git repo on branch `main`, pushed successfully on Dec 19, 2025.
+- Remote: `origin` -> `https://github.com/stevenrwh/MCD_decode.git`
 
-## Push attempts
-- `git push -u origin main` timed out twice (120s and 300s). The repo contains many large binaries (e.g., `tools/radare2-6.0.4-w64`, `tools/upx-*`, `tools/strings`, numerous font archives, sample DXFs/PNGs), so the initial push is very heavy.
+## Cleanup Completed (Dec 19, 2025)
+Successfully reduced repo from **439 MB → 66 MB** using `git filter-repo`.
 
-## Recommended cleanup before retrying
-- Prune bulky tool bundles and other non-source artifacts from history, then push:
-  - Candidates to drop: `tools/radare2-6.0.4-w64/`, `tools/upx-4.2.2-win64*`, `tools/strings/`, `tools/*zip`, large reference binaries that aren’t needed to build/parse (keep small sample .mcd/.mcc/.fnt/.dxf as needed).
-  - Use `git filter-repo` (preferred) to remove paths from all commits, then force-push:
-    ```bash
-    git filter-repo --invert-paths --path tools/radare2-6.0.4-w64 --path tools/upx-4.2.2-win64 --path tools/strings
-    git remote set-url origin git@github.com:stevenrwh/MCD_decode.git
-    git push -f -u origin main
-    ```
-  - If `git filter-repo` is unavailable, fall back to `git filter-branch` or create a fresh repo containing only the curated subset (source, scripts, small samples, docs).
-- If retaining large assets is required, consider Git LFS for the big binaries/zips before pushing.
+### Files Removed from History
+| Size | Path | Reason |
+|------|------|--------|
+| ~680 MB | `MONU-CAD_Win95_copy/` | Entire folder now gitignored (installation copy) |
+| 52 MB | `Monucad9_Operations_Logfile.CSV` | Large log file |
+| ~70 MB | `FONTS/*.TTF` | System fonts (ARIALUNI, BATANG, SIMSUN, etc.) |
+| ~15 MB | `tools/` | Radare2, UPX, strings binaries |
+| 13 MB | `analysis/MCPro9_unpacked.exe` | Unpacked executable |
+| 7 MB | `Monucad9_opening_10x10_try2_rect.CSV` | Large log |
+| ~4 MB | `vm_chunk*.json` | Regenerable JSON dumps |
 
-## Next coding steps (modularization)
+### Current .gitignore
+```gitignore
+__pycache__/, *.pyc, *.pyo, *.swp, .DS_Store, .venv/
+MONU-CAD_Win95_copy/    # Full installation folder
+tools/                   # Binary tools
+analysis/*.exe           # Unpacked executables
+*.dmp                    # Crash dumps
+Monucad9_*.CSV           # Large logs
+FONTS/*.TTF, *.ttf       # System fonts
+vm_chunk*.json           # Regenerable JSON
+tmp_*, *.tmp             # Temporary files
+```
+
+## Repository Contents
+- **Source code**: `mcd_to_dxf.py`, `monucad/` package, `*.py` scripts
+- **Documentation**: `KNOWLEDGE.md`, `docs/`, `notes/`
+- **Sample files**: Small `.mcd`, `.mcc`, `.dxf`, `.fnt` test files
+- **Diagnostics**: `diagnostics/` folder with analysis scripts
+
+## Next Steps (Modularization)
 - Continue moving logic out of `mcd_to_dxf.py` into `monucad/`:
-  - `component.py` (component defs/sub-blocks), `catalog.py` (label/index tables), `placement.py` (trailers/block tables), `geometry.py` (entity helpers), `converter.py` (orchestrator).
-  - Keep `mcd_to_dxf.py` as a thin CLI that wires the modules together.
-- Expand `docs/format_guide.md` with concrete counts/offsets as placement tables are decoded (old/new MCD, MCC, FNT).
+  - `component.py`, `catalog.py`, `placement.py`, `geometry.py`, `converter.py`
+- Keep `mcd_to_dxf.py` as a thin CLI that wires the modules together.
+- Expand `docs/format_guide.md` with concrete counts/offsets.
