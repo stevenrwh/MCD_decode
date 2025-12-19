@@ -10,6 +10,24 @@ MAX_COORD_MAGNITUDE = 1e5
 HELPER_AXIS_TOL = 1e-3
 
 
+def circle_from_points(
+    p1: Tuple[float, float],
+    p2: Tuple[float, float],
+    p3: Tuple[float, float],
+) -> Tuple[float, float, float] | None:
+    (x1, y1), (x2, y2), (x3, y3) = p1, p2, p3
+    temp = x2 * x2 + y2 * y2
+    bc = (x1 * x1 + y1 * y1 - temp) / 2.0
+    cd = (temp - x3 * x3 - y3 * y3) / 2.0
+    det = (x1 - x2) * (y2 - y3) - (x2 - x3) * (y1 - y2)
+    if abs(det) < 1e-9:
+        return None
+    cx = (bc * (y2 - y3) - cd * (y1 - y2)) / det
+    cy = ((x1 - x2) * cd - (x2 - x3) * bc) / det
+    radius = math.hypot(cx - x1, cy - y1)
+    return cx, cy, radius
+
+
 def fuzzy_eq(a: float, b: float, tol: float = 1e-6) -> bool:
     return abs(a - b) <= tol
 

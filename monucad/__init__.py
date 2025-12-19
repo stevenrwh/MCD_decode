@@ -10,6 +10,7 @@ from .geometry import (
     DUP_FINGERPRINT_PLACES,
     HELPER_AXIS_TOL,
     MAX_COORD_MAGNITUDE,
+    circle_from_points,
     fuzzy_eq,
     is_alignment_helper,
     point_in_bbox,
@@ -17,6 +18,16 @@ from .geometry import (
     prune_lines_against_arcs,
     record_fingerprint,
     round_coord,
+)
+from .placement import (
+    collect_candidate_records,
+    build_label_block_map,
+    decode_polyline_block,
+    segments_from_component_block,
+    transform_point,
+    instantiate_glyph_segments,
+    instantiate_glyph_arcs,
+    extract_new_style_component_lines,
 )
 
 __all__ = [
@@ -39,6 +50,7 @@ __all__ = [
     "MAX_COORD_MAGNITUDE",
     "HELPER_AXIS_TOL",
     "DUP_FINGERPRINT_PLACES",
+    "circle_from_points",
     "fuzzy_eq",
     "points_match",
     "point_in_bbox",
@@ -46,4 +58,12 @@ __all__ = [
     "prune_lines_against_arcs",
     "record_fingerprint",
     "round_coord",
+    "collect_candidate_records",
+    "build_label_block_map",
+    "decode_polyline_block",
+    "segments_from_component_block",
+    "transform_point",
+    "instantiate_glyph_segments",
+    "instantiate_glyph_arcs",
+    "extract_new_style_component_lines",
 ]

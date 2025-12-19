@@ -70,5 +70,7 @@ This file replaces the scattered notes. Archived docs now live in `docs_archive/
 - Deflate scanning lives in `monucad/deflate_io.py`; `monucad/entities.py` now holds core entity dataclasses as part of the ongoing modularization of `mcd_to_dxf.py`.
 - Font logic now lives in `monucad/fonts.py`; `mcd_to_dxf.py` imports TextEntity/Glyph/FontDefinition/FontManager and related constants from there (inline font classes removed).
 - Geometry helpers/constants (bbox checks, arc-line pruning, tolerance values) live in `monucad/geometry.py`; `mcd_to_dxf.py` now imports them instead of defining inline versions.
+- Placement parsing/instancing (catalog-aware label → block mapping, placement trailer parsing, block fallback) now lives in `monucad/placement.py`; `mcd_to_dxf.py` imports `collect_candidate_records` and `extract_new_style_component_lines` from there.
+- Shared arc math (`circle_from_points`) is exported from `monucad/geometry.py` so placement/fonts/etc. can consume it without local copies.
 
 Keep this file as the canonical knowledge base. All older docs live in `docs_archive/`. Update this file as discoveries are made; avoid adding new scattered notes.
