@@ -4,3 +4,25 @@ __pycache__/
 *.swp
 .DS_Store
 .venv/
+
+# Large MONU-CAD installation (not needed for the decoder)
+MONU-CAD_Win95_copy/
+
+# Large binary tools
+tools/
+analysis/*.exe
+
+# Crash dumps and large logs
+*.dmp
+Monucad9_*.CSV
+
+# Large system fonts
+FONTS/*.TTF
+FONTS/*.ttf
+
+# Large JSON dumps (regenerable)
+vm_chunk*.json
+
+# Temporary files
+tmp_*
+*.tmp
