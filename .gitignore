@@ -26,3 +26,7 @@ vm_chunk*.json
 # Temporary files
 tmp_*
 *.tmp
+
+# Archive folders
+2014/
+2025/
